@@ -16,7 +16,6 @@ what it can't do yet but hopefully will soon:
     - filter skills by level for old ultimates (or old savages for MINE gamers)
 
 
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 aspirational goals
     - fight timeline filters to hide non-damaging and/or avoidable attacks
     - account for charges, e.g. oblation
