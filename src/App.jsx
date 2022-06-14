@@ -152,6 +152,8 @@ const App = () =>  {
                                     item={item}
                                     shadowed
                                     customElementType={DefaultBasicElement}
+                                    useIcon={true}
+                                    style={{backgroundColor: 'gray'}}
                                 />
                             </div>
                         ))

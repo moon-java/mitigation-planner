@@ -1,12 +1,13 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
-import rampart from '../assets/skills/rampart.png'
+import skillIcons from '../assets/skills/skillIcons';
 
 export const drkSkills =
 [
     {
         skillId: 1,
         name: 'Rampart',
-        imgFile: rampart,
+        imgFile: skillIcons['rampart'].icon,
+        imgColor: skillIcons['rampart'].color,
         level: 8,
         cooldown: 90,
         effects:
@@ -24,7 +25,8 @@ export const drkSkills =
     {
         skillId: 2,
         name: 'Reprisal',
-        imgFile: './assets/skills/reprisal.png',
+        imgFile: skillIcons['reprisal'].icon,
+        imgColor: skillIcons['reprisal'].color,
         level: 22,
         cooldown: 60,
         effects:
@@ -42,7 +44,8 @@ export const drkSkills =
     {
         skillId: 3,
         name: 'Dark Missionary',
-        imgFile: './assets/skills/dark_missionary.png',
+        imgFile: skillIcons['dark_missionary'].icon,
+        imgColor: skillIcons['dark_missionary'].color,
         level: 76,
         cooldown: 90,
         effects:

@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { rgbaFromArray } from '../../../Helpers/Functions';
 import classes from './SkillEventElement.module.css';
-
-const alpha = 0.7;
-const defaultColors = {
-    outerElement : [204, 204, 204],
-    innerElement : [70, 130, 180]
-}
 
 const SkillEventElement = props => {
     const [effectBoxes, setEffects] = useState();
@@ -18,7 +10,7 @@ const SkillEventElement = props => {
 
             const position = props.item.startTime;
             let width = effect.duration * 20;
-            let height = 40 / props.item.effects.length;
+            let height = 50 / props.item.effects.length;
 
             return (
                 <div className={classes.ItemFlex}
@@ -30,7 +22,7 @@ const SkillEventElement = props => {
                     height: `${height}px`,
                     alignItems: `center`,
                     width: `${width}px`,
-                    backgroundColor: `#918966`,
+                    backgroundColor: `${props.item.imgColor}`,
                     padding: `0px`}}/>
             );
         });
@@ -38,16 +30,17 @@ const SkillEventElement = props => {
         setEffects( newEffectBoxes );
     }, [props.item]);
 
+    let grayerColor = props.item.imgColor + '55'
     return (
         <div 
             className={[classes.SkillEventElement, props.className].join(' ')}
             style={{
-                backgroundColor: 'rgba(190, 170, 150, 0.5)',
+                backgroundColor: grayerColor,
                 ...props.style,
             }}
                 
         >
-            <img src={props.item.imgFile} style={{paddingLeft: `5px`, position: `absolute`}}/>
+            <img src={props.item.imgFile} width='40px' height='40px' style={{padding: `5px`, position: `absolute`}}/>
             <div>{effectBoxes}</div>
         </div>
     )

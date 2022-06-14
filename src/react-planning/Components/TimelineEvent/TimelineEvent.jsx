@@ -73,7 +73,6 @@ export const TimelineEvent = props => {
                 <div>Damage type: {props.item.damageType}</div>
                 <div>Target: {props.item.target}</div>
                 <div>{props.item.notes}</div>
-                <div>Mit for {props.activePartyMember}:</div>
                 <div>Self mitigation: -{selfMit}%</div>
                 <div>Party mitigation: -{partyMit}%</div>
             </div>

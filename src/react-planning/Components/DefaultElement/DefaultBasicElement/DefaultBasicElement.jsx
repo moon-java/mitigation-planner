@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { rgbaFromArray } from '../../../Helpers/Functions';
 import classes from './DefaultBasicElement.module.css';
 
 const alpha = 0.7;
 
 const DefaultBasicElement = props => {
+    const content = props.useIcon ? <img src={props.item.imgFile}/> :
+                                    <div className={classes.Line1}>
+                                    {   props.item.name}
+                                    </div>
+    const bgColor = props.useIcon ? props.item.imgColor : props.style.backgroundColor;
     return (
         <div 
             className={[classes.DefaultBasicElement, props.className].join(' ')}
             style={{
                 ...props.style,
-            }}
-                
+                backgroundColor: bgColor
+            }}  
         >
             <div className={classes.ItemFlex}>
                 <div className={classes.Content}>
-                    <div className={classes.Line1}>
-                        {props.item.name}
-                    </div>
+                    {content}
                 </div>
             </div>
             
