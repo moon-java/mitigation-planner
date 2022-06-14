@@ -72,7 +72,7 @@ export const Planner = props => {
         const PlannerElement = PlannerRef.current.getBoundingClientRect();
 
         // Update the state with the width of the timneline width
-        setPlannerWidth( 300 * secWidth - ( borderSize * 2 ));
+        setPlannerWidth( props.duration * secWidth);
 
     }
 
@@ -164,50 +164,53 @@ export const Planner = props => {
             selfMit: { all: 100, magic: 100, phys: 100}
         }
         items.forEach( item =>
+        {
+            item.effects.forEach ( effect =>
             {
-                if (item.startTime < time && item.endTime >= time)
+                if (item.startTime < time && effect.endTime >= time)
                 {
-                    if (item.damageType == damageTypes.ALL)
+                    if (effect.damageType == damageTypes.ALL)
                     {
-                        if (item.target == targets.PARTY ||
-                            item.target == targets.ENEMY)
+                        if (effect.target == targets.PARTY ||
+                            effect.target == targets.ENEMY)
                         {
-                            mit.partyMit.all *= (100 - item.value) / 100;
-                            mit.selfMit.all *= (100 - item.value) / 100;
+                            mit.partyMit.all *= (100 - effect.value) / 100;
+                            mit.selfMit.all *= (100 - effect.value) / 100;
                         }
                         else if (props.activePartyMember == item.partyMemberId)
                         {
-                            mit.selfMit.all *= (100 - item.value) / 100;
+                            mit.selfMit.all *= (100 - effect.value) / 100;
                         }
                     }
-                    if (item.damageType == damageTypes.MAGIC)
+                    if (effect.damageType == damageTypes.MAGIC)
                     {
-                        if (item.target == targets.PARTY ||
-                            item.target == targets.ENEMY)
+                        if (effect.target == targets.PARTY ||
+                            effect.target == targets.ENEMY)
                         {
-                            mit.partyMit.magic *= (100 - item.value) / 100;
-                            mit.selfMit.magic *= (100 - item.value) / 100;
+                            mit.partyMit.magic *= (100 - effect.value) / 100;
+                            mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
                         else if (props.activePartyMember == item.partyMemberId)
                         {
-                            mit.selfMit.magic *= (100 - item.value) / 100;
+                            mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
                     }
-                    if (item.damageType == damageTypes.PHYS)
+                    if (effect.damageType == damageTypes.PHYS)
                     {
-                        if (item.target == targets.PARTY ||
-                            item.target == targets.ENEMY)
+                        if (effect.target == targets.PARTY ||
+                            effect.target == targets.ENEMY)
                         {
-                            mit.partyMit.phys *= (100 - item.value) / 100;
-                            mit.selfMit.phys *= (100 - item.value) / 100;
+                            mit.partyMit.phys *= (100 - effect.value) / 100;
+                            mit.selfMit.phys *= (100 - effect.value) / 100;
                         }
                         else if (props.activePartyMember == item.partyMemberId)
                         {
-                            mit.selfMit.phys *= (100 - item.value) / 100;
+                            mit.selfMit.phys *= (100 - effect.value) / 100;
                         }
                     }
                 }
             });
+        });
         return mit;
     }
 
@@ -229,21 +232,27 @@ export const Planner = props => {
         partyView: props.partyView,
         partyMembers: props.partyMembers,
         activePartyMember: props.activePartyMember,
-        onPartyMemberClick: props.options.callBacks.onPartyMemberClick
+        onPartyMemberClick: props.options.callBacks.onPartyMemberClick,
+        onPartyMemberJobChange: props.options.callBacks.onPartyMemberJobChange,
+        timeline: props.timeline
     }
+
+    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #2f3031`, borderRight: `2px solid #2f3031`, borderBottom: `2px solid #2f3031`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `68px`, width: `220px`}}/> : null;
+    console.log(blockDiv);
     return (
         <>
+            {blockDiv}
+            <div style={{overflowX: props.scroll ? 'scroll' : 'hidden'}}>
             <div
                 className={`${props.className}`}
                 style={{
-                    border: `${borderSize}px solid #ccc`, 
-                    overflowX: props.scroll ? 'scroll' : 'hidden',
+                    overflowY: 'clip',
                     ...props.style
                 }}
                 ref={PlannerRef}
             >
                 <LayoutGrid {...propagatedProps} />
-                
+                </div>
             </div>
         </>
     )

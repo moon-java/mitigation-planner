@@ -1,42 +1,61 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
+import rampart from '../assets/skills/rampart.png'
 
 export const drkSkills =
 [
     {
         skillId: 1,
         name: 'Rampart',
-        target: targets.SELF,
-        damageType: damageTypes.ALL,
+        imgFile: rampart,
         level: 8,
-        effect: effects.DMG_IN,
-        valueType: valueTypes.PERCENT,
-        value: 20,
-        duration: 20,
-        cooldown: 90
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 20,
+                duration: 20
+            }
+        ]
     },
     {
         skillId: 2,
         name: 'Reprisal',
-        target: targets.ENEMY,
-        damageType: damageTypes.ALL,
+        imgFile: './assets/skills/reprisal.png',
         level: 22,
-        effect: effects.DMG_OUT,
-        valueType: valueTypes.PERCENT,
-        value: 10,
-        duration: 10,
-        cooldown: 60
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_OUT,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 10
+            }
+        ]
     },
     {
         skillId: 3,
         name: 'Dark Missionary',
-        target: targets.PARTY,
-        damageType: damageTypes.MAGIC,
+        imgFile: './assets/skills/dark_missionary.png',
         level: 76,
-        effect: effects.DMG_IN,
-        valueType: valueTypes.PERCENT,
-        value: 10,
-        duration: 15,
-        cooldown: 90
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.MAGIC,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
     }
 ];
 

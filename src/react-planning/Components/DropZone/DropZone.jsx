@@ -52,17 +52,21 @@ const DropZone = props => {
         item.startTime = props.time;
 
         // Set the new end date by adding the difference or 0
-        item.endTime += diff;
+        item.effects.forEach( effect => {
+            effect.endTime += diff;
+        })
 
         return item;
     }
 
     const initItem = item => {
         item.startTime = props.time;
-        item.endTime = props.time + item.duration;
+        item.effects.forEach( effect => {
+            effect.endTime = props.time + effect.duration;
+        })
         item.partyMemberId = props.activePartyMember;
 
-        console.log("init ", item.startTime, item.endTime);
+        console.log("init ", item);
 
         return item;
     }

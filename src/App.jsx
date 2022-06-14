@@ -5,6 +5,7 @@ import MouseBackEnd from 'react-dnd-mouse-backend'
 import classes from './App.module.css';
 import { Planner, SkillEvent} from './react-planning';
 import skills from './cooldowns/skills.js';
+import timelines from './timelines/timelines.js';
 
 import DefaultBasicElement from './react-planning/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import FightSelector from './react-planning/Components/Dropdowns/FightSelector'
@@ -23,6 +24,9 @@ const Option = props => (
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
+    const [selectedFight, setSelectedFight] = useState('p1s');
+    const [fightInfo, setFightInfo] = useState(timelines['p1s'].info);
+    const [fightTimeline, setFightTimeline] = useState(timelines['p1s'].timeline);
     const [partyMembers, setPartyMembers] = useState([
         {
             partyMemberId: 0,
@@ -70,7 +74,7 @@ const App = () =>  {
     ]);
 
     const startTime = 0;
-    const endTime = 300;
+    const endTime = fightInfo.length;
 
     const addHandler = ( {item, items} ) => {
         console.log( `Added : ${item}` );
@@ -90,9 +94,21 @@ const App = () =>  {
         setActivePartyMember(partyMemberId);
     }
 
+    const selectedFightChangedHandler = ( fightId ) => {
+        setFightInfo(timelines[fightId].info);
+        setFightTimeline(timelines[fightId].timeline);
+        setSelectedFight(fightId);
+    }
+
     const updatePrimaryJobHandler = ( job ) => {
         let tmpParty = {...partyMembers};
         tmpParty[0].job = job;
+        setPartyMembers(tmpParty);
+    }
+
+    const partyMemberJobChangeHandler = ( job, index ) => {
+        let tmpParty = {...partyMembers};
+        tmpParty[index].job = job;
         setPartyMembers(tmpParty);
     }
 
@@ -101,7 +117,8 @@ const App = () =>  {
             onAdd : addHandler,
             onRemove: removeHandler,
             onUpdate: updateHandler,
-            onPartyMemberClick: partyMemberClickHandler
+            onPartyMemberClick: partyMemberClickHandler,
+            onPartyMemberJobChange: partyMemberJobChangeHandler,
         },
         startTime : startTime, 
         endTime: endTime
@@ -111,12 +128,18 @@ const App = () =>  {
     const activeSkills = skills[activeJob];
     return (
         <>
+        <div className={classes.Header}>
+            <h1>mitigation planner</h1>
+            <h2>im tired of google spreadsheets</h2>
+            </div>
+        <div className={classes.Content}>
         <div className={classes.Options}>
-        <FightSelector/>
-        <JobSelector onPrimaryJobChange={updatePrimaryJobHandler}/>
+        <FightSelector onFightChange={selectedFightChangedHandler} />
+        <JobSelector onJobChange={updatePrimaryJobHandler}/>
         <Option checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}>
                         Party View
                     </Option>
+        </div>
         </div>
         <DndProvider backend={MouseBackEnd}>
             <div className={classes.Content}>
@@ -141,7 +164,8 @@ const App = () =>  {
                              partyView={partyViewEnabled}
                              partyMembers={partyMembers}
                              activePartyMember={activePartyMember}
-                             duration={300}/>
+                             duration={fightInfo.length}
+                             timeline={fightTimeline}/>
                 </div>
 
             </div>

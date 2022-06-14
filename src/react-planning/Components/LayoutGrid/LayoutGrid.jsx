@@ -17,6 +17,7 @@ const LayoutGrid = props => {
     };
 
     const TimeGridElements = ( width, offset ) => (
+        <>
         <TimeGrid 
             key={`TimeGrid`}
             onDrop={props.onDrop}
@@ -30,6 +31,7 @@ const LayoutGrid = props => {
             height={timelineHeight}
         >
         </TimeGrid>
+        </>
     );
 
 
@@ -53,6 +55,7 @@ const LayoutGrid = props => {
                 leftWidth={leftWidth}
                 partyMembers={props.partyMembers}
                 onPartyMemberClick={props.onPartyMemberClick}
+                activePartyMember={props.activePartyMember}
             />
         </>
     )

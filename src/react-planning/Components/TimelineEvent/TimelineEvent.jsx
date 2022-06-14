@@ -64,20 +64,20 @@ export const TimelineEvent = props => {
                 <props.customElementType {...props} />
             </div>
             <MouseTooltip
-          visible={visible}
-          offsetX={15}
-          offsetY={10}
-        >
-          <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
-              <div>{props.item.name}</div>
-              <div>Damage type: {props.item.damageType}</div>
-              <div>Target: {props.item.target}</div>
-              <div>{props.item.notes}</div>
-              <div>Mit for {props.activePartyMember}:</div>
-              <div>Self mitigation: -{selfMit}%</div>
-              <div>Party mitigation: -{partyMit}%</div>
-          </div>
-        </MouseTooltip>
+            visible={visible}
+            offsetX={15}
+            offsetY={10}
+            >
+            <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
+                <div>{props.item.name}</div>
+                <div>Damage type: {props.item.damageType}</div>
+                <div>Target: {props.item.target}</div>
+                <div>{props.item.notes}</div>
+                <div>Mit for {props.activePartyMember}:</div>
+                <div>Self mitigation: -{selfMit}%</div>
+                <div>Party mitigation: -{partyMit}%</div>
+            </div>
+            </MouseTooltip>
         </>
     )
 }

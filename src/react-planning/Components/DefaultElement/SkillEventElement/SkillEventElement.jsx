@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { rgbaFromArray } from '../../../Helpers/Functions';
@@ -11,34 +11,44 @@ const defaultColors = {
 }
 
 const SkillEventElement = props => {
+    const [effectBoxes, setEffects] = useState();
 
-    let width = props.item.duration * 20;
+    useEffect(() => {
+        const newEffectBoxes = props.item.effects.map((effect, index) => {
+
+            const position = props.item.startTime;
+            let width = effect.duration * 20;
+            let height = 40 / props.item.effects.length;
+
+            return (
+                <div className={classes.ItemFlex}
+                    key={props.item.id + ` ` + index}
+                    style={{
+                    display: `flex`,
+                    flexDirection: `row`,
+                    justifyContent: `left`,
+                    height: `${height}px`,
+                    alignItems: `center`,
+                    width: `${width}px`,
+                    backgroundColor: `#918966`,
+                    padding: `0px`}}/>
+            );
+        });
+
+        setEffects( newEffectBoxes );
+    }, [props.item]);
+
     return (
         <div 
             className={[classes.SkillEventElement, props.className].join(' ')}
             style={{
-                background: props.innerElement ? rgbaFromArray( props.bgColor, alpha ): rgbaFromArray(defaultColors.outerElement, alpha),
-                boxShadow: props.shadowed ?'4px 4px 6px -6px rgba(0,0,0,0.75)' :  'none',
+                backgroundColor: 'rgba(190, 170, 150, 0.5)',
                 ...props.style,
             }}
                 
         >
-            <div className={classes.ItemFlex} style={{
-                display: `flex`,
-                flexDirection: `row`,
-                justifyContent: `left`,
-                alignItems: `center`,
-                height: `100%`,
-                width: `${width}px`,
-                backgroundColor: `pink`
-            }}>
-                <div className={classes.Content}>
-                    <div className={classes.Line1}>
-                        {props.item.name}
-                    </div>
-                </div>
-            </div>
-            
+            <img src={props.item.imgFile} style={{paddingLeft: `5px`, position: `absolute`}}/>
+            <div>{effectBoxes}</div>
         </div>
     )
 }
@@ -54,8 +64,7 @@ SkillEventElement.defaultProps = {
     },
     randomColor: false,
     innerElement: false,
-    shadowed: false,
-    bgColor: defaultColors.innerElement
+    shadowed: false
 }
 
 SkillEventElement.propTypes = {
@@ -63,7 +72,6 @@ SkillEventElement.propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
     innerElement: PropTypes.bool,
-    bgColor: PropTypes.array,
     shadowed: PropTypes.bool
 }
 

@@ -5,14 +5,19 @@ export const dncSkills =
     {
         skillId: 1,
         name: 'Shield Samba',
-        target: targets.PARTY,
-        damageType: damageTypes.ALL,
         level: 56,
-        effect: effects.DMG_IN,
-        valueType: valueTypes.PERCENT,
-        value: 10,
-        duration: 15,
-        cooldown: 90
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
     },
 ]
 

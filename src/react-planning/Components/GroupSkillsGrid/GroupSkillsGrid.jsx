@@ -26,23 +26,21 @@ const GroupSkillsGrid = props => {
 
     }, [props.items, props.startTime]);
 
-    const hoverStyle = {background: 'rgba(250, 250, 250, 1'} 
+    const hoverStyle = {background: '#2f3031'} 
 
     const grouped = (
         Object.keys(groupedItems).map(( items, index ) => {
-            const borderStyle = 
-                index < Object.keys(groupedItems).length - 1
-                    ?   {borderBottom:  '1px solid #f1f1f1'}
-                    :   null
+            const borderStyle = {borderBottom:  '1px solid #c0c0c0'}
             return (
                 <React.Fragment key={`groups_items_${items}${index}`}>
                     <div 
                         className={classes.Groups}
-                        style={elementHovered === index ? {...hoverStyle, ...borderStyle} : borderStyle} 
+                        style={elementHovered === index ? {...hoverStyle} : null} 
                         onMouseOver={() => setElementHovered( index )}
                         onMouseLeave={() => setElementHovered( null )}
                     >
-                        <PartyMemberElement person={props.partyMembers[index]} onClick={props.onPartyMemberClick} />
+                        <PartyMemberElement person={props.partyMembers[index]} onClick={props.onPartyMemberClick}
+                        onPartyMemberJobChange={props.onPartyMemberJobChange} activePartyMember={props.activePartyMember}/>
                     </div>
                     <div 
                         className={classes.Items}
@@ -52,11 +50,11 @@ const GroupSkillsGrid = props => {
                     >
                         <SkillsGrid 
                             {...props}
-                            width={props.width - props.leftWidth} /* Set the width of the itemGrid to fit inside the grid defined*/
                             style={{
                                 ...props.style,
                                 ...borderStyle,
-                                marginTop: 0
+                                marginTop: 0,
+                                width: `${props.width - props.leftWidth}px`
                             }}
                             items={groupedItems[items]}
                             colorIndex={index}
@@ -72,7 +70,7 @@ const GroupSkillsGrid = props => {
         <div 
             className={classes.GroupViewGrid} 
             style={{
-                width: `${(props.width - props.leftWidth) + props.leftWidth}px`,
+                width: `${props.width}px`,
                 gridTemplateColumns: `${props.leftWidth}px ${(props.width - props.leftWidth)}px`
             }}
         >

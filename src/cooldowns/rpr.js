@@ -5,14 +5,19 @@ export const rprSkills =
     {
         skillId: 1,
         name: 'Feint',
-        target: targets.ENEMY,
-        damageType: damageTypes.PHYS,
         level: 22,
-        effect: effects.DMG_OUT,
-        valueType: valueTypes.PERCENT,
-        value: 10,
-        duration: 10,
-        cooldown: 90
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.PHYS,
+                effect: effects.DMG_OUT,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 10
+            }
+        ]
     },
 ]
 

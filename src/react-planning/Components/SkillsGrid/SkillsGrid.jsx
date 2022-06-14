@@ -15,7 +15,7 @@ const SkillsGrid = props => {
 
         for ( let i = 0; i < props.duration ; i++ )
         {
-            columnTemplate.push(`${props.width/props.duration}px`);
+            columnTemplate.push(`20px`);
         }
 
         return columnTemplate

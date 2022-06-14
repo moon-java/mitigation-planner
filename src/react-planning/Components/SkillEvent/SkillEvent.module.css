@@ -9,19 +9,6 @@
     user-select: none
 }
 
-.ElementOccurences {
-    position: absolute;
-    top: -15px;
-    right: 10px;
-    width: auto;
-    height: 15px;
-    text-align: center;
-    color: white;
-    background: rgba(146, 168, 209, 0.8);
-    border-radius: 4px;
-    padding: 5px
-}
-
 .Overlay {
     position: absolute;
     top: 0;
@@ -30,7 +17,7 @@
     height: 100%;
     opacity: 0;
     border: 2px solid transparent;
-    border-style: solid none solid none;
+    border-style: #c0c0c0 solid none solid none;
     transition: opacity 0.2s ease-in;
     border-radius: 4px;
     box-sizing: border-box;

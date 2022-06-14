@@ -1,8 +1,8 @@
 .PlannerDefault  {
     position: relative;
     width: auto;
-    height: 100%;
-    min-height: 350px;
+    height: calc(100% + 10px);
+    min-height: 150px;
     transition: all .3s ease-in;
     box-sizing: content-box;
 }

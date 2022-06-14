@@ -5,14 +5,19 @@ export const sgeSkills =
     {
         skillId: 1,
         name: 'Kerachole',
-        target: targets.PARTY,
-        damageType: damageTypes.ALL,
         level: 50,
-        effect: effects.DMG_IN,
-        valueType: valueTypes.PERCENT,
-        value: 10,
-        duration: 15,
-        cooldown: 30
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
     },
 ]
 

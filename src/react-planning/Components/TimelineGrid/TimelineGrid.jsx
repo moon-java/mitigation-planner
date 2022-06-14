@@ -5,7 +5,6 @@ import { TimelineEvent } from '../TimelineEvent/TimelineEvent';
 import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import classes from './TimelineGrid.module.css';
 import useResizeAware from 'react-resize-aware';
-import { timeline } from '../../../timelines/p1s';
 
 const TimelineGrid = props => {
 
@@ -26,7 +25,7 @@ const TimelineGrid = props => {
 
         for ( let i = 0; i < props.duration ; i++ )
         {
-            columnTemplate.push(`${props.width/props.duration}px`);
+            columnTemplate.push(`20px`);
         }
 
         return columnTemplate
@@ -38,7 +37,7 @@ const TimelineGrid = props => {
     }
 
     useEffect(() => {
-        const newGridItems = timeline.map((item, index) => {
+        const newGridItems = props.timeline.map((item, index) => {
 
             const position = item.startTime;
 
@@ -54,11 +53,10 @@ const TimelineGrid = props => {
                         item={item}
                         overlay
                         move
-                        bgColor={['red']}
                         elementClassName={props.elementClassName}
                         innerElement
                         customElementType={DefaultBasicElement}
-                        style={{marginLeft: 0, backgroundColor: `red`}}
+                        style={{marginLeft: 0, backgroundColor: `#842e2e`}}
                         remove={() => props.onRemove( item.id )}
                         calculateMitigation={props.calculateMitigation}
                         activePartyMember={props.activePartyMember}
@@ -68,9 +66,10 @@ const TimelineGrid = props => {
         });
 
         setGridItems( newGridItems );
-    }, [props.items, props.startTime, props.activePartyMember]);
+    }, [props.items, props.startTime, props.activePartyMember, props.timeline]);
 
     return (
+        <>
         <div
             className={classes.TimelineGrid}
             style={{...style, ...props.style,
@@ -80,6 +79,7 @@ const TimelineGrid = props => {
             {resizeListener}
             {gridItems}
         </div>
+        </>
     );
 }
 

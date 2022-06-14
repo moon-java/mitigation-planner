@@ -1,6 +1,6 @@
 import { damageTypes, targets } from "../cooldowns/constants";
 
-export const info = {
+export const p1sInfo = {
     name: "Asphodelos: The First Circle (Savage)",
     abbreviation: "P1S",
     boss: "Ericthonios",
@@ -8,7 +8,7 @@ export const info = {
     level: 90
 }
 
-const skills = {
+const p1sSkills = {
     heavy_hand: {
         id: 1,
         name: "Heavy Hand",
@@ -171,119 +171,119 @@ const skills = {
     },
 }
 
-export const timeline = [
+export const p1sTimeline = [
     {
-        ...skills["heavy_hand"],
+        ...p1sSkills["heavy_hand"],
         startTime: 9,
         endTime: 14
     },
     {
-        ...skills["aetherial_shackles"],
+        ...p1sSkills["aetherial_shackles"],
         startTime: 19,
         endTime: 22
     },
     {
-        ...skills["warders_wrath"],
+        ...p1sSkills["warders_wrath"],
         startTime: 27,
         endTime: 32
     },
     {
-        ...skills["chain_pain"],
+        ...p1sSkills["chain_pain"],
         startTime: 41,
         endTime: 42
     },
     {
-        ...skills["gaolers_flail"],
+        ...p1sSkills["gaolers_flail"],
         startTime: 46,
         endTime: 58
     },
     {
-        ...skills["flail_1"],
+        ...p1sSkills["flail_1"],
         startTime: 60,
         endTime: 61
     },
     {
-        ...skills["flail_2"],
+        ...p1sSkills["flail_2"],
         startTime: 62,
         endTime: 63
     },
     {
-        ...skills["pitiless_flail"],
+        ...p1sSkills["pitiless_flail"],
         startTime: 67,
         endTime: 72
     },
     {
-        ...skills["true_flare_holy"],
+        ...p1sSkills["true_flare_holy"],
         startTime: 75,
         endTime: 76
     },
     {
-        ...skills["gaolers_flail"],
+        ...p1sSkills["gaolers_flail"],
         startTime: 80,
         endTime: 92
     },
     {
-        ...skills["flail_1"],
+        ...p1sSkills["flail_1"],
         startTime: 94,
         endTime: 95
     },
     {
-        ...skills["flail_2"],
+        ...p1sSkills["flail_2"],
         startTime: 96,
         endTime: 97
     },
     {
-        ...skills["warders_wrath"],
+        ...p1sSkills["warders_wrath"],
         startTime: 100,
         endTime: 105
     },
     {
-        ...skills["intemperance"],
+        ...p1sSkills["intemperance"],
         startTime: 117,
         endTime: 119
     },
     {
-        ...skills["intemperate_torment"],
+        ...p1sSkills["intemperate_torment"],
         startTime: 124,
         endTime: 134
     },
     {
-        ...skills["hot_cold_spell"],
+        ...p1sSkills["hot_cold_spell"],
         startTime: 135,
         endTime: 136
     },
     {
-        ...skills["warders_wrath"],
+        ...p1sSkills["warders_wrath"],
         startTime: 138,
         endTime: 142
     },
     {
-        ...skills["hot_cold_spell"],
+        ...p1sSkills["hot_cold_spell"],
         startTime: 146,
         endTime: 147
     },
     {
-        ...skills["warders_wrath"],
+        ...p1sSkills["warders_wrath"],
         startTime: 148,
         endTime: 152
     },
     {
-        ...skills["hot_cold_spell"],
+        ...p1sSkills["hot_cold_spell"],
         startTime: 157,
         endTime: 158
     },
     {
-        ...skills["pitiless_flail"],
+        ...p1sSkills["pitiless_flail"],
         startTime: 163,
         endTime: 168
     },
     {
-        ...skills["true_flare_holy"],
+        ...p1sSkills["true_flare_holy"],
         startTime: 172,
         endTime: 173
     },
     {
-        ...skills["shining_cells"],
+        ...p1sSkills["shining_cells"],
         startTime: 182,
         endTime: 189
     },

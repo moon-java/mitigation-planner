@@ -7,6 +7,7 @@ import { rgbaFromArray } from '../../Helpers/Functions';
 import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventElement';
 import DragPreview from '../DragPreview/DragPreview';
 import classes from './SkillEvent.module.css';
+import MouseTooltip from '../MouseTooltip.jsx';
 
 // Static style section 
 
@@ -34,6 +35,7 @@ const styles = {
 
 // Main component
 export const SkillEvent = props => {
+    const [visible, setVisible] = useState(false)
 
     const [{isDragging}, drag ] = useDrag({
         type: ELEMENT,
@@ -49,6 +51,16 @@ export const SkillEvent = props => {
     }
 
     const [hoverStyleActive, setHoverStyleActive] = useState( null );
+
+    const mouseOver = () => {
+        setHoverStyleActive( hoverStyle );
+        setVisible(!visible);
+    }
+
+    const mouseLeave = () => {
+        setHoverStyleActive( null );
+        setVisible(!visible);
+    }
 
     return (
         <>
@@ -66,8 +78,8 @@ export const SkillEvent = props => {
                         ?   <div
                                 className={classes.Overlay}
                                 style={hoverStyleActive}
-                                onMouseOver={() => setHoverStyleActive( hoverStyle )}
-                                onMouseLeave={() => setHoverStyleActive( null )}
+                                onMouseOver={mouseOver}
+                                onMouseLeave={mouseLeave}
                             >
                                 <div 
                                     className={classes.RemoveButton} 
@@ -85,7 +97,15 @@ export const SkillEvent = props => {
                     ?   <DragPreview />
                     :   null
             }
-            
+            <MouseTooltip
+            visible={visible}
+            offsetX={15}
+            offsetY={10}
+            >
+            <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
+                <div>{props.item.name}</div>
+            </div>
+            </MouseTooltip>
         </>
     )
 }

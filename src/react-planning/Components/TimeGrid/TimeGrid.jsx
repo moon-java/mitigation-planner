@@ -8,7 +8,6 @@ import classes from './TimeGrid.module.css';
 export const MARGIN = 0;
 
 const TimeGrid = props => {
-
     const { width, offset, ...rest} = props;
     const daysDropGrid = [];
     const timelineGrid = [];
@@ -16,26 +15,26 @@ const TimeGrid = props => {
     const effectiveWidth = width - offset;
 
     let style = {
-        width: effectiveWidth / 30
+        width: '20px'
     };
     let style2 = {
-        width: effectiveWidth / 300 - 1,
-        backgroundColor: `#7787a8`,
-        height: `${props.height}`
+        width: '20px',
+        backgroundColor: `#575a5c`,
+        height: `100%`
     };
 
     for( let i = 1; i <= props.duration; i++ )
     {
         if ( i % 5 === 0 ) {
-            style = {...style, borderRight: 'solid #e5e5e5'};
-            style2 = {...style2, borderRight: 'solid #556586'};
+            style = {...style, borderRight: 'solid #a0a0a0'};
+            style2 = {...style2, borderRight: 'solid #a0a0a0'};
         }
         else {
-            style = {...style, borderRight: 'solid #f5f5f5'};
-            style2 = {...style2, borderRight: 'solid #6e7e9e'};
+            style = {...style, borderRight: 'solid #404040'};
+            style2 = {...style2, borderRight: 'solid #404040'};
         }
         let innerDiv = "";
-        if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: 'black', fontSize:'10px'}}>{i}</div>; }
+        if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: 'black', fontSize:'9px'}}>{i}</div>; }
 
         daysDropGrid.push(
             <DropZone 
@@ -55,7 +54,7 @@ const TimeGrid = props => {
     }
 
     const borderSytle = {
-        borderBottom: 'solid #556586',
+        borderBottom: 'solid #404040',
     }
     
     return (
@@ -65,14 +64,14 @@ const TimeGrid = props => {
                 width: effectiveWidth,
                 left: offset,
             }}
-        >
+            >
             <div 
                 className={classes.MonthWrapper}
                 style={{
                     ...props.style,
                     ...borderSytle,
                     width: effectiveWidth,
-                    height: props.height
+                    height: props.height, zIndex: 2
                     }}
                 >
                 {timelineGrid}
@@ -87,7 +86,6 @@ const TimeGrid = props => {
                 >
                 {daysDropGrid}
             </div>
-
         </div>
     )
 }

@@ -5,16 +5,28 @@
   margin: auto;
 }
 
+.Header {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  background-color: #3e3f41;
+  border-radius: 4px;
+  padding: 5px;
+  color: #c0c0c0;
+  margin-bottom: 30px;
+  width: 90%;
+}
+
 .Elements {
   display: flex;
-  border: 1px solid #ccc;
+  background-color: #3e3f41;
   border-radius: 4px;
   padding: 10px;
 }
 
 .Timeline {
   margin-top: 30px;
-  height: 100%;
+  height: fit-content;
 }
 
 .Switch {
@@ -39,7 +51,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  backgRound-color: #ccc;
+  background-color: #252627;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -80,10 +92,11 @@ input:checked + .Slider:before {
 .Options{
   align-items: center;
   text-align: center;
-  width: 100%;
-  border: 1px solid #ccc;
+  margin: auto;
+  background-color: #3e3f41;
   border-radius: 4px;
   padding: 10px;
+  color: #c0c0c0;
 }
 
 .Option {
