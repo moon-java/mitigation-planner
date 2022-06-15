@@ -73,242 +73,247 @@ export const skillIcons =
     addle:
     {
         icon: addle,
-        color: '#8b4827'
+        color: '#484379'
     },
     aquaveil:
     {
         icon: aquaveil,
-        color: '#8b4827'
+        color: '#668ac8'
     },
     arcane_crest:
     {
         icon: arcane_crest,
-        color: '#8b4827'
+        color: '#8885c8'
     },
     asylum:
     {
         icon: asylum,
-        color: '#8b4827'
+        color: '#7e813a'
     },
     aurora:
     {
         icon: aurora,
-        color: '#8b4827'
+        color: '#558a8a'
     },
     benediction:
     {
         icon: benediction,
-        color: '#8b4827'
+        color: '#829591'
     },
     bloodwhetting:
     {
         icon: bloodwhetting,
-        color: '#8b4827'
+        color: '#9f5c1d'
     },
     camouflage:
     {
         icon: camouflage,
-        color: '#8b4827'
+        color: '#636a80'
     },
     collective_unconscious:
     {
         icon: collective_unconscious,
-        color: '#8b4827'
+        color: '#305489'
     },
     cover:
     {
         icon: cover,
-        color: '#8b4827'
+        color: '#8b8b65'
     },
     curing_waltz:
     {
         icon: curing_waltz,
-        color: '#8b4827'
+        color: '#4f9f97'
     },
     dark_mind:
     {
         icon: dark_mind,
-        color: '#8b4827'
+        color: '#7b5e46'
     },
     dark_missionary:
     {
         icon: dark_missionary,
-        color: '#8b4827' //'#8b4827'
+        color: '#8b4827'
     },
     deployment_tactics:
     {
         icon: deployment_tactics,
-        color: '#8b4827'
+        color: '#90722e'
     },
     equilibrium:
     {
         icon: equilibrium,
-        color: '#8b4827'
+        color: '#7d7436'
     },
     exaltation:
     {
         icon: exaltation,
-        color: '#8b4827'
+        color: '#7883a7'
     },
     expedient:
     {
         icon: expedient,
-        color: '#8b4827'
+        color: '#487f85'
     },
     feint:
     {
         icon: feint,
-        color: '#8b4827'
+        color: '#7f3d3c'
     },
     fey_illumination:
     {
         icon: fey_illumination,
-        color: '#8b4827'
+        color: '#849472'
     },
     haima:
     {
         icon: haima,
-        color: '#8b4827'
+        color: '#6d60a3'
     },
     hallowed_ground:
     {
         icon: hallowed_ground,
-        color: '#8b4827'
+        color: '#d5bc8f'
     },
     heart_of_corundum:
     {
         icon: heart_of_corundum,
-        color: '#8b4827'
+        color: '#5c7b77'
     },
     heart_of_light:
     {
         icon: heart_of_light,
-        color: '#8b4827'
+        color: '#916d24'
     },
     holmgang:
     {
         icon: holmgang,
-        color: '#8b4827'
+        color: '#9f7165'
     },
     holos:
     {
         icon: holos,
-        color: '#8b4827'
+        color: '#498a97'
     },
     holy_sheltron:
     {
         icon: holy_sheltron,
-        color: '#8b4827'
+        color: '#8b7e7e'
     },
     horoscope:
     {
         icon: horoscope,
-        color: '#8b4827'
+        color: '#67514d'
     },
     improvisation:
     {
         icon: improvisation,
-        color: '#8b4827'
+        color: '#55552f'
     },
     intervention:
     {
         icon: intervention,
-        color: '#8b4827'
+        color: '#6d768d'
     },
     kerachole:
     {
         icon: kerachole,
-        color: '#8b4827'
+        color: '#4a679d'
     },
     krasis:
     {
         icon: krasis,
-        color: '#8b4827'
+        color: '#357b8f'
     },
     liturgy_of_the_bell:
     {
         icon: liturgy_of_the_bell,
-        color: '#8b4827'
+        color: '#689487'
     },
     living_dead:
     {
         icon: living_dead,
-        color: '#8b4827'
+        color: '#8d4743'
     },
     macrocosmos:
     {
         icon: macrocosmos,
-        color: '#8b4827'
+        color: '#816057'
     },
     magick_barrier:
     {
         icon: magick_barrier,
-        color: '#8b4827'
+        color: '#d981b0'
+    },
+    manaward:
+    {
+        icon: manaward,
+        color: '#826e93'
     },
     mantra:
     {
         icon: mantra,
-        color: '#8b4827'
+        color: '#91839a'
     },
     nascent_flash:
     {
         icon: nascent_flash,
-        color: '#8b4827'
+        color: '#7b742e'
     },
     natures_minne:
     {
         icon: natures_minne,
-        color: '#8b4827'
+        color: '#89a477'
     },
     nebula:
     {
         icon: nebula,
-        color: '#8b4827'
+        color: '#8b6e63'
     },
     neutral_sect:
     {
         icon: neutral_sect,
-        color: '#8b4827'
+        color: '#54547e'
     },
     oblation:
     {
         icon: oblation,
-        color: '#8b4827'
+        color: '#932ca7'
     },
     panhaima:
     {
         icon: panhaima,
-        color: '#8b4827'
+        color: '#5f6dad'
     },
     passage_of_arms:
     {
         icon: passage_of_arms,
-        color: '#8b4827'
+        color: '#5d6aaf'
     },
     physis_ii:
     {
         icon: physis_ii,
-        color: '#8b4827'
+        color: '#45708e'
     },
     plenary_indulgence:
     {
         icon: plenary_indulgence,
-        color: '#8b4827'
+        color: '#7faeaf'
     },
     pneuma:
     {
         icon: pneuma,
-        color: '#8b4827'
+        color: '#7d96bf'
     },
     protraction:
     {
         icon: protraction,
-        color: '#8b4827'
+        color: '#5ba078'
     },
     radiant_aegis:
     {
         icon: radiant_aegis,
-        color: '#8b4827'
+        color: '#67a2a6'
     },
     rampart:
     {
@@ -318,12 +323,12 @@ export const skillIcons =
     raw_intuition:
     {
         icon: raw_intuition,
-        color: '#8b4827'
+        color: '#658281'
     },
     recitation:
     {
         icon: recitation,
-        color: '#8b4827'
+        color: '#885737'
     },
     reprisal:
     {
@@ -333,82 +338,82 @@ export const skillIcons =
     sacred_soil:
     {
         icon: sacred_soil,
-        color: '#8b4827'
+        color: '#859337'
     },
     sentinel:
     {
         icon: sentinel,
-        color: '#8b4827'
+        color: '#6592b9'
     },
     shade_shift:
     {
         icon: shade_shift,
-        color: '#8b4827'
+        color: '#5d6e68'
     },
     shadow_wall:
     {
         icon: shadow_wall,
-        color: '#8b4827'
+        color: '#75438f'
     },
     shake_it_off:
     {
         icon: shake_it_off,
-        color: '#8b4827'
+        color: '#457f73'
     },
     shield_samba:
     {
         icon: shield_samba,
-        color: '#8b4827'
+        color: '#bf6a52'
     },
     summon_seraph:
     {
         icon: summon_seraph,
-        color: '#8b4827'
+        color: '#336789'
     },
     superbolide:
     {
         icon: superbolide,
-        color: '#8b4827'
+        color: '#5b7c91'
     },
     tactician:
     {
         icon: tactician,
-        color: '#8b4827'
+        color: '#9c7049'
     },
     temperance:
     {
         icon: temperance,
-        color: '#8b4827'
+        color: '#6892a1'
     },
     the_blackest_night:
     {
         icon: the_blackest_night,
-        color: '#8b4827'
+        color: '#534b63'
     },
     the_wardens_paean:
     {
         icon: the_wardens_paean,
-        color: '#8b4827'
+        color: '#597366'
     },
     thrill_of_battle:
     {
         icon: thrill_of_battle,
-        color: '#8b4827'
+        color: '#5e8b28'
     },
     troubadour:
     {
         icon: troubadour,
-        color: '#8b4827'
+        color: '#779a6d'
     },
     vengeance:
     {
         icon: vengeance,
-        color: '#8b4827'
+        color: '#855c7a'
     },
     zoe:
     {
         icon: zoe,
-        color: '#8b4827'
+        color: '#428296'
     },
 }
 

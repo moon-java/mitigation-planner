@@ -1,10 +1,13 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
+import skillIcons from '../assets/skills/skillIcons';
 
 export const brdSkills =
 [
     {
-        skillId: 1,
+        skillId: 'troubadour',
         name: 'Troubadour',
+        imgFile: skillIcons['troubadour'].icon,
+        imgColor: skillIcons['troubadour'].color,
         level: 62,
         cooldown: 90,
         effects:

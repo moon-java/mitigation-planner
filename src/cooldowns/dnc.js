@@ -1,10 +1,13 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
+import skillIcons from '../assets/skills/skillIcons';
 
 export const dncSkills =
 [
     {
-        skillId: 1,
+        skillId: 'shield_samba',
         name: 'Shield Samba',
+        imgFile: skillIcons['shield_samba'].icon,
+        imgColor: skillIcons['shield_samba'].color,
         level: 56,
         cooldown: 90,
         effects:

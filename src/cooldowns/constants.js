@@ -26,16 +26,20 @@ export const damageTypes =
 
 export const effects =
 {
-    DMG_IN: 'damage_received',
-    DMG_OUT: 'damage_done',
-    HEAL_IN: 'healing_received',
-    HEAL_OUT: 'healing_done',
+    DMG_IN: 'damage received',
+    DMG_OUT: 'damage done',
+    HEAL_IN: 'healing received',
+    HEAL_OUT: 'healing done',
+    MAX_HP: 'max HP increased',
     SHIELD: 'shield',
-    REGEN: 'regen'
+    REGEN: 'regen',
+    HEAL: 'heal',
+    BLOCK: 'block',
+    OTHER: 'other'
 }
 
 export const valueTypes =
 {
     PERCENT: 'percentage',
-    POT: 'potency'
+    POTENCY: 'potency'
 }

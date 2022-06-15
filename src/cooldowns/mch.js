@@ -1,10 +1,13 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
+import skillIcons from '../assets/skills/skillIcons';
 
 export const mchSkills =
 [
     {
-        skillId: 1,
+        skillId: 'tactician',
         name: 'Tactician',
+        imgFile: skillIcons['tactician'].icon,
+        imgColor: skillIcons['tactician'].color,
         level: 56,
         cooldown: 90,
         effects:
