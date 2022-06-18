@@ -101,6 +101,25 @@ export const gnbSkills =
         ]
     },
     {
+        skillId: 'heart_of_stone',
+        name: 'Heart of Stone',
+        imgFile: skillIcons['heart_of_stone'].icon,
+        imgColor: skillIcons['heart_of_stone'].color,
+        level: 68,
+        cooldown: 25,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 15,
+                duration: 7
+            }
+        ]
+    },
+    {
         skillId: 'heart_of_corundum',
         name: 'Heart of Corundum',
         imgFile: skillIcons['heart_of_corundum'].icon,
@@ -128,7 +147,7 @@ export const gnbSkills =
             {
                 target: targets.SELF,
                 damageType: damageTypes.NONE,
-                effect: effects.HEAL,
+                effect: effects.DELAYED_HEAL,
                 valueType: valueTypes.POTENCY,
                 value: 900,
                 duration: 20

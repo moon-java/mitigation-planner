@@ -78,7 +78,6 @@ const SkillsGrid = props => {
                         innerElement
                         customElementType={props.customInnerElementType}
                         style={{marginLeft: 0}}
-                        onClick={() => console.log(item)}
                         remove={() => props.onRemove( item.id )}
                         onTimeline={true}
                     />

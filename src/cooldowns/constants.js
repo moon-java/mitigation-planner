@@ -17,7 +17,7 @@ export const targets =
 
 export const damageTypes =
 {
-    ALL: 'no type',
+    ALL: 'any type',
     MAGIC: 'magic',
     PHYS: 'physical',
     NONE: 'non-damaging',
@@ -34,6 +34,7 @@ export const effects =
     SHIELD: 'shield',
     REGEN: 'regen',
     HEAL: 'heal',
+    DELAYED_HEAL: 'delayed heal',
     BLOCK: 'block',
     OTHER: 'other'
 }

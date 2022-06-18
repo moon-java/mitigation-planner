@@ -30,7 +30,7 @@ const App = () =>  {
     const [partyMembers, setPartyMembers] = useState([
         {
             partyMemberId: 0,
-            job: "DRK",
+            job: "PLD",
             level: 90
         },
         {
@@ -102,13 +102,17 @@ const App = () =>  {
 
     const updatePrimaryJobHandler = ( job ) => {
         let tmpParty = {...partyMembers};
+        let tmpItems = fixedItems.filter((item, i) => item.partyMemberId != 0);
         tmpParty[0].job = job;
+        setFixedItems(tmpItems);
         setPartyMembers(tmpParty);
     }
 
     const partyMemberJobChangeHandler = ( job, index ) => {
         let tmpParty = {...partyMembers};
+        let tmpItems = fixedItems.filter((item, i) => item.partyMemberId != index);
         tmpParty[index].job = job;
+        setFixedItems(tmpItems);
         setPartyMembers(tmpParty);
     }
 

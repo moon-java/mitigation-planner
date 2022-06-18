@@ -4,6 +4,7 @@
     height: 40px;
     border-radius: 4px;
     color: #282725;
+    text-overflow: ellipsis;
 }
 
 .ItemFlex {
@@ -11,6 +12,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100%;
 }
 
@@ -21,6 +23,7 @@
     flex-direction: column;
     justify-content: left;
     text-overflow: ellipsis;
+    height: 100%;
     color: white;
     text-shadow: 1px 1px 0 #000;
 }
@@ -28,9 +31,11 @@
 .Line1 {
     font-style: bold;
     font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-y: hidden;
+    overflow-x: hidden;
     text-align: center;
+    text-overflow: ellipsis;
+    font-size: 10px;
 }
 
 .Line2 {

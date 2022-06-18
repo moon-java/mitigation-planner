@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as helpers from '../../Helpers/Functions';
+import * as helpers from '../../Helpers/ColorHelpers';
 import DropZone from '../DropZone/DropZone';
 import classes from './TimeGrid.module.css';
 

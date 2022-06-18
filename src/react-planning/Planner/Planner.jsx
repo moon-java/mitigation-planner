@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LayoutGrid from '../Components/LayoutGrid/LayoutGrid';
 
 import classes from './Planner.module.css';
-import { damageTypes, targets } from '../../cooldowns/constants';
+import { damageTypes, targets, effects } from '../../cooldowns/constants';
 
 
 // Component
@@ -17,6 +17,11 @@ export const Planner = props => {
 
     const [items, setItems] = useState( [] );
     const [PlannerWidth, setPlannerWidth] = useState( 0 );
+    const [timelineHeight, setTimelineHeight] = useState();
+
+    const syncTimelineHeight = (height) => {
+        setTimelineHeight(height)
+    };
 
     // Get the higher id and increase
     const getNextId = () => {
@@ -72,7 +77,8 @@ export const Planner = props => {
         const PlannerElement = PlannerRef.current.getBoundingClientRect();
 
         // Update the state with the width of the timneline width
-        setPlannerWidth( props.duration * secWidth);
+        const width = props.partyView ? props.duration * secWidth + 222 : props.duration * secWidth;
+        setPlannerWidth(width);
 
     }
 
@@ -167,6 +173,7 @@ export const Planner = props => {
         {
             item.effects.forEach ( effect =>
             {
+                if (effect.effect == effects.BLOCK) {return;}
                 if (item.startTime < time && effect.endTime >= time)
                 {
                     if (effect.damageType == damageTypes.ALL)
@@ -234,14 +241,16 @@ export const Planner = props => {
         activePartyMember: props.activePartyMember,
         onPartyMemberClick: props.options.callBacks.onPartyMemberClick,
         onPartyMemberJobChange: props.options.callBacks.onPartyMemberJobChange,
-        timeline: props.timeline
+        timeline: props.timeline,
+        syncTimelineHeight: syncTimelineHeight,
+        timelineHeight: timelineHeight
     }
 
-    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #2f3031`, borderRight: `2px solid #2f3031`, borderBottom: `2px solid #2f3031`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `68px`, width: `220px`}}/> : null;
-    console.log(blockDiv);
+    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #2f3031`, borderRight: `2px solid #2f3031`, borderBottom: `2px solid #2f3031`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `${timelineHeight}px`, width: `220px`}}/> : null;
+
     return (
         <>
-            {blockDiv}
+        {blockDiv}
             <div style={{overflowX: props.scroll ? 'scroll' : 'hidden'}}>
             <div
                 className={`${props.className}`}

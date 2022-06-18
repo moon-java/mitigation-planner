@@ -6,6 +6,25 @@ export const pldSkills =
 [
     ...tankSkills,
     {
+        skillId: 'sheltron',
+        name: 'Sheltron',
+        imgFile: skillIcons['sheltron'].icon,
+        imgColor: skillIcons['sheltron'].color,
+        level: 35,
+        cooldown: 5,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.BLOCK,
+                valueType: valueTypes.PERCENT,
+                value: 100,
+                duration: 6
+            }
+        ]
+    },
+    {
         skillId: 'sentinel',
         name: 'Sentinel',
         imgFile: skillIcons['sentinel'].icon,
@@ -62,7 +81,7 @@ export const pldSkills =
             }
         ]
     },
-    /*{
+    {
         skillId: 'divine_veil',
         name: 'Divine Veil',
         imgFile: skillIcons['divine_veil'].icon,
@@ -88,7 +107,7 @@ export const pldSkills =
                 duration: 30
             }
         ]
-    },*/
+    },
     {
         skillId: 'intervention',
         name: 'Intervention',

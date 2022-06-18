@@ -1,32 +1,48 @@
 import addle from './addle.png'
 import aquaveil from './aquaveil.png'
 import arcane_crest from './arcane_crest.png'
+import assize from './assize.png'
 import asylum from './asylum.png'
 import aurora from './aurora.png'
 import benediction from './benediction.png'
+import bloodbath from './bloodbath.png'
 import bloodwhetting from './bloodwhetting.png'
 import camouflage from './camouflage.png'
+import celestial_intersection from './celestial_intersection.png'
+import celestial_opposition from './celestial_opposition.png'
 import collective_unconscious from './collective_unconscious.png'
 import cover from './cover.png'
 import curing_waltz from './curing_waltz.png'
 import dark_mind from './dark_mind.png'
 import dark_missionary from './dark_missionary.png'
 import deployment_tactics from './deployment_tactics.png'
+import divine_benison from './divine_benison.png'
+import divine_veil from './divine_veil.png'
+import druochole from './druochole.png'
+import earthly_star from './earthly_star.png'
+import emergency_tactics from './emergency_tactics.png'
 import equilibrium from './equilibrium.png'
+import essential_dignity from './essential_dignity.png'
 import exaltation from './exaltation.png'
+import excogitation from './excogitation.png'
 import expedient from './expedient.png'
 import feint from './feint.png'
+import fey_blessing from './fey_blessing.png'
 import fey_illumination from './fey_illumination.png'
 import haima from './haima.png'
 import hallowed_ground from './hallowed_ground.png'
 import heart_of_corundum from './heart_of_corundum.png'
 import heart_of_light from './heart_of_light.png'
+import heart_of_stone from './heart_of_stone.png'
 import holmgang from './holmgang.png'
 import holos from './holos.png'
 import holy_sheltron from './holy_sheltron.png'
 import horoscope from './horoscope.png'
+import icarus from './icarus.png'
 import improvisation from './improvisation.png'
+import indomitability from './indomitability.png'
 import intervention from './intervention.png'
+import ixochole from './ixochole.png'
 import kerachole from './kerachole.png'
 import krasis from './krasis.png'
 import liturgy_of_the_bell from './liturgy_of_the_bell.png'
@@ -42,6 +58,7 @@ import neutral_sect from './neutral_sect.png'
 import oblation from './oblation.png'
 import panhaima from './panhaima.png'
 import passage_of_arms from './passage_of_arms.png'
+import pepsis from './pepsis.png'
 import physis_ii from './physis_ii.png'
 import plenary_indulgence from './plenary_indulgence.png'
 import pneuma from './pneuma.png'
@@ -51,20 +68,29 @@ import rampart from './rampart.png'
 import raw_intuition from './raw_intuition.png'
 import recitation from './recitation.png'
 import reprisal from './reprisal.png'
+import rhizomata from './rhizomata.png'
 import sacred_soil from './sacred_soil.png'
+import second_wind from './second_wind.png'
 import sentinel from './sentinel.png'
 import shade_shift from './shade_shift.png'
 import shadow_wall from './shadow_wall.png'
 import shake_it_off from './shake_it_off.png'
+import sheltron from './sheltron.png'
 import shield_samba from './shield_samba.png'
+import soteria from './soteria.png'
 import summon_seraph from './summon_seraph.png'
 import superbolide from './superbolide.png'
+import synastry from './synastry.png'
 import tactician from './tactician.png'
+import taurochole from './taurochole.png'
 import temperance from './temperance.png'
+import tetragrammaton from './tetragrammaton.png'
 import the_blackest_night from './the_blackest_night.png'
 import the_wardens_paean from './the_wardens_paean.png'
+import third_eye from './third_eye.png'
 import thrill_of_battle from './thrill_of_battle.png'
 import troubadour from './troubadour.png'
+import whispering_dawn from './whispering_dawn.png'
 import vengeance from './vengeance.png'
 import zoe from './zoe.png'
 
@@ -85,6 +111,11 @@ export const skillIcons =
         icon: arcane_crest,
         color: '#8885c8'
     },
+    assize:
+    {
+        icon: assize,
+        color: '#7f9757'
+    },
     asylum:
     {
         icon: asylum,
@@ -100,6 +131,11 @@ export const skillIcons =
         icon: benediction,
         color: '#829591'
     },
+    bloodbath:
+    {
+        icon: bloodbath,
+        color: '#6b261a'
+    },
     bloodwhetting:
     {
         icon: bloodwhetting,
@@ -109,6 +145,16 @@ export const skillIcons =
     {
         icon: camouflage,
         color: '#636a80'
+    },
+    celestial_intersection:
+    {
+        icon: celestial_intersection,
+        color: '#977566'
+    },
+    celestial_opposition:
+    {
+        icon: celestial_opposition,
+        color: '#5a8dcf'
     },
     collective_unconscious:
     {
@@ -140,15 +186,50 @@ export const skillIcons =
         icon: deployment_tactics,
         color: '#90722e'
     },
+    divine_benison:
+    {
+        icon: divine_benison,
+        color: '#80a3bc'
+    },
+    divine_veil:
+    {
+        icon: divine_veil,
+        color: '#616e7e'
+    },
+    druochole:
+    {
+        icon: druochole,
+        color: '#417c89'
+    },
+    earthly_star:
+    {
+        icon: earthly_star,
+        color: '#5c6d8b'
+    },
+    emergency_tactics:
+    {
+        icon: emergency_tactics,
+        color: '#95973e'
+    },
     equilibrium:
     {
         icon: equilibrium,
         color: '#7d7436'
     },
+    essential_dignity:
+    {
+        icon: essential_dignity,
+        color: '#4e7179'
+    },
     exaltation:
     {
         icon: exaltation,
         color: '#7883a7'
+    },
+    excogitation:
+    {
+        icon: excogitation,
+        color: '#517239'
     },
     expedient:
     {
@@ -159,6 +240,11 @@ export const skillIcons =
     {
         icon: feint,
         color: '#7f3d3c'
+    },
+    fey_blessing:
+    {
+        icon: fey_blessing,
+        color: '#42796d'
     },
     fey_illumination:
     {
@@ -185,6 +271,11 @@ export const skillIcons =
         icon: heart_of_light,
         color: '#916d24'
     },
+    heart_of_stone:
+    {
+        icon: heart_of_stone,
+        color: '#5a9bbf'
+    },
     holmgang:
     {
         icon: holmgang,
@@ -205,15 +296,30 @@ export const skillIcons =
         icon: horoscope,
         color: '#67514d'
     },
+    icarus:
+    {
+        icon: icarus,
+        color: '#4f93bb'
+    },
     improvisation:
     {
         icon: improvisation,
         color: '#55552f'
     },
+    indomitability:
+    {
+        icon: indomitability,
+        color: '#7e996d'
+    },
     intervention:
     {
         icon: intervention,
         color: '#6d768d'
+    },
+    ixochole:
+    {
+        icon: ixochole,
+        color: '#3a808b'
     },
     kerachole:
     {
@@ -290,6 +396,11 @@ export const skillIcons =
         icon: passage_of_arms,
         color: '#5d6aaf'
     },
+    pepsis:
+    {
+        icon: pepsis,
+        color: '#567e86'
+    },
     physis_ii:
     {
         icon: physis_ii,
@@ -335,10 +446,20 @@ export const skillIcons =
         icon: reprisal,
         color: '#7e4099'
     },
+    rhizomata:
+    {
+        icon: rhizomata,
+        color: '#2c6fa8'
+    },
     sacred_soil:
     {
         icon: sacred_soil,
         color: '#859337'
+    },
+    second_wind:
+    {
+        icon: second_wind,
+        color: '#8d96b0'
     },
     sentinel:
     {
@@ -360,10 +481,20 @@ export const skillIcons =
         icon: shake_it_off,
         color: '#457f73'
     },
+    sheltron:
+    {
+        icon: sheltron,
+        color: '#696557'
+    },
     shield_samba:
     {
         icon: shield_samba,
         color: '#bf6a52'
+    },
+    soteria:
+    {
+        icon: soteria,
+        color: '#2d986b'
     },
     summon_seraph:
     {
@@ -375,15 +506,30 @@ export const skillIcons =
         icon: superbolide,
         color: '#5b7c91'
     },
+    synastry:
+    {
+        icon: synastry,
+        color: '#1a4f57'
+    },
     tactician:
     {
         icon: tactician,
         color: '#9c7049'
     },
+    taurochole:
+    {
+        icon: taurochole,
+        color: '#3a7095'
+    },
     temperance:
     {
         icon: temperance,
         color: '#6892a1'
+    },
+    tetragrammaton:
+    {
+        icon: tetragrammaton,
+        color: '#618ec5'
     },
     the_blackest_night:
     {
@@ -394,6 +540,11 @@ export const skillIcons =
     {
         icon: the_wardens_paean,
         color: '#597366'
+    },
+    third_eye:
+    {
+        icon: third_eye,
+        color: '#4b7aa1'
     },
     thrill_of_battle:
     {
@@ -409,6 +560,11 @@ export const skillIcons =
     {
         icon: vengeance,
         color: '#855c7a'
+    },
+    whispering_dawn:
+    {
+        icon: whispering_dawn,
+        color: '#909961'
     },
     zoe:
     {

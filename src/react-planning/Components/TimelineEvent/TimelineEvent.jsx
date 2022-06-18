@@ -5,6 +5,7 @@ import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventEle
 import classes from './TimelineEvent.module.css';
 import MouseTooltip from '../MouseTooltip.jsx';
 import { damageTypes } from '../../../cooldowns/constants';
+import { getTimelineEventColor } from '../../Helpers/Utils';
 
 // Static style section 
 
@@ -52,7 +53,10 @@ export const TimelineEvent = props => {
         selfMit = 100 - (mit.selfMit.all * mit.selfMit.phys / 100);
         partyMit = 100 - (mit.partyMit.all * mit.partyMit.phys / 100);
     }
-    console.log("active ", props.activePartyMember);
+
+    let style = {...props.style};
+    style.backgroundColor = getTimelineEventColor(props.item);
+
     return (
         <>
             <div 
@@ -61,7 +65,7 @@ export const TimelineEvent = props => {
                 onMouseLeave={()=>setVisible(!visible)}
                 className={classes.TimelineEvent}
             >
-                <props.customElementType {...props} />
+                <props.customElementType {...props} style={style} />
             </div>
             <MouseTooltip
             visible={visible}

@@ -4,6 +4,25 @@ import skillIcons from '../assets/skills/skillIcons';
 export const schSkills =
 [
     {
+        skillId: 'whispering_dawn',
+        name: 'Whispering Dawn',
+        imgFile: skillIcons['whispering_dawn'].icon,
+        imgColor: skillIcons['whispering_dawn'].color,
+        level: 20,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 80,
+                duration: 21
+            }
+        ]
+    },
+    {
         skillId: 'fey_illumination',
         name: 'Fey Illumination',
         imgFile: skillIcons['fey_illumination'].icon,
@@ -58,6 +77,25 @@ export const schSkills =
         ]
     },
     {
+        skillId: 'indomitability',
+        name: 'Indomitability',
+        imgFile: skillIcons['indomitability'].icon,
+        imgColor: skillIcons['indomitability'].color,
+        level: 52,
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 15
+            }
+        ]
+    },
+    {
         skillId: 'deployment_tactics',
         name: 'Deployment Tactics',
         imgFile: skillIcons['deployment_tactics'].icon,
@@ -76,6 +114,43 @@ export const schSkills =
         ]
     },
     {
+        skillId: 'emergency_tactics',
+        name: 'Emergency Tactics',
+        imgFile: skillIcons['emergency_tactics'].icon,
+        imgColor: skillIcons['emergency_tactics'].color,
+        level: 58,
+        cooldown: 20,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Convert shield on next Adlo or Succor into direct healing',
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'excogitation',
+        name: 'Excogitation',
+        imgFile: skillIcons['excogitation'].icon,
+        imgColor: skillIcons['excogitation'].color,
+        level: 62,
+        cooldown: 45,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.DELAYED_HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 800,
+                duration: 45
+            }
+        ]
+    },
+    {
         skillId: 'recitation',
         name: 'Recitation',
         imgFile: skillIcons['recitation'].icon,
@@ -90,6 +165,25 @@ export const schSkills =
                 effect: effects.OTHER,
                 note: 'Free guaranteed crit Adlo, Succor, Indom, or Excog',
                 duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'fey_blessing',
+        name: 'Fey Blessing',
+        imgFile: skillIcons['fey_blessing'].icon,
+        imgColor: skillIcons['fey_blessing'].color,
+        level: 76,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 320,
+                duration: 0
             }
         ]
     },

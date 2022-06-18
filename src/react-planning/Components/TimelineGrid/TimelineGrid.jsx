@@ -9,14 +9,12 @@ import useResizeAware from 'react-resize-aware';
 const TimelineGrid = props => {
 
     const [gridItems, setGridItems] = useState();
-
     const [resizeListener, sizes] = useResizeAware();
-
-    const effectiveWidth = props.width - props.leftWidth;
+    console.log(props.width, props.leftWidth);
+    const effectiveWidth = props.leftWidth ? props.width - props.leftWidth : props.width;
+    console.log(effectiveWidth);
   
     useEffect(() => {
-        console.log("useeffect");
-        console.log(sizes.height);
         props.syncTimelineHeight(sizes.height);
     }, [sizes.width, sizes.height]);
     
@@ -25,7 +23,7 @@ const TimelineGrid = props => {
 
         for ( let i = 0; i < props.duration ; i++ )
         {
-            columnTemplate.push(`20px`);
+            columnTemplate.push(effectiveWidth / props.duration + `px`);
         }
 
         return columnTemplate
@@ -66,7 +64,7 @@ const TimelineGrid = props => {
         });
 
         setGridItems( newGridItems );
-    }, [props.items, props.startTime, props.activePartyMember, props.timeline]);
+    }, [props.items, props.startTime, props.activePartyMember, props.timeline, props.leftWidth]);
 
     return (
         <>
@@ -74,7 +72,7 @@ const TimelineGrid = props => {
             className={classes.TimelineGrid}
             style={{...style, ...props.style,
             width: effectiveWidth,
-            left: props.leftWidth}}
+            left: props.leftWidth + 0.5}}
         >
             {resizeListener}
             {gridItems}

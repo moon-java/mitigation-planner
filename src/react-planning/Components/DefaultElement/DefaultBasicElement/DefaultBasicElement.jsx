@@ -6,9 +6,7 @@ const alpha = 0.7;
 
 const DefaultBasicElement = props => {
     const content = props.useIcon ? <img src={props.item.imgFile}/> :
-                                    <div className={classes.Line1}>
-                                    {   props.item.name}
-                                    </div>
+                                    <></>;
     const bgColor = props.useIcon ? props.item.imgColor : props.style.backgroundColor;
     return (
         <div 
@@ -18,10 +16,8 @@ const DefaultBasicElement = props => {
                 backgroundColor: bgColor
             }}  
         >
-            <div className={classes.ItemFlex}>
                 <div className={classes.Content}>
                     {content}
-                </div>
             </div>
             
         </div>

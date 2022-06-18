@@ -66,8 +66,6 @@ const DropZone = props => {
         })
         item.partyMemberId = props.activePartyMember;
 
-        console.log("init ", item);
-
         return item;
     }
 

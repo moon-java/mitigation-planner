@@ -4,16 +4,9 @@ import classes from './PartyMemberElement.module.css';
 import JobSelector from '../Dropdowns/JobSelector';
 import icons from './../icons';
 
-const alpha = 0.7;
-const defaultColors = {
-    outerElement : [204, 204, 204],
-    innerElement : [70, 130, 180]
-}
-
 const PartyMemberElement = props => {
     const onClick = () =>
     {
-        console.log("clicked ", props.person.partyMemberId);
         props.onClick(props.person.partyMemberId);
     }
 
@@ -43,8 +36,7 @@ PartyMemberElement.defaultProps = {
     },
     randomColor: false,
     innerElement: false,
-    shadowed: false,
-    bgColor: defaultColors.innerElement
+    shadowed: false
 }
 
 PartyMemberElement.propTypes = {

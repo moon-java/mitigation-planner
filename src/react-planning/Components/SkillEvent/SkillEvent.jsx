@@ -3,11 +3,12 @@ import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
 
 import { ELEMENT } from '../../Constants/Constants';
-import { rgbaFromArray } from '../../Helpers/Functions';
+import { rgbaFromArray } from '../../Helpers/ColorHelpers';
 import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventElement';
 import DragPreview from '../DragPreview/DragPreview';
 import classes from './SkillEvent.module.css';
 import MouseTooltip from '../MouseTooltip.jsx';
+import { formatEffectString } from '../../Helpers/Utils';
 
 // Static style section 
 
@@ -62,6 +63,11 @@ export const SkillEvent = props => {
         setVisible(!visible);
     }
 
+    let effects = props.item.effects.map((effect, index) =>
+    {
+        return (<div>{formatEffectString(effect)}</div>);
+    });
+
     return (
         <>
             <div 
@@ -103,7 +109,7 @@ export const SkillEvent = props => {
             offsetY={10}
             >
             <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
-                <div>{props.item.name}</div>
+                <div>{effects}</div>
             </div>
             </MouseTooltip>
         </>

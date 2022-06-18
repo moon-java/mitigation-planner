@@ -9,13 +9,6 @@ import GroupSkillsGrid from '../GroupSkillsGrid/GroupSkillsGrid';
 const leftWidth = 220;
 
 const LayoutGrid = props => {
-
-    const [timelineHeight, setTimelineHeight] = useState();
-
-    const syncTimelineHeight = (height) => {
-        setTimelineHeight(height)
-    };
-
     const TimeGridElements = ( width, offset ) => (
         <>
         <TimeGrid 
@@ -28,7 +21,7 @@ const LayoutGrid = props => {
             offset={offset}
             width={width}
             duration={props.duration}
-            height={timelineHeight}
+            height={props.timelineHeight}
         >
         </TimeGrid>
         </>
@@ -39,7 +32,7 @@ const LayoutGrid = props => {
     const inLineStyle = (
         <>
             {TimeGridElements( props.width )}
-            <TimelineGrid {...props} syncTimelineHeight={syncTimelineHeight}/>
+            <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={0}/>
             <SkillsGrid {...props}/>
         </>
     )
@@ -48,7 +41,7 @@ const LayoutGrid = props => {
     const groupedStyle = (
         <>
             {TimeGridElements( props.width, leftWidth )}
-            <TimelineGrid {...props} syncTimelineHeight={syncTimelineHeight} leftWidth={leftWidth}/>
+            <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={leftWidth}/>
             <GroupSkillsGrid
                 {...props} 
                 width={props.width}
@@ -59,7 +52,7 @@ const LayoutGrid = props => {
             />
         </>
     )
-    console.log("active at layout: ", props.activePartyMember);
+
     return (
         <>
         {

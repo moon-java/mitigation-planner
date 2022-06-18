@@ -4,6 +4,43 @@ import skillIcons from '../assets/skills/skillIcons';
 export const meleeSkills =
 [
     {
+        skillId: 'second_wind',
+        name: 'Second Wind',
+        imgFile: skillIcons['second_wind'].icon,
+        imgColor: skillIcons['second_wind'].color,
+        level: 8,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 500,
+                duration: 0
+            }
+        ]
+    },
+    {
+        skillId: 'bloodbath',
+        name: 'Bloodbath',
+        imgFile: skillIcons['bloodbath'].icon,
+        imgColor: skillIcons['bloodbath'].color,
+        level: 12,
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: "Converts a portion of physical damage dealth into HP",
+                duration: 20
+            }
+        ]
+    },
+    {
         skillId: 'feint',
         name: 'Feint',
         imgFile: skillIcons['feint'].icon,
