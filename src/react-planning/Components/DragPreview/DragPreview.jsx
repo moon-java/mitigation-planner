@@ -2,6 +2,7 @@ import React from 'react'
 import { useDragLayer } from 'react-dnd';
 
 import { ELEMENT } from '../../Constants/Constants';
+import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import classes from './DragPreview.module.css';
 
 
@@ -37,12 +38,21 @@ const DragPreview = props => {
     }))
 
     const renderItem = () => {
-        switch (itemType) {
-          case ELEMENT:
-            return <div className={classes.ImageSytle}>{item.name}</div>
-          default:
-            return null
-        }
+        const bgColor = item.imgColor;
+        return (
+        <div 
+            className={[classes.DefaultBasicElement, props.className].join(' ')}
+            style={{
+            ...props.style,
+            backgroundColor: bgColor,
+            padding: `5px`
+            }}  
+            >
+            <div className={classes.Content}>
+            <img src={item.imgFile}/>
+            </div>
+        </div>
+        )
       }
 
     if (!isDragging || item.id) {

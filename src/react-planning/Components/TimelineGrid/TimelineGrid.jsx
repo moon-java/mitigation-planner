@@ -10,9 +10,7 @@ const TimelineGrid = props => {
 
     const [gridItems, setGridItems] = useState();
     const [resizeListener, sizes] = useResizeAware();
-    console.log(props.width, props.leftWidth);
     const effectiveWidth = props.leftWidth ? props.width - props.leftWidth : props.width;
-    console.log(effectiveWidth);
   
     useEffect(() => {
         props.syncTimelineHeight(sizes.height);

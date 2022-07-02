@@ -5,7 +5,7 @@ import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventEle
 import classes from './TimelineEvent.module.css';
 import MouseTooltip from '../MouseTooltip.jsx';
 import { damageTypes } from '../../../cooldowns/constants';
-import { getTimelineEventColor } from '../../Helpers/Utils';
+import { getTimelineEventColor,getTimelineEventBorderColor } from '../../Helpers/Utils';
 
 // Static style section 
 
@@ -56,6 +56,7 @@ export const TimelineEvent = props => {
 
     let style = {...props.style};
     style.backgroundColor = getTimelineEventColor(props.item);
+    style.border = '5px solid ' + getTimelineEventBorderColor(props.item);
 
     return (
         <>
