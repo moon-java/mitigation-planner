@@ -3,13 +3,13 @@ import { DndProvider } from 'react-dnd';
 import MouseBackEnd from 'react-dnd-mouse-backend'
 
 import classes from './App.module.css';
-import { Planner, SkillEvent} from './react-planning';
+import { Planner, SkillEvent} from './mit-planner';
 import skills from './cooldowns/skills.js';
 import timelines from './timelines/timelines.js';
 
-import DefaultBasicElement from './react-planning/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
-import FightSelector from './react-planning/Components/Dropdowns/FightSelector'
-import JobSelector from './react-planning/Components/Dropdowns/JobSelector';
+import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
+import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
+import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
 
 const Option = props => (
     <div className={classes.Option}>

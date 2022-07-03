@@ -12,7 +12,6 @@ what this thing can do:
 
 
 what it can't do yet but hopefully will soon:
-- actually have all the relevant actions for each job & complete fight timelines
 - not look like shit
 - show shields, e.g. shake it off
 - allow single-target skills to be put on other people, e.g. tbn, intervention

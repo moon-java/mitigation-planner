@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './PartyMemberElement.module.css';
 import JobSelector from '../Dropdowns/JobSelector';
-import icons from './../icons';
+import icons from '../icons';
 
 const PartyMemberElement = props => {
     const onClick = () =>
