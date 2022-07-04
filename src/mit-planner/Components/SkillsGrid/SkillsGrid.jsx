@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { SkillEvent } from '../SkillEvent/SkillEvent';
-import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBasicElement';
-import { COLORS } from '../../Constants/Constants';
 import classes from './SkillsGrid.module.css';
 
 const SkillsGrid = props => {
@@ -33,34 +31,6 @@ const SkillsGrid = props => {
         const newGridItems = props.items.map(( item, index) => {
 
             const position = item.startTime;
-
-            // Select color for the item. If itemId has already a color assigned pick it else create one
-            
-            let color = null;
-
-            // If the colorIndex is provided use it
-            if ( props.colorIndex )
-            {
-                color = COLORS[props.colorIndex]
-            }
-            else    // Else we define it by parsing the array        
-            {
-                let searchItemId = gridColors.find(i => i.itemId === item.itemId);
-
-                if ( searchItemId )
-                {
-                    color = searchItemId.color
-                }
-                else
-                {
-                    color = COLORS[gridColors.length]
-
-                    gridColors.push({
-                        itemId: item.itemId,
-                        color: color
-                    });
-                }
-            }
             return (
                 <div 
                     style={{
@@ -73,7 +43,6 @@ const SkillsGrid = props => {
                         item={item}
                         overlay
                         move
-                        bgColor={color}
                         elementClassName={props.elementClassName}
                         innerElement
                         customElementType={props.customInnerElementType}

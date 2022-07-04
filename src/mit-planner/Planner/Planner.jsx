@@ -10,7 +10,7 @@ import { damageTypes, targets, effects } from '../../cooldowns/constants';
 // Component
 export const Planner = props => {
 
-    const baseIndex = 100000000;
+    const baseIndex = 100000;
     const PlannerRef = useRef();
     const borderSize = 1;
     const secWidth = 20;

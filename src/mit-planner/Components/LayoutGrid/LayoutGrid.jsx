@@ -5,8 +5,7 @@ import TimeGrid from '../TimeGrid/TimeGrid';
 import TimelineGrid from '../TimelineGrid/TimelineGrid';
 import SkillsGrid from '../SkillsGrid/SkillsGrid';
 import GroupSkillsGrid from '../GroupSkillsGrid/GroupSkillsGrid';
-
-const leftWidth = 220;
+import { PARTY_VIEW_SIDEBAR_WIDTH } from '../../Constants/Constants';
 
 const LayoutGrid = props => {
     const TimeGridElements = ( width, offset ) => (
@@ -40,12 +39,12 @@ const LayoutGrid = props => {
     // Groups view
     const groupedStyle = (
         <>
-            {TimeGridElements( props.width, leftWidth )}
-            <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={leftWidth}/>
+            {TimeGridElements( props.width, PARTY_VIEW_SIDEBAR_WIDTH )}
+            <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={PARTY_VIEW_SIDEBAR_WIDTH}/>
             <GroupSkillsGrid
                 {...props} 
                 width={props.width}
-                leftWidth={leftWidth}
+                leftWidth={PARTY_VIEW_SIDEBAR_WIDTH}
                 partyMembers={props.partyMembers}
                 onPartyMemberClick={props.onPartyMemberClick}
                 activePartyMember={props.activePartyMember}

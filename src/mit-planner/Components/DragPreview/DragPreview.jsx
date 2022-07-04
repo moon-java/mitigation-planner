@@ -1,8 +1,5 @@
 import React from 'react'
 import { useDragLayer } from 'react-dnd';
-
-import { ELEMENT } from '../../Constants/Constants';
-import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import classes from './DragPreview.module.css';
 
 

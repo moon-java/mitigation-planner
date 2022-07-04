@@ -70,7 +70,7 @@ const App = () =>  {
         }
     ]);
 
-    const [fixedItems, setFixedItems] = useState([
+    const [timelineItems, setTimelineItems] = useState([
     ]);
 
     const startTime = 0;
@@ -78,16 +78,16 @@ const App = () =>  {
 
     const addHandler = ( {item, items} ) => {
         console.log( `Added : ${item}` );
-        setFixedItems( items );
+        setTimelineItems( items );
     }
 
     const removeHandler = ( {item, items} ) => {
         console.log( `Removed : ${item}` );
-        setFixedItems( items );
+        setTimelineItems( items );
     }
 
     const updateHandler = ( {item, items} ) => {
-        setFixedItems( items );
+        setTimelineItems( items );
     }
 
     const partyMemberClickHandler = ( partyMemberId ) => {
@@ -102,17 +102,17 @@ const App = () =>  {
 
     const updatePrimaryJobHandler = ( job ) => {
         let tmpParty = {...partyMembers};
-        let tmpItems = fixedItems.filter((item, i) => item.partyMemberId != 0);
+        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != 0);
         tmpParty[0].job = job;
-        setFixedItems(tmpItems);
+        setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
     }
 
     const partyMemberJobChangeHandler = ( job, index ) => {
         let tmpParty = {...partyMembers};
-        let tmpItems = fixedItems.filter((item, i) => item.partyMemberId != index);
+        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != index);
         tmpParty[index].job = job;
-        setFixedItems(tmpItems);
+        setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
     }
 
@@ -164,7 +164,7 @@ const App = () =>  {
                     }
                 </div>
                 <div className={classes.Timeline}>
-                    <Planner items={fixedItems}
+                    <Planner items={timelineItems}
                              options={options}
                              scroll={true}
                              partyView={partyViewEnabled}
