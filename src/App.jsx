@@ -135,7 +135,36 @@ const App = () =>  {
         <div className={classes.Header}>
             <h1>mitigation planner</h1>
             <h2>im tired of google spreadsheets</h2>
+            <div style={{width: `fit-content`, margin: 'auto', height: `100px`, overflowY: `scroll`}}>
+            <div style={{width: `fit-content`, margin: 'auto'}}>
+                color coding:
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <ul style={{listStylePosition: 'inside'}}>
+                        <li>red: physical tankbuster</li>
+                        <li>orange: physical raidwide</li>
+                        </ul>
+                        <ul style={{listStylePosition: 'inside'}}>
+                        <li>purple: magical tankbuster</li>
+                        <li>pink: magical raidwide</li>
+                        </ul>
+                        <ul style={{listStylePosition: 'inside'}}>
+                        <li>green: avoidable damage</li>
+                        <li>blue: non-damaging/informational cast</li>
+                        </ul>
+                        <ul style={{listStylePosition: 'inside'}}>
+                        <li>dark red: enrage</li>
+                        <li>gray: i fucked up</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>known issues:</p>
+                <ul style={{listStylePosition: 'inside'}}>
+                    <li>hover tooltips are kinda buggy</li>
+                    <li>things that target party members (e.g. intervention) will calculate mit as if on self</li>
+                    <li>p4sp2 timeline isnt done bc damage timing depends on how mechs are handled and im too lazy</li>
+                </ul>
             </div>
+        </div>
         <div className={classes.Content}>
         <div className={classes.Options}>
         <FightSelector onFightChange={selectedFightChangedHandler} />
