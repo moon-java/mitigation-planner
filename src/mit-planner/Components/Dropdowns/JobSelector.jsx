@@ -4,8 +4,7 @@ import BaseDropdown from './BaseDropdown';
 
 const JobSelector = props => {
     let onChange = (e) => {
-        console.log(e);
-        props.onJobChange(e.value);
+        props.onJobChange(e.target.value);
     };
     let items = [
         {
@@ -68,7 +67,7 @@ const JobSelector = props => {
     ]
     let selectedIndex = props.selectedJob ? items.findIndex( i => i.name === props.selectedJob ) : 0;
     return (
-        <BaseDropdown items={items} onChange={onChange} value={props.selectedJob} width='100px'/>
+        <BaseDropdown items={items} onChange={onChange} value={props.selectedJob}/>
     );
 }
 

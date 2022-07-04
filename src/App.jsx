@@ -154,8 +154,8 @@ const App = () =>  {
         <div className={classes.Header}>
             <h1 className={classes.Title}>mitigation planner</h1>
         <div className={classes.Options}>
-            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', justifyContent: 'center'}}>
-        <       FightSelector onFightChange={selectedFightChangedHandler} />
+            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '50%', justifyContent: 'center'}}>
+                <FightSelector onFightChange={selectedFightChangedHandler} />
                 <JobSelector onJobChange={updatePrimaryJobHandler}/>
                 <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
             </div>

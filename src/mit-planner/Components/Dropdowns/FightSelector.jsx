@@ -32,11 +32,11 @@ const FightSelector = props => {
     ];
 
     let onChange = (e) => {
-        let fight = items.find(item => item.name == e.value);
+        let fight = items.find(item => item.name == e.target.value);
         props.onFightChange(fight.id);
     };
     return (
-        <BaseDropdown items={items} onChange={onChange} width='500px'/>
+        <BaseDropdown items={items} onChange={onChange}/>
     );
 }
 
