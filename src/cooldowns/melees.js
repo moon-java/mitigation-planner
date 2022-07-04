@@ -35,7 +35,7 @@ export const meleeSkills =
                 target: targets.SELF,
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
-                note: "Converts a portion of physical damage dealth into HP",
+                note: "Converts a portion of physical damage dealt into HP",
                 duration: 20
             }
         ]

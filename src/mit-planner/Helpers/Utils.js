@@ -20,8 +20,12 @@ export const formatEffectString = (effect) =>
     }
 
     if (effect.effect == effects.HEAL_IN ||
-        effect.effect == effects.HEAL_OUT ||
-        effect.effect == effects.MAX_HP)
+        effect.effect == effects.HEAL_OUT)
+    {
+        const valueSuffix = effect.valueType == valueTypes.PERCENT ? "%" : " potency"
+        return ("Increase " + effect.effect + " by " + effect.target + " by " + effect.value + valueSuffix + " for " + effect.duration + "s");
+    }
+    if (effect.effect == effects.MAX_HP)
     {
         const valueSuffix = effect.valueType == valueTypes.PERCENT ? "% max HP" : " potency"
         return ("Increase " + effect.effect + " by " + effect.target + " by " + effect.value + valueSuffix + " for " + effect.duration + "s");
