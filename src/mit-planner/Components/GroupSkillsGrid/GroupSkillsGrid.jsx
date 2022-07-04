@@ -54,7 +54,7 @@ const GroupSkillsGrid = props => {
                                 ...props.style,
                                 ...borderStyle,
                                 marginTop: 0,
-                                width: `${props.width - props.leftWidth}px`
+                                width: `${props.width}px`
                             }}
                             items={groupedItems[items]}
                             colorIndex={index}

@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import * as helpers from '../../Helpers/ColorHelpers';
 import DropZone from '../DropZone/DropZone';
 import classes from './TimeGrid.module.css';
 
@@ -12,7 +10,7 @@ const TimeGrid = props => {
     const daysDropGrid = [];
     const timelineGrid = [];
 
-    const effectiveWidth = width - offset;
+    const effectiveWidth = width;
 
     let style = {
         width: '20px'
@@ -26,15 +24,15 @@ const TimeGrid = props => {
     for( let i = 1; i <= props.duration; i++ )
     {
         if ( i % 5 === 0 ) {
-            style = {...style, borderRight: 'solid #a0a0a0'};
-            style2 = {...style2, borderRight: 'solid #a0a0a0'};
+            style = {...style, borderRight: 'solid 1.5px #a0a0a0'};
+            style2 = {...style2, borderRight: 'solid 1.5px #a0a0a0', boxSizing: 'border-box'};
         }
         else {
-            style = {...style, borderRight: 'solid #404040'};
-            style2 = {...style2, borderRight: 'solid #404040'};
+            style = {...style, borderRight: 'solid 1.5px #404040'};
+            style2 = {...style2, borderRight: 'solid 1.5px #404040', boxSizing: 'border-box'};
         }
         let innerDiv = "";
-        if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: 'black', fontSize:'9px'}}>{i}</div>; }
+        if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: 'black', fontSize:'9px', width: '20px', boxSizing: 'border-box'}}>{i}</div>; }
 
         daysDropGrid.push(
             <DropZone 
