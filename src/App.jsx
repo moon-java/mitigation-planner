@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
-import MouseBackEnd from 'react-dnd-mouse-backend'
+import MouseBackEnd from 'react-dnd-mouse-backend';
 
 import classes from './App.module.css';
 import { Planner, SkillEvent} from './mit-planner';
 import skills from './cooldowns/skills.js';
 import timelines from './timelines/timelines.js';
+import Collapsible from 'react-collapsible';
 
 import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
@@ -13,11 +14,13 @@ import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
 
 const Option = props => (
     <div className={classes.Option}>
-        <span style={{marginRight: '10px', fontSize: '14px'}}>{props.children}</span>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div style={{marginRight: '10px'}}>Party View</div>
         <label className={classes.Switch}>
             <input type="checkbox" checked={props.checked} onChange={props.onChange}/>
             <span className={`${classes.Slider} ${classes.Round}`}></span>
         </label>
+        </div>
     </div>
 )
 
@@ -130,31 +133,110 @@ const App = () =>  {
 
     const activeJob = partyMembers[activePartyMember].job;
     const activeSkills = skills[activeJob];
+    let isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
+    if (isMobile) {
+        return <div className={classes.Header}> <h1> mobile user BEGONE </h1> <h2>get that tiny screen outta here</h2> </div>
+    }
+
+    let triggerStyle= { color: `#c0c0c0`,
+                        display: 'flex',
+                        margin: 'auto',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        alignItems: 'center',
+                        marginTop: '16px',
+                        backgroundColor: '#3e3f41',
+                        width: '70%',
+                        padding: '10px'}
+
     return (
         <>
         <div className={classes.Header}>
-            <h1>mitigation planner</h1>
-            <h2>im tired of google spreadsheets</h2>
-            <div style={{width: `fit-content`, margin: 'auto', height: `100px`, overflowY: `scroll`}}>
+            <h1 className={classes.Title}>mitigation planner</h1>
+        <div className={classes.Options}>
+            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', justifyContent: 'center'}}>
+        <       FightSelector onFightChange={selectedFightChangedHandler} />
+                <JobSelector onJobChange={updatePrimaryJobHandler}/>
+                <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
+            </div>
+        </div>
+        </div>
+        <Collapsible className={classes.InfoBox} triggerStyle={triggerStyle} trigger="Info">
+            <div className={classes.Info}>
             <div style={{width: `fit-content`, margin: 'auto'}}>
-                color coding:
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <ul style={{listStylePosition: 'inside'}}>
-                        <li>red: physical tankbuster</li>
-                        <li>orange: physical raidwide</li>
-                        </ul>
-                        <ul style={{listStylePosition: 'inside'}}>
-                        <li>purple: magical tankbuster</li>
-                        <li>pink: magical raidwide</li>
-                        </ul>
-                        <ul style={{listStylePosition: 'inside'}}>
-                        <li>green: avoidable damage</li>
-                        <li>blue: non-damaging/informational cast</li>
-                        </ul>
-                        <ul style={{listStylePosition: 'inside'}}>
-                        <li>dark red: enrage</li>
-                        <li>gray: i fucked up</li>
-                        </ul>
+                    <div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: '#d63731',
+                                      border: '4px solid #a60701',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            physical tankbuster
+                        </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: '#ff8b4d',
+                                      border: '4px solid #cf5b1d',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            physical raidwide
+                        </div>
+                    </div>
+                    <div>
+                    <div style={{ color: '#252627',
+                                      backgroundColor: '#c05cff',
+                                      border: '4px solid #9029ff',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            magical tankbuster
+                        </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: '#ff5cb0',
+                                      border: '4px solid #cf2c90',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            magical raidwide
+                        </div>
+                    </div>
+                    <div>
+                    <div style={{ color: '#252627',
+                                      backgroundColor: '#9ba88c',
+                                      border: '4px solid #6b785c',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            avoidable damage
+                        </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: '#89c9cc',
+                                      border: '4px solid #59999c',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            non-damaging/informational
+                        </div>
+                    </div>
+                    <div>
+                    <div style={{ color: '#252627',
+                                      backgroundColor: '#b50300',
+                                      border: '4px solid #850000',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            enrage
+                        </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: 'gray',
+                                      border: '4px solid black',
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            none of the above (i fucked up)
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <p>known issues:</p>
@@ -163,17 +245,8 @@ const App = () =>  {
                     <li>things that target party members (e.g. intervention) will calculate mit as if on self</li>
                     <li>p4sp2 timeline isnt done bc damage timing depends on how mechs are handled and im too lazy</li>
                 </ul>
-            </div>
-        </div>
-        <div className={classes.Content}>
-        <div className={classes.Options}>
-        <FightSelector onFightChange={selectedFightChangedHandler} />
-        <JobSelector onJobChange={updatePrimaryJobHandler}/>
-        <Option checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}>
-                        Party View
-                    </Option>
-        </div>
-        </div>
+                </div>
+        </Collapsible>
         <DndProvider backend={MouseBackEnd}>
             <div className={classes.Content}>
                 <br/>

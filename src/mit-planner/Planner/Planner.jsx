@@ -246,7 +246,7 @@ export const Planner = props => {
         timelineHeight: timelineHeight
     }
 
-    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #2f3031`, borderRight: `2px solid #2f3031`, borderBottom: `2px solid #2f3031`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `${timelineHeight}px`, width: `220px`}}/> : null;
+    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #c0c0c0`, borderRight: `2px solid #c0c0c0`, borderBottom: `2px solid #c0c0c0`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `${timelineHeight}px`, width: `220px`}}/> : null;
 
     return (
         <>

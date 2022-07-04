@@ -18,14 +18,15 @@ const TimeGrid = props => {
     let style2 = {
         width: '20px',
         backgroundColor: `#575a5c`,
+        borderBottom: `1px solid #404040`,
         height: `100%`
     };
 
     for( let i = 1; i <= props.duration; i++ )
     {
         if ( i % 5 === 0 ) {
-            style = {...style, borderRight: 'solid 1.5px #a0a0a0'};
-            style2 = {...style2, borderRight: 'solid 1.5px #a0a0a0', boxSizing: 'border-box'};
+            style = {...style, borderRight: 'solid 1.5px #707070'};
+            style2 = {...style2, borderRight: 'solid 1.5px #707070', boxSizing: 'border-box'};
         }
         else {
             style = {...style, borderRight: 'solid 1.5px #404040'};

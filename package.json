@@ -11,12 +11,15 @@
     "fsevents": "^2.3.2",
     "gh-pages": "^4.0.0",
     "react": "^18.1.0",
+    "react-collapsible": "^2.10.0",
+    "react-device-detect": "^2.2.2",
     "react-dnd": "^16.0.1",
     "react-dnd-mouse-backend": "^1.0.0-rc.2",
     "react-dom": "^18.1.0",
     "react-measure": "^2.5.2",
     "react-resize-aware": "^3.1.1",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,4 +1,3 @@
-
 .Content {
   width: 90%;
   height: 100%;
@@ -9,11 +8,8 @@
   align-items: center;
   text-align: center;
   margin: auto;
-  background-color: #3e3f41;
   border-radius: 4px;
-  padding: 5px;
   color: #c0c0c0;
-  margin-bottom: 30px;
   width: 90%;
 }
 
@@ -27,6 +23,7 @@
 .Timeline {
   margin-top: 30px;
   height: fit-content;
+  border: #c0c0c0 5px solid;
 }
 
 .Switch {
@@ -51,7 +48,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #252627;
+  background-color: #c0c0c0;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -63,13 +60,13 @@
   width: 16px;
   left: 2px;
   bottom: 2px;
-  backgRound-color: white;
+  background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .Slider {
-  backgRound-color: #2196F3;
+  background-color: #2196F3;
 }
 
 input:focus + .Slider {
@@ -93,12 +90,50 @@ input:checked + .Slider:before {
   align-items: center;
   text-align: center;
   margin: auto;
-  background-color: #3e3f41;
-  border-radius: 4px;
+  border-top: #3e3f41 3px solid;
+  border-bottom: #3e3f41 3px solid;
   padding: 10px;
   color: #c0c0c0;
 }
 
 .Option {
   margin-right: 40px;
+  margin-left: 40px;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.Title {
+  color: #c0c0c0;
+  font-size: 50px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.PartyToggle {
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.InfoBox {
+  width: 70%;
+  color: #c0c0c0;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  margin-top: 16px;
+  border-radius: 2px;
+  background-color: #3e3f41;
+}
+
+.Info {
+  width: 70%;
+  color: #c0c0c0;
+  margin: auto;
+  border-top: 3px solid #c0c0c0;
+  align-items: center;
+  text-align: center;
+  background-color: #3e3f41;
+  padding: 10px;
 }
