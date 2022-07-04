@@ -182,7 +182,7 @@ export const sgeSkills =
                 effect: effects.SHIELD,
                 valueType: valueTypes.POTENCY,
                 value: 300,
-                duration: 0
+                duration: 15
             },
             {
                 target: targets.PARTY_MEMBER,
@@ -261,7 +261,7 @@ export const sgeSkills =
                 effect: effects.SHIELD,
                 valueType: valueTypes.POTENCY,
                 value: 200,
-                duration: 0
+                duration: 15
             },
             {
                 target: targets.PARTY_MEMBER,
