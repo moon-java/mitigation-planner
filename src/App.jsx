@@ -83,6 +83,7 @@ const App = () =>  {
     const addHandler = ( {item, items} ) => {
         console.log( `Added : ${item}` );
         setTimelineItems( items );
+        console.log(items);
     }
 
     const removeHandler = ( {item, items} ) => {
@@ -195,6 +196,14 @@ const App = () =>  {
                                       margin: '5px'}}>
                             physical raidwide
                         </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: `${uiConstants.PHYS_OTHER_BG}`,
+                                      border: `4px solid ${uiConstants.PHYS_OTHER_BORDER}`,
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            physical (other)
+                        </div>
                     </div>
                     <div>
                     <div style={{ color: '#252627',
@@ -213,8 +222,24 @@ const App = () =>  {
                                       margin: '5px'}}>
                             magical raidwide
                         </div>
+                        <div style={{ color: '#252627',
+                                      backgroundColor: `${uiConstants.MAGIC_OTHER_BG}`,
+                                      border: `4px solid ${uiConstants.MAGIC_OTHER_BORDER}`,
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            magical (other)
+                        </div>
                     </div>
                     <div>
+                    <div style={{ color: '#252627',
+                                      backgroundColor: `${uiConstants.INTERRUPTABLE_BG}`,
+                                      border: `4px solid ${uiConstants.INTERRUPTABLE_BORDER}`,
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            can interrupt/stun
+                        </div>
                     <div style={{ color: '#252627',
                                       backgroundColor: `${uiConstants.AVOIDABLE_BG}`,
                                       border: `4px solid ${uiConstants.AVOIDABLE_BORDER}`,
@@ -233,7 +258,8 @@ const App = () =>  {
                         </div>
                     </div>
                     <div>
-                    <div style={{ color: '#252627',
+
+                    <div style={{ color: '#c0c0c0',
                                       backgroundColor: `${uiConstants.ENRAGE_BG}`,
                                       border: `4px solid ${uiConstants.ENRAGE_BORDER}`,
                                       borderRadius: '2px',
@@ -251,6 +277,7 @@ const App = () =>  {
                         </div>
                     </div>
                     </div>
+
                 </div>
                 <p>known issues, may fix:</p>
                 <ul style={{listStylePosition: 'inside'}}>

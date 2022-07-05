@@ -105,7 +105,6 @@ export const Planner = props => {
     }
 
     const onDropHandler = ( item, propagate ) => {
-
         // Parsing data from dropped component
         //const item = JSON.parse(event.dataTransfer.getData("text"));
         const newItems = [...items];

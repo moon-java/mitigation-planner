@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventElement';
 import classes from './TimelineEvent.module.css';
-import MouseTooltip from '../MouseTooltip.jsx';
 import { damageTypes } from '../../../cooldowns/constants';
-import { getTimelineEventColor,getTimelineEventBorderColor } from '../../Helpers/Utils';
-import { DEFAULT_BG } from '../../Constants/UIConstants';
+import { getTimelineEventColor, getTimelineEventBorderColor } from '../../Helpers/Utils';
+import Tooltip from '@mui/material/Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Static style section 
 
@@ -59,31 +59,38 @@ export const TimelineEvent = props => {
     style.backgroundColor = getTimelineEventColor(props.item);
     style.border = '5px solid ' + getTimelineEventBorderColor(props.item);
 
+    const useStyles = makeStyles(theme => ({
+        arrow: {
+          "&:before": {
+            border: "1px solid #c0c0c0"
+          },
+          color: '#c0c0c0'
+        },
+        tooltip: {
+          backgroundColor: '#c0c0c0',
+          width: 'fit-content'
+        }
+      }));
+    let muiClasses = useStyles();
+
     return (
-        <>
-            <div 
-                onClick={props.onClick}
-                onMouseEnter={()=>setVisible(!visible)}
-                onMouseLeave={()=>setVisible(!visible)}
-                className={classes.TimelineEvent}
-            >
-                <props.customElementType {...props} style={style} />
-            </div>
-            <MouseTooltip
-            visible={visible}
-            offsetX={15}
-            offsetY={10}
-            >
-            <div style={{backgroundColor: `${DEFAULT_BG}`, padding: 5, textAlign: `center`}}>
-                <div>{props.item.name}</div>
+        <Tooltip arrow classes={{ arrow: muiClasses.arrow, tooltip: muiClasses.tooltip }} title={
+            <div style={{backgroundColor: '#3e3f41', color: '#c0c0c0', fontSize:14, padding: 10, borderTop: "2px solid #c0c0c0", borderBottom: "2px solid #c0c0c0", textAlign: `center`}}>
+                <div style={{borderBottom: '1px solid #c0c0c0', margin: 'auto', marginBottom: 5, fontSize: 15, width: 'fit-content', paddingLeft: '15px', paddingRight: '15px'}}>{props.item.name}</div>
                 <div>Damage type: {props.item.damageType}</div>
                 <div>Target: {props.item.target}</div>
                 <div>{props.item.notes}</div>
                 <div>Self mitigation: -{selfMit}%</div>
                 <div>Party mitigation: -{partyMit}%</div>
             </div>
-            </MouseTooltip>
-        </>
+        }>
+            <div data-for='tooltip'
+                className={classes.TimelineEvent}
+                style={{zIndex: 1000}}
+            >
+                <props.customElementType {...props} style={style} />
+            </div>
+        </Tooltip>
     )
 }
 

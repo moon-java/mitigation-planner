@@ -7,7 +7,8 @@ import { rgbaFromArray } from '../../Helpers/ColorHelpers';
 import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventElement';
 import DragPreview from '../DragPreview/DragPreview';
 import classes from './SkillEvent.module.css';
-import MouseTooltip from '../MouseTooltip.jsx';
+import Tooltip from '@mui/material/Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
 import { formatEffectString } from '../../Helpers/Utils';
 
 // Static style section 
@@ -68,8 +69,28 @@ export const SkillEvent = props => {
         return (<div>{formatEffectString(effect)}</div>);
     });
 
+    const useStyles = makeStyles(theme => ({
+        arrow: {
+          "&:before": {
+            border: "1px solid #c0c0c0"
+          },
+          color: '#c0c0c0'
+        },
+        tooltip: {
+          backgroundColor: '#c0c0c0',
+          width: 'fit-content'
+        }
+      }));
+    let muiClasses = useStyles();
+
     return (
         <>
+            <Tooltip followCursor={true} arrow classes={{ arrow: muiClasses.arrow, tooltip: muiClasses.tooltip }} title={
+                <div style={{width: 'fit-content', backgroundColor: '#3e3f41', color: '#c0c0c0', fontSize:12, padding: 10, borderTop: "2px solid #c0c0c0", borderBottom: "2px solid #c0c0c0", textAlign: `center`}}>
+                    <div style={{borderBottom: '1px solid #c0c0c0', margin: 'auto', marginBottom: 5, fontSize: 13, width: 'fit-content', paddingLeft: '15px', paddingRight: '15px'}}>{props.item.name}</div>
+                    <div>{effects}</div>
+                </div>
+            }>
             <div 
                 onClick={props.onClick}
                 ref={drag}
@@ -98,21 +119,15 @@ export const SkillEvent = props => {
                         :   null
                 }
             </div>
+            </Tooltip>
             {
                 !props.innerElement
                     ?   <DragPreview />
                     :   null
             }
-            <MouseTooltip
-            visible={visible}
-            offsetX={15}
-            offsetY={10}
-            >
-            <div style={{backgroundColor: `${DEFAULT_BG}`, padding: 5, textAlign: `center`}}>
-                <div>{effects}</div>
-            </div>
-            </MouseTooltip>
-        </>
+            </>
+
+
     )
 }
 

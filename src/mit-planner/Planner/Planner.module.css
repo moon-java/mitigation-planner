@@ -5,4 +5,5 @@
     min-height: 400px;
     transition: all .3s ease-in;
     box-sizing: content-box;
+    margin-bottom: 30px;
 }

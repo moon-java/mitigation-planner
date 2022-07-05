@@ -69,7 +69,7 @@ export const getTimelineEventColor = (event) =>
             return uiConstants.MAGIC_TB_BG;
         }
         else {
-            return '#bd8dc7';
+            return uiConstants.MAGIC_OTHER_BG;
         }
     }
     if (event.damageType == damageTypes.PHYS)
@@ -84,7 +84,7 @@ export const getTimelineEventColor = (event) =>
             return uiConstants.PHYS_TB_BG;
         }
         else {
-            return '#c79d8d';
+            return uiConstants.PHYS_OTHER_BG;
         }
     }
     return uiConstants.DEFAULT_BG;
@@ -116,7 +116,7 @@ export const getTimelineEventBorderColor = (event) =>
             return uiConstants.MAGIC_TB_BORDER;
         }
         else {
-            return '#8d5d97';
+            return uiConstants.MAGIC_OTHER_BORDER;
         }
     }
     if (event.damageType == damageTypes.PHYS)
@@ -131,7 +131,7 @@ export const getTimelineEventBorderColor = (event) =>
             return uiConstants.PHYS_TB_BORDER;
         }
         else {
-            return '#976d5d';
+            return uiConstants.PHYS_OTHER_BORDER;
         }
     }
     return uiConstants.DEFAULT_BORDER;

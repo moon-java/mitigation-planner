@@ -45,13 +45,8 @@ const DropZone = props => {
 
     // Update the item on drop and propagate to host element
     const moveItem = item => {
-        // Get the time difference between  previously set startDate and the new one
         let diff = item.startTime ? props.time - item.startTime : 0;
-
-        // Set the updated date
         item.startTime = props.time;
-
-        // Set the new end date by adding the difference or 0
         item.effects.forEach( effect => {
             effect.endTime += diff;
         })
@@ -60,13 +55,15 @@ const DropZone = props => {
     }
 
     const initItem = item => {
-        item.startTime = props.time;
-        item.effects.forEach( effect => {
+        let newItem = structuredClone(item);
+        newItem.effects = structuredClone(item.effects);
+        newItem.startTime = props.time;
+        newItem.effects.forEach( effect => {
             effect.endTime = props.time + effect.duration;
         })
-        item.partyMemberId = props.activePartyMember;
+        newItem.partyMemberId = props.activePartyMember;
 
-        return item;
+        return newItem;
     }
 
     const overClass = isOver ? classes.DropZoneOver : null;

@@ -43,6 +43,7 @@ const TimeGrid = props => {
                 key={`grid_${i}`}
                 time={i}
                 canDropItem={props.canDropItem}
+                items={props.items}
             />
         ) 
         fightTimelineGrid.push(        
