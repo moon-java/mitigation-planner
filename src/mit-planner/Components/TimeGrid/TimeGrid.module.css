@@ -4,7 +4,7 @@
     top: 0;
 }
 
-.DropZones {
+.SkillDropZones {
     position: relative;
     top: 0;
     left: 0;
@@ -22,7 +22,7 @@
 }
 
 
-.MonthWrapper {
+.FightTimelineGrid {
     position: relative;
     top: 0;
     height: 70px;
@@ -34,4 +34,5 @@
     border-bottom-style: solid;
     border-left-style: solid;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }

@@ -124,7 +124,36 @@ export const astSkills =
         imgFile: skillIcons['celestial_intersection'].icon,
         imgColor: skillIcons['celestial_intersection'].color,
         level: 74,
+        maxApplicableLevel: 87,
         cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 200,
+                duration: 0
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.SHIELD,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 30
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_celestial_intersection',
+        name: 'Enhanced Celestial Intersection',
+        imgFile: skillIcons['celestial_intersection'].icon,
+        imgColor: skillIcons['celestial_intersection'].color,
+        level: 88,
+        cooldown: 30,
+        maxConcurrentUses: 2,
         effects:
         [
             {

@@ -11,6 +11,26 @@ export const warSkills =
         imgFile: skillIcons['thrill_of_battle'].icon,
         imgColor: skillIcons['thrill_of_battle'].color,
         level: 30,
+        maxApplicableLevel: 77,
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.MAX_HP,
+                valueType: valueTypes.PERCENT,
+                value: 20,
+                duration: 10
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_thrill_of_battle',
+        name: 'Enhanced Thrill of Battle',
+        imgFile: skillIcons['thrill_of_battle'].icon,
+        imgColor: skillIcons['thrill_of_battle'].color,
+        level: 78,
         cooldown: 90,
         effects:
         [
@@ -76,6 +96,7 @@ export const warSkills =
         imgFile: skillIcons['raw_intuition'].icon,
         imgColor: skillIcons['raw_intuition'].color,
         level: 56,
+        maxApplicableLevel: 81,
         cooldown: 25,
         effects:
         [
@@ -103,6 +124,7 @@ export const warSkills =
         imgFile: skillIcons['equilibrium'].icon,
         imgColor: skillIcons['equilibrium'].color,
         level: 58,
+        maxApplicableLevel: 83,
         cooldown: 60,
         effects:
         [
@@ -112,7 +134,26 @@ export const warSkills =
                 effect: effects.HEAL,
                 valueType: valueTypes.POTENCY,
                 value: 1200,
-                duration: 1
+                duration: 0
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_equilibrium',
+        name: 'Enhanced Equilibrium',
+        imgFile: skillIcons['equilibrium'].icon,
+        imgColor: skillIcons['equilibrium'].color,
+        level: 84,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 1200,
+                duration: 0
             },
             {
                 target: targets.SELF,
@@ -130,6 +171,7 @@ export const warSkills =
         imgFile: skillIcons['shake_it_off'].icon,
         imgColor: skillIcons['shake_it_off'].color,
         level: 68,
+        maxApplicableLevel: 75,
         cooldown: 90,
         effects:
         [
@@ -140,15 +182,35 @@ export const warSkills =
                 valueType: valueTypes.PERCENT,
                 value: 15,
                 duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_shake_it_off',
+        name: 'Enhanced Shake It Off',
+        imgFile: skillIcons['shake_it_off'].icon,
+        imgColor: skillIcons['shake_it_off'].color,
+        level: 76,
+        cooldown: 90,
+        effects:
+        [
+
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 300,
+                duration: 0
             },
             {
                 target: targets.PARTY,
                 damageType: damageTypes.NONE,
-                effect: effects.REGEN,
-                valueType: valueTypes.POTENCY,
-                value: 300,
+                effect: effects.SHIELD,
+                valueType: valueTypes.PERCENT,
+                value: 15,
                 duration: 15
-            },
+            }
         ]
     },
     {
@@ -157,6 +219,50 @@ export const warSkills =
         imgFile: skillIcons['nascent_flash'].icon,
         imgColor: skillIcons['nascent_flash'].color,
         level: 76,
+        maxApplicableLevel: 81,
+        cooldown: 25,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 6
+            },
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 6
+            },
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 6
+            },
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.SHIELD,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 20
+            },
+        ]
+    },
+    {
+        skillId: 'enhanced_nascent_flash',
+        name: 'Enhanced Nascent Flash',
+        imgFile: skillIcons['nascent_flash'].icon,
+        imgColor: skillIcons['nascent_flash'].color,
+        level: 82,
         cooldown: 25,
         effects:
         [

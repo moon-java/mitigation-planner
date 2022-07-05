@@ -45,6 +45,7 @@ export const sgeSkills =
         imgFile: skillIcons['kerachole'].icon,
         imgColor: skillIcons['kerachole'].color,
         level: 50,
+        maxApplicableLevel: 77,
         cooldown: 30,
         effects:
         [
@@ -54,6 +55,33 @@ export const sgeSkills =
                 effect: effects.DMG_IN,
                 valueType: valueTypes.PERCENT,
                 value: 10,
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_kerachole',
+        name: 'Enhanced Kerachole',
+        imgFile: skillIcons['kerachole'].icon,
+        imgColor: skillIcons['kerachole'].color,
+        level: 78,
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 100,
                 duration: 15
             }
         ]
@@ -83,6 +111,25 @@ export const sgeSkills =
         imgFile: skillIcons['zoe'].icon,
         imgColor: skillIcons['zoe'].color,
         level: 56,
+        maxApplicableLevel: 87,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: "Increase potency of next healing spell by 50%",
+                duration: 30
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_zoe',
+        name: 'Enhanced Zoe',
+        imgFile: skillIcons['zoe'].icon,
+        imgColor: skillIcons['zoe'].color,
+        level: 88,
         cooldown: 90,
         effects:
         [
@@ -110,6 +157,26 @@ export const sgeSkills =
                 effect: effects.OTHER,
                 note: "Restore HP by removing Eukrasian Diagnosis (450 potency) or Eukrasian Prognosis (350 potency)",
                 duration: 0
+            }
+        ]
+    },
+    {
+        skillId: 'physis',
+        name: 'Physis',
+        imgFile: skillIcons['physis_ii'].icon,
+        imgColor: skillIcons['physis_ii'].color,
+        level: 20,
+        maxApplicableLevel: 59,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 100,
+                duration: 15
             }
         ]
     },

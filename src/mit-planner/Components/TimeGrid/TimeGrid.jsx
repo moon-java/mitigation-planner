@@ -7,15 +7,15 @@ export const MARGIN = 0;
 
 const TimeGrid = props => {
     const { width, offset, ...rest} = props;
-    const daysDropGrid = [];
-    const timelineGrid = [];
+    const skillsDropGrid = [];
+    const fightTimelineGrid = [];
 
     const effectiveWidth = width;
 
-    let style = {
+    let skillsGridCellStyle = {
         width: '20px'
     };
-    let style2 = {
+    let fightTimelineGridCellStyle = {
         width: '20px',
         backgroundColor: `#575a5c`,
         borderBottom: `1px solid #404040`,
@@ -25,28 +25,29 @@ const TimeGrid = props => {
     for( let i = 1; i <= props.duration; i++ )
     {
         if ( i % 5 === 0 ) {
-            style = {...style, borderRight: 'solid 1.5px #707070'};
-            style2 = {...style2, borderRight: 'solid 1.5px #707070', boxSizing: 'border-box'};
+            skillsGridCellStyle = {...skillsGridCellStyle, borderRight: 'solid 1.5px #707070'};
+            fightTimelineGridCellStyle = {...fightTimelineGridCellStyle, borderRight: 'solid 1.5px #707070', boxSizing: 'border-box'};
         }
         else {
-            style = {...style, borderRight: 'solid 1.5px #404040'};
-            style2 = {...style2, borderRight: 'solid 1.5px #404040', boxSizing: 'border-box'};
+            skillsGridCellStyle = {...skillsGridCellStyle, borderRight: 'solid 1.5px #404040'};
+            fightTimelineGridCellStyle = {...fightTimelineGridCellStyle, borderRight: 'solid 1.5px #404040', boxSizing: 'border-box'};
         }
         let innerDiv = "";
-        if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: 'black', fontSize:'9px', width: '20px', boxSizing: 'border-box'}}>{i}</div>; }
+        if (i % 60 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i / 60}m</div>; }
+        else if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i % 60}</div>; }
 
-        daysDropGrid.push(
+        skillsDropGrid.push(
             <DropZone 
                 {...rest}
-                style={style}
+                style={skillsGridCellStyle}
                 key={`grid_${i}`}
                 time={i}
                 canDropItem={props.canDropItem}
             />
         ) 
-        timelineGrid.push(        
+        fightTimelineGrid.push(        
         <div
-            style={style2}
+            style={fightTimelineGridCellStyle}
             key={`timeline_${i}`}>
                 {innerDiv}
         </div>)
@@ -65,7 +66,7 @@ const TimeGrid = props => {
             }}
             >
             <div 
-                className={classes.MonthWrapper}
+                className={classes.FightTimelineGrid}
                 style={{
                     ...props.style,
                     ...borderSytle,
@@ -73,17 +74,17 @@ const TimeGrid = props => {
                     height: props.height, zIndex: 2
                     }}
                 >
-                {timelineGrid}
+                {fightTimelineGrid}
             </div>
             <div 
-                className={classes.DropZones} 
+                className={classes.SkillDropZones} 
                 style={{
                     ...props.style,
                     ...borderSytle,
                     width: effectiveWidth
                     }}
                 >
-                {daysDropGrid}
+                {skillsDropGrid}
             </div>
         </div>
     )

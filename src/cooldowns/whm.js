@@ -28,6 +28,26 @@ export const whmSkills =
         imgFile: skillIcons['asylum'].icon,
         imgColor: skillIcons['asylum'].color,
         level: 52,
+        maxApplicableLevel: 77,
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 100,
+                duration: 24
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_asylum',
+        name: 'Enhanced Asylum',
+        imgFile: skillIcons['asylum'].icon,
+        imgColor: skillIcons['asylum'].color,
+        level: 78,
         cooldown: 90,
         effects:
         [
@@ -93,7 +113,28 @@ export const whmSkills =
         imgFile: skillIcons['divine_benison'].icon,
         imgColor: skillIcons['divine_benison'].color,
         level: 66,
+        maxApplicableLevel: 87,
         cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.SHIELD,
+                valueType: valueTypes.POTENCY,
+                value: 500,
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_divine_benison',
+        name: 'Enhanced Divine Benison',
+        imgFile: skillIcons['divine_benison'].icon,
+        imgColor: skillIcons['divine_benison'].color,
+        level: 88,
+        cooldown: 30,
+        maxConcurrentUses: 2,
         effects:
         [
             {

@@ -5,6 +5,7 @@ import LayoutGrid from '../Components/LayoutGrid/LayoutGrid';
 
 import classes from './Planner.module.css';
 import { damageTypes, targets, effects } from '../../cooldowns/constants';
+import { PARTY_VIEW_SIDEBAR_WIDTH } from '../Constants/Constants';
 
 
 // Component
@@ -12,7 +13,6 @@ export const Planner = props => {
 
     const baseIndex = 100000;
     const PlannerRef = useRef();
-    const borderSize = 1;
     const secWidth = 20;
 
     const [items, setItems] = useState( [] );
@@ -61,7 +61,6 @@ export const Planner = props => {
 
     // Update boxes size on window resized
     useEffect(() => {
-
         let startTime = props.options.startTime;
         const endTime = props.options.endTime;
 
@@ -77,13 +76,14 @@ export const Planner = props => {
         const PlannerElement = PlannerRef.current.getBoundingClientRect();
 
         // Update the state with the width of the timneline width
-        const width = props.partyView ? props.duration * secWidth + 222 : props.duration * secWidth;
+        const width = props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :
+                                        props.duration * secWidth;
         setPlannerWidth(width);
 
     }
 
     const canDropItem = (item) => {
-        let conflict = false;
+        let instanceCount = 0;
         items.forEach( existingItem =>
         {
             if (item.id != existingItem.id &&
@@ -96,12 +96,12 @@ export const Planner = props => {
                     (item.startTime < existingItemCooldown && itemCooldown > existingItemCooldown) ||
                     (item.startTime == existingItem.startTime && itemCooldown == existingItemCooldown))
                 {
-                    conflict = true;
+                    instanceCount++;
                 }
             }
         });
-
-        return !conflict;
+        if (!item.maxConcurrentUses) return instanceCount == 0;
+        return instanceCount < item.maxConcurrentUses;
     }
 
     const onDropHandler = ( item, propagate ) => {
@@ -246,7 +246,15 @@ export const Planner = props => {
         timelineHeight: timelineHeight
     }
 
-    let blockDiv = props.partyView ? <div className={classes.Groups} style={{borderLeft: `2px solid #c0c0c0`, borderRight: `2px solid #c0c0c0`, borderBottom: `2px solid #c0c0c0`, position: 'absolute', zIndex: `50`, backgroundColor: `#3e3f41`, height: `${timelineHeight}px`, width: `220px`}}/> : null;
+    // stupid block for hiding part of timeline over party list in party list view
+    let blockDiv = props.partyView ? <div style={{borderLeft: `2px solid #c0c0c0`,
+                                                  borderRight: `2px solid #c0c0c0`,
+                                                  borderBottom: `2px solid #c0c0c0`,
+                                                  position: 'absolute',
+                                                  zIndex: `50`,
+                                                  backgroundColor: `#3e3f41`,
+                                                  height: `${timelineHeight}px`,
+                                                  width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`}}/> : null;
 
     return (
         <>

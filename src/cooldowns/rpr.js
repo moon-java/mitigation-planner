@@ -11,6 +11,26 @@ export const rprSkills =
         imgFile: skillIcons['arcane_crest'].icon,
         imgColor: skillIcons['arcane_crest'].color,
         level: 40,
+        maxApplicableLevel: 83,
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.SHIELD,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 5
+            },
+        ]
+    },
+    {
+        skillId: 'enhanced_arcane_crest',
+        name: 'Enhanced_Arcane Crest',
+        imgFile: skillIcons['arcane_crest'].icon,
+        imgColor: skillIcons['arcane_crest'].color,
+        level: 84,
         cooldown: 30,
         effects:
         [

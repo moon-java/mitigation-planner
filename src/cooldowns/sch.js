@@ -55,6 +55,26 @@ export const schSkills =
         imgFile: skillIcons['sacred_soil'].icon,
         imgColor: skillIcons['sacred_soil'].color,
         level: 50,
+        maxApplicableLevel: 77,
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_sacred_soil',
+        name: 'Enhanced Sacred Soil',
+        imgFile: skillIcons['sacred_soil'].icon,
+        imgColor: skillIcons['sacred_soil'].color,
+        level: 78,
         cooldown: 30,
         effects:
         [
@@ -101,7 +121,8 @@ export const schSkills =
         imgFile: skillIcons['deployment_tactics'].icon,
         imgColor: skillIcons['deployment_tactics'].color,
         level: 56,
-        cooldown: 90,
+        maxApplicableLevel: 87,
+        cooldown: 120,
         effects:
         [
             {
@@ -109,6 +130,24 @@ export const schSkills =
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
                 note: 'Deploy shield on self to nearby party members',
+                duration: 0
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_deployment_tactics',
+        name: 'Enhanced Deployment Tactics',
+        imgFile: skillIcons['deployment_tactics'].icon,
+        imgColor: skillIcons['deployment_tactics'].color,
+        level: 88,
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Deploy shield on target to nearby party members',
                 duration: 0
             }
         ]
@@ -245,7 +284,7 @@ export const schSkills =
                 target: targets.PARTY,
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
-                note: 'Sprint',
+                note: 'Gives sprint to all party members for 10s',
                 duration: 10
             },
             {

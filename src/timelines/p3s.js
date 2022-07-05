@@ -20,7 +20,7 @@ const p3sSkills = {
         id: 'heat_of_condemnation',
         name: "Heat of Condemnation",
         damageType: damageTypes.MAGIC,
-        target: targets.MT,
+        target: targets.MT + " + " + targets.OT,
         notes: "AoE tankbuster on 2 people with tethers",
         avoidable: false
     },

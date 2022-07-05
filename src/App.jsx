@@ -132,7 +132,7 @@ const App = () =>  {
     }
 
     const activeJob = partyMembers[activePartyMember].job;
-    const activeSkills = skills[activeJob];
+    const activeJobSkills = skills[activeJob];
     let isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
     if (isMobile) {
         return <div className={classes.Header}> <h1> mobile user BEGONE </h1> <h2>get that tiny screen outta here</h2> </div>
@@ -250,10 +250,14 @@ const App = () =>  {
         <DndProvider backend={MouseBackEnd}>
             <div className={classes.Content}>
                 <br/>
-                <div className={classes.Elements}>
+                <div className={classes.SkillBank}>
                     {
-                        activeSkills.map(( item, index ) => (
-                            <div style={{marginRight: '10px'}} key={`main_item_${index}`}>
+                        activeJobSkills.map(( item, index ) =>  {
+                            console.log("item" + item.level);
+                            console.log("fight" + fightInfo.level);
+                            let maxApplicableLevel = item.maxApplicableLevel ? item.maxApplicableLevel : 90;
+                            if (item.level <= fightInfo.level && maxApplicableLevel >= fightInfo.level) {
+                             return (<div style={{marginRight: '10px'}} key={`main_item_${index}`}>
                                 <SkillEvent 
                                     item={item}
                                     shadowed
@@ -261,8 +265,10 @@ const App = () =>  {
                                     useIcon={true}
                                     style={{backgroundColor: 'gray'}}
                                 />
-                            </div>
-                        ))
+                            </div>);
+                            }
+                        }
+                        )
                     }
                 </div>
                 <div className={classes.Timeline}>

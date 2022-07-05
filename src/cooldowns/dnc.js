@@ -28,6 +28,26 @@ export const dncSkills =
         imgFile: skillIcons['shield_samba'].icon,
         imgColor: skillIcons['shield_samba'].color,
         level: 56,
+        maxApplicableLevel: 87,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_shield_samba',
+        name: 'Enhanced Shield Samba',
+        imgFile: skillIcons['shield_samba'].icon,
+        imgColor: skillIcons['shield_samba'].color,
+        level: 88,
         cooldown: 90,
         effects:
         [

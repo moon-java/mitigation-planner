@@ -49,6 +49,27 @@ export const gnbSkills =
         imgFile: skillIcons['aurora'].icon,
         imgColor: skillIcons['aurora'].color,
         level: 45,
+        maxApplicableLevel: 83,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 200,
+                duration: 18
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_aurora',
+        name: 'Enhanced Aurora',
+        imgFile: skillIcons['aurora'].icon,
+        imgColor: skillIcons['aurora'].color,
+        level: 84,
+        maxConcurrentUses: 2,
         cooldown: 60,
         effects:
         [
@@ -106,6 +127,7 @@ export const gnbSkills =
         imgFile: skillIcons['heart_of_stone'].icon,
         imgColor: skillIcons['heart_of_stone'].color,
         level: 68,
+        maxApplicableLevel: 81,
         cooldown: 25,
         effects:
         [

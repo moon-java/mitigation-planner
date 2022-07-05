@@ -27,6 +27,26 @@ export const brdSkills =
         imgFile: skillIcons['troubadour'].icon,
         imgColor: skillIcons['troubadour'].color,
         level: 62,
+        maxApplicableLevel: 87,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 15
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_troubadour',
+        name: 'Enhanced Troubadour',
+        imgFile: skillIcons['troubadour'].icon,
+        imgColor: skillIcons['troubadour'].color,
+        level: 88,
         cooldown: 90,
         effects:
         [

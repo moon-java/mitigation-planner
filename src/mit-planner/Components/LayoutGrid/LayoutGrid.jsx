@@ -26,9 +26,7 @@ const LayoutGrid = props => {
         </>
     );
 
-
-    //Inline view without groups 
-    const inLineStyle = (
+    const singleView = (
         <>
             {TimeGridElements( props.width )}
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={0}/>
@@ -36,8 +34,7 @@ const LayoutGrid = props => {
         </>
     )
 
-    // Groups view
-    const groupedStyle = (
+    const partyView = (
         <>
             {TimeGridElements( props.width, PARTY_VIEW_SIDEBAR_WIDTH )}
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={PARTY_VIEW_SIDEBAR_WIDTH}/>
@@ -56,8 +53,8 @@ const LayoutGrid = props => {
         <>
         {
             !props.partyView
-                ?   inLineStyle
-                :   groupedStyle
+                ?   singleView
+                :   partyView
         }
         </>
     )

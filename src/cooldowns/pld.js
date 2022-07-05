@@ -11,6 +11,27 @@ export const pldSkills =
         imgFile: skillIcons['sheltron'].icon,
         imgColor: skillIcons['sheltron'].color,
         level: 35,
+        maxApplicableLevel: 73,
+        cooldown: 5,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.BLOCK,
+                valueType: valueTypes.PERCENT,
+                value: 100,
+                duration: 4
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_sheltron',
+        name: 'Enhanced Sheltron',
+        imgFile: skillIcons['sheltron'].icon,
+        imgColor: skillIcons['sheltron'].color,
+        level: 74,
+        maxApplicableLevel: 81,
         cooldown: 5,
         effects:
         [
@@ -49,15 +70,40 @@ export const pldSkills =
         imgFile: skillIcons['cover'].icon,
         imgColor: skillIcons['cover'].color,
         level: 45,
+        maxApplicableLevel: 65,
         cooldown: 120,
         effects:
         [
             {
                 target: targets.PARTY_MEMBER,
-                damageType: damageTypes.ALL,
-                effect: effects.DMG_IN,
-                valueType: valueTypes.PERCENT,
-                value: 100,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Take all damage intended for party member while within 10y',
+                duration: 12
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_cover',
+        name: 'Enhanced Cover',
+        imgFile: skillIcons['cover'].icon,
+        imgColor: skillIcons['cover'].color,
+        level: 66,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Take all damage intended for party member while within 10y',
+                duration: 12
+            },
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Damage taken on behalf of covered player reduced by 20%',
                 duration: 12
             }
         ]
@@ -87,6 +133,7 @@ export const pldSkills =
         imgFile: skillIcons['divine_veil'].icon,
         imgColor: skillIcons['divine_veil'].color,
         level: 56,
+        maxApplicableLevel: 87,
         cooldown: 90,
         effects:
         [
@@ -97,13 +144,33 @@ export const pldSkills =
                 valueType: valueTypes.PERCENT,
                 value: 10,
                 duration: 30
-            },
+            }
+        ]
+    },
+    {
+        skillId: 'enhanced_divine_veil',
+        name: 'Enhanced Divine Veil',
+        imgFile: skillIcons['divine_veil'].icon,
+        imgColor: skillIcons['divine_veil'].color,
+        level: 88,
+        cooldown: 90,
+        effects:
+        [
+
             {
                 target: targets.PARTY,
                 damageType: damageTypes.NONE,
                 effect: effects.HEAL,
                 valueType: valueTypes.POTENCY,
                 value: 400,
+                duration: 0
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.SHIELD,
+                valueType: valueTypes.PERCENT,
+                value: 10,
                 duration: 30
             }
         ]

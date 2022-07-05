@@ -107,6 +107,7 @@ export const drkSkills =
         imgColor: skillIcons['oblation'].color,
         level: 82,
         cooldown: 60,
+        maxConcurrentUses: 2,
         effects:
         [
             {
