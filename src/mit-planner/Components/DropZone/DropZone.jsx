@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 
-import { ELEMENT } from '../../Constants/Constants';
+import { ELEMENT } from '../../Constants/UIConstants';
 import classes from './DropZone.module.css';
 
 const DropZone = props => {

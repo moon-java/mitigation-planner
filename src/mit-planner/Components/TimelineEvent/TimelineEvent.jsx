@@ -6,6 +6,7 @@ import classes from './TimelineEvent.module.css';
 import MouseTooltip from '../MouseTooltip.jsx';
 import { damageTypes } from '../../../cooldowns/constants';
 import { getTimelineEventColor,getTimelineEventBorderColor } from '../../Helpers/Utils';
+import { DEFAULT_BG } from '../../Constants/UIConstants';
 
 // Static style section 
 
@@ -73,7 +74,7 @@ export const TimelineEvent = props => {
             offsetX={15}
             offsetY={10}
             >
-            <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
+            <div style={{backgroundColor: `${DEFAULT_BG}`, padding: 5, textAlign: `center`}}>
                 <div>{props.item.name}</div>
                 <div>Damage type: {props.item.damageType}</div>
                 <div>Target: {props.item.target}</div>

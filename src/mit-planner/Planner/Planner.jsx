@@ -5,7 +5,7 @@ import LayoutGrid from '../Components/LayoutGrid/LayoutGrid';
 
 import classes from './Planner.module.css';
 import { damageTypes, targets, effects } from '../../cooldowns/constants';
-import { PARTY_VIEW_SIDEBAR_WIDTH } from '../Constants/Constants';
+import { PARTY_VIEW_SIDEBAR_WIDTH } from '../Constants/UIConstants';
 
 
 // Component

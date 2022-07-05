@@ -1,4 +1,5 @@
 import { targets, damageTypes, effects, valueTypes } from '../../cooldowns/constants.js';
+import * as uiConstants from '../Constants/UIConstants.js'; 
 
 export const formatEffectString = (effect) =>
 {
@@ -46,26 +47,26 @@ export const getTimelineEventColor = (event) =>
 {
     if (event.damageType == damageTypes.NONE)
     {
-        return '#89c9cc';
+        return uiConstants.INFO_BG;
     }
     if (event.damageType == damageTypes.ENRAGE)
     {
-        return '#b50300';
+        return uiConstants.ENRAGE_BG;
     }
     if (event.avoidable)
     {
-        return '#9ba88c';
+        return uiConstants.AVOIDABLE_BG;
     }
     if (event.damageType == damageTypes.MAGIC)
     {
         if (event.target == targets.PARTY)
         {
-            return '#ff5cb0';
+            return uiConstants.MAGIC_AOE_BG;
         }
         else if (event.target.includes(targets.MT) ||
                  event.target.includes(targets.OT))
         {
-            return '#c05cff';
+            return uiConstants.MAGIC_TB_BG;
         }
         else {
             return '#bd8dc7';
@@ -75,44 +76,44 @@ export const getTimelineEventColor = (event) =>
     {
         if (event.target == targets.PARTY)
         {
-            return '#ff8b4d';
+            return uiConstants.PHYS_AOE_BG;
         }
         else if (event.target.includes(targets.MT) ||
                  event.target.includes(targets.OT))
         {
-            return '#d63731';
+            return uiConstants.PHYS_TB_BG;
         }
         else {
             return '#c79d8d';
         }
     }
-    return 'gray';
+    return uiConstants.DEFAULT_BG;
 }
 
 export const getTimelineEventBorderColor = (event) =>
 {
     if (event.damageType == damageTypes.NONE)
     {
-        return '#59999c';
+        return uiConstants.INFO_BORDER;
     }
     if (event.damageType == damageTypes.ENRAGE)
     {
-        return '#850000';
+        return uiConstants.ENRAGE_BORDER;
     }
     if (event.avoidable)
     {
-        return '#6b785c';
+        return uiConstants.AVOIDABLE_BORDER;
     }
     if (event.damageType == damageTypes.MAGIC)
     {
         if (event.target == targets.PARTY)
         {
-            return '#cf2c90';
+            return uiConstants.MAGIC_AOE_BORDER;
         }
         else if (event.target.includes(targets.MT) ||
                  event.target.includes(targets.OT))
         {
-            return '#9029ff';
+            return uiConstants.MAGIC_TB_BORDER;
         }
         else {
             return '#8d5d97';
@@ -122,16 +123,16 @@ export const getTimelineEventBorderColor = (event) =>
     {
         if (event.target == targets.PARTY)
         {
-            return '#cf5b1d';
+            return uiConstants.PHYS_AOE_BORDER;
         }
         else if (event.target.includes(targets.MT) ||
                  event.target.includes(targets.OT))
         {
-            return '#a60701';
+            return uiConstants.PHYS_TB_BORDER;
         }
         else {
             return '#976d5d';
         }
     }
-    return 'black';
+    return uiConstants.DEFAULT_BORDER;
 }

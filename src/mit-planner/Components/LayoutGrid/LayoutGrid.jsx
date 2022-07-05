@@ -5,7 +5,7 @@ import TimeGrid from '../TimeGrid/TimeGrid';
 import TimelineGrid from '../TimelineGrid/TimelineGrid';
 import SkillsGrid from '../SkillsGrid/SkillsGrid';
 import GroupSkillsGrid from '../GroupSkillsGrid/GroupSkillsGrid';
-import { PARTY_VIEW_SIDEBAR_WIDTH } from '../../Constants/Constants';
+import { PARTY_VIEW_SIDEBAR_WIDTH } from '../../Constants/UIConstants';
 
 const LayoutGrid = props => {
     const TimeGridElements = ( width, offset ) => (

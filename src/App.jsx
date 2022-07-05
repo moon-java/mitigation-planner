@@ -7,6 +7,7 @@ import { Planner, SkillEvent} from './mit-planner';
 import skills from './cooldowns/skills.js';
 import timelines from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
+import * as uiConstants from './mit-planner/Constants/UIConstants.js'; 
 
 import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
@@ -167,16 +168,16 @@ const App = () =>  {
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <div>
                         <div style={{ color: '#252627',
-                                      backgroundColor: '#d63731',
-                                      border: '4px solid #a60701',
+                                      backgroundColor: `${uiConstants.PHYS_TB_BG}`,
+                                      border: `4px solid ${uiConstants.PHYS_TB_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
                             physical tankbuster
                         </div>
                         <div style={{ color: '#252627',
-                                      backgroundColor: '#ff8b4d',
-                                      border: '4px solid #cf5b1d',
+                                      backgroundColor: `${uiConstants.PHYS_AOE_BG}`,
+                                      border: `4px solid ${uiConstants.PHYS_AOE_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
@@ -185,16 +186,16 @@ const App = () =>  {
                     </div>
                     <div>
                     <div style={{ color: '#252627',
-                                      backgroundColor: '#c05cff',
-                                      border: '4px solid #9029ff',
+                                      backgroundColor: `${uiConstants.MAGIC_TB_BG}`,
+                                      border: `4px solid ${uiConstants.MAGIC_TB_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
                             magical tankbuster
                         </div>
                         <div style={{ color: '#252627',
-                                      backgroundColor: '#ff5cb0',
-                                      border: '4px solid #cf2c90',
+                                      backgroundColor: `${uiConstants.MAGIC_AOE_BG}`,
+                                      border: `4px solid ${uiConstants.MAGIC_AOE_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
@@ -203,16 +204,16 @@ const App = () =>  {
                     </div>
                     <div>
                     <div style={{ color: '#252627',
-                                      backgroundColor: '#9ba88c',
-                                      border: '4px solid #6b785c',
+                                      backgroundColor: `${uiConstants.AVOIDABLE_BG}`,
+                                      border: `4px solid ${uiConstants.AVOIDABLE_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
                             avoidable damage
                         </div>
                         <div style={{ color: '#252627',
-                                      backgroundColor: '#89c9cc',
-                                      border: '4px solid #59999c',
+                                      backgroundColor: `${uiConstants.INFO_BG}`,
+                                      border: `4px solid ${uiConstants.INFO_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
@@ -221,16 +222,16 @@ const App = () =>  {
                     </div>
                     <div>
                     <div style={{ color: '#252627',
-                                      backgroundColor: '#b50300',
-                                      border: '4px solid #850000',
+                                      backgroundColor: `${uiConstants.ENRAGE_BG}`,
+                                      border: `4px solid ${uiConstants.ENRAGE_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
                             enrage
                         </div>
                         <div style={{ color: '#252627',
-                                      backgroundColor: 'gray',
-                                      border: '4px solid black',
+                                      backgroundColor: `${uiConstants.DEFAULT_BG}`,
+                                      border: `4px solid ${uiConstants.DEFAULT_BORDER}`,
                                       borderRadius: '2px',
                                       padding: '5px',
                                       margin: '5px'}}>
@@ -239,11 +240,17 @@ const App = () =>  {
                     </div>
                     </div>
                 </div>
-                <p>known issues:</p>
+                <p>known issues, may fix:</p>
                 <ul style={{listStylePosition: 'inside'}}>
                     <li>hover tooltips are kinda buggy</li>
-                    <li>things that target party members (e.g. intervention) will calculate mit as if on self</li>
+                    <li>things that target party members (e.g. intervention) will calculate mit as if on self-
+                        <br/>will probably fix the mit being calculated on self, but specifying a target <br/> and having the mit calc work correctly for these is aspirational at best</li>
                     <li>p4sp2 timeline isnt done bc damage timing depends on how mechs are handled and im too lazy</li>
+                </ul>
+                <p>known issues, probably won't fix:</p>
+                <ul style={{listStylePosition: 'inside'}}>
+                    <li>mit calc won't ignore non-stacking abilities, e.g. 2 reprisals, 2 oblations, tactician + troubadour</li>
+                    <li>doesnt work on mobile and never will, sorry</li>
                 </ul>
                 </div>
         </Collapsible>
@@ -263,7 +270,7 @@ const App = () =>  {
                                     shadowed
                                     customElementType={DefaultBasicElement}
                                     useIcon={true}
-                                    style={{backgroundColor: 'gray'}}
+                                    style={{backgroundColor: `${uiConstants.DEFAULT_BG}`}}
                                 />
                             </div>);
                             }

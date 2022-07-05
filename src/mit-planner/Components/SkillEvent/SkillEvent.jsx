@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
 
-import { ELEMENT } from '../../Constants/Constants';
+import { ELEMENT, DEFAULT_BG } from '../../Constants/UIConstants';
 import { rgbaFromArray } from '../../Helpers/ColorHelpers';
 import SkillEventElement from '../DefaultElement/SkillEventElement/SkillEventElement';
 import DragPreview from '../DragPreview/DragPreview';
@@ -108,7 +108,7 @@ export const SkillEvent = props => {
             offsetX={15}
             offsetY={10}
             >
-            <div style={{backgroundColor: 'gray', padding: 5, textAlign: `center`}}>
+            <div style={{backgroundColor: `${DEFAULT_BG}`, padding: 5, textAlign: `center`}}>
                 <div>{effects}</div>
             </div>
             </MouseTooltip>
