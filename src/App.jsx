@@ -147,8 +147,12 @@ const App = () =>  {
                         alignItems: 'center',
                         marginTop: '16px',
                         backgroundColor: '#3e3f41',
-                        width: '70%',
-                        padding: '10px'}
+                        width: '90%',
+                        paddingTop: '10px',
+                        paddingBottom: '10px'}
+
+    let enrageMin = Math.floor(fightInfo.length / 60);
+    let enrageSec = (fightInfo.length % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
 
     return (
         <>
@@ -161,6 +165,14 @@ const App = () =>  {
                 <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
             </div>
         </div>
+        </div>
+        <div className={classes.FightInfo}>
+            <h2>{fightInfo.name} [{fightInfo.abbreviation}]</h2>
+            <div style={{display: 'flex', flexDirection: 'horizontal', justifyContent: 'center'}}>
+                <h3 style={{marginRight: '30px'}}>Boss(es): {fightInfo.boss}</h3>
+                <h3 style={{marginRight: '30px'}}>Level: {fightInfo.level}</h3>
+                <h3 style={{marginRight: '30px'}}>Enrage: {enrageMin}:{enrageSec}</h3>
+            </div>
         </div>
         <Collapsible className={classes.InfoBox} triggerStyle={triggerStyle} trigger="Info">
             <div className={classes.Info}>

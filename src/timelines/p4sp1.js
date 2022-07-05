@@ -2,7 +2,7 @@ import { damageTypes, targets } from "../cooldowns/constants";
 
 export const p4sp1Info = {
     name: "Asphodelos: The Fourth Circle (Savage) | Phase 1",
-    abbreviation: "P4S",
+    abbreviation: "P4S P1",
     boss: "Hesperos",
     length: 438,
     level: 90

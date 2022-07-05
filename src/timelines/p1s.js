@@ -3,7 +3,7 @@ import { damageTypes, targets } from "../cooldowns/constants";
 export const p1sInfo = {
     name: "Asphodelos: The First Circle (Savage)",
     abbreviation: "P1S",
-    boss: "Ericthonios",
+    boss: "Erichthonios",
     length: 600,
     level: 90
 }
