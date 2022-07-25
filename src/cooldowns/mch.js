@@ -1,8 +1,10 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
+import rangedSkills from './ranged.js';
 
 export const mchSkills =
 [
+    ...rangedSkills,
     {
         skillId: 'tactician',
         name: 'Tactician',

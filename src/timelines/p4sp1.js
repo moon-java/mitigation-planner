@@ -50,6 +50,7 @@ const p4sp1Skills = {
         name: "Elegant Evisceration",
         damageType: damageTypes.MAGIC,
         target: targets.MT,
+        tankbuster: true,
         notes: '2-hit tankbuster that applies magic vuln up, swap or invuln required',
         avoidable: false
     },

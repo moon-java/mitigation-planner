@@ -13,6 +13,7 @@ const p1sSkills = {
         id: 'heavy_hand',
         name: "Heavy Hand",
         damageType: damageTypes.PHYS,
+        tankbuster: true,
         target: targets.MT,
         notes: "Tankbuster",
         avoidable: false
@@ -61,8 +62,9 @@ const p1sSkills = {
         id: 'pitiless_flail',
         name: "Pitiless Flail of Purgation/Grace",
         damageType: damageTypes.PHYS,
+        tankbuster: true,
         target: targets.MT,
-        notes: "Knockback buster",
+        notes: "Knockback tankbuster",
         avoidable: false
     },
     true_flare_holy: {

@@ -1,6 +1,7 @@
 import addle from './addle.png'
 import aquaveil from './aquaveil.png'
 import arcane_crest from './arcane_crest.png'
+import arms_length from './arms_length.png'
 import assize from './assize.png'
 import asylum from './asylum.png'
 import aurora from './aurora.png'
@@ -29,8 +30,10 @@ import expedient from './expedient.png'
 import feint from './feint.png'
 import fey_blessing from './fey_blessing.png'
 import fey_illumination from './fey_illumination.png'
+import foot_graze from './foot_graze.png'
 import haima from './haima.png'
 import hallowed_ground from './hallowed_ground.png'
+import head_graze from './head_graze.png'
 import heart_of_corundum from './heart_of_corundum.png'
 import heart_of_light from './heart_of_light.png'
 import heart_of_stone from './heart_of_stone.png'
@@ -41,12 +44,16 @@ import horoscope from './horoscope.png'
 import icarus from './icarus.png'
 import improvisation from './improvisation.png'
 import indomitability from './indomitability.png'
+import interject from './interject.png'
 import intervention from './intervention.png'
 import ixochole from './ixochole.png'
 import kerachole from './kerachole.png'
 import krasis from './krasis.png'
+import leg_graze from './leg_graze.png'
+import leg_sweep from './leg_sweep.png'
 import liturgy_of_the_bell from './liturgy_of_the_bell.png'
 import living_dead from './living_dead.png'
+import low_blow from './low_blow.png'
 import macrocosmos from './macrocosmos.png'
 import magick_barrier from './magick_barrier.png'
 import manaward from './manaward.png'
@@ -68,6 +75,7 @@ import rampart from './rampart.png'
 import raw_intuition from './raw_intuition.png'
 import recitation from './recitation.png'
 import reprisal from './reprisal.png'
+import rescue from './rescue.png'
 import rhizomata from './rhizomata.png'
 import sacred_soil from './sacred_soil.png'
 import second_wind from './second_wind.png'
@@ -76,10 +84,13 @@ import shade_shift from './shade_shift.png'
 import shadow_wall from './shadow_wall.png'
 import shake_it_off from './shake_it_off.png'
 import sheltron from './sheltron.png'
+import shield_bash from './shield_bash.png'
 import shield_samba from './shield_samba.png'
 import soteria from './soteria.png'
 import summon_seraph from './summon_seraph.png'
 import superbolide from './superbolide.png'
+import surecast from './surecast.png'
+import swiftcast from './swiftcast.png'
 import synastry from './synastry.png'
 import tactician from './tactician.png'
 import taurochole from './taurochole.png'
@@ -110,6 +121,11 @@ export const skillIcons =
     {
         icon: arcane_crest,
         color: '#8885c8'
+    },
+    arms_length:
+    {
+        icon: arms_length,
+        color: '#79726f'
     },
     assize:
     {
@@ -251,6 +267,11 @@ export const skillIcons =
         icon: fey_illumination,
         color: '#849472'
     },
+    foot_graze:
+    {
+        icon: foot_graze,
+        color: '#646352'
+    },
     haima:
     {
         icon: haima,
@@ -260,6 +281,11 @@ export const skillIcons =
     {
         icon: hallowed_ground,
         color: '#d5bc8f'
+    },
+    head_graze:
+    {
+        icon: head_graze,
+        color: '#7c6040'
     },
     heart_of_corundum:
     {
@@ -311,6 +337,11 @@ export const skillIcons =
         icon: indomitability,
         color: '#7e996d'
     },
+    interject:
+    {
+        icon: interject,
+        color: '#8d6f49'
+    },
     intervention:
     {
         icon: intervention,
@@ -331,6 +362,16 @@ export const skillIcons =
         icon: krasis,
         color: '#357b8f'
     },
+    leg_graze:
+    {
+        icon: leg_graze,
+        color: '#7e6b41'
+    },
+    leg_sweep:
+    {
+        icon: leg_sweep,
+        color: '#5a7053'
+    },
     liturgy_of_the_bell:
     {
         icon: liturgy_of_the_bell,
@@ -340,6 +381,11 @@ export const skillIcons =
     {
         icon: living_dead,
         color: '#8d4743'
+    },
+    low_blow:
+    {
+        icon: low_blow,
+        color: '#8b694a'
     },
     macrocosmos:
     {
@@ -446,6 +492,11 @@ export const skillIcons =
         icon: reprisal,
         color: '#7e4099'
     },
+    rescue:
+    {
+        icon: rescue,
+        color: '#d1a439'
+    },
     rhizomata:
     {
         icon: rhizomata,
@@ -486,6 +537,11 @@ export const skillIcons =
         icon: sheltron,
         color: '#696557'
     },
+    shield_bash:
+    {
+        icon: shield_bash,
+        color: '#966041'
+    },
     shield_samba:
     {
         icon: shield_samba,
@@ -505,6 +561,16 @@ export const skillIcons =
     {
         icon: superbolide,
         color: '#5b7c91'
+    },
+    surecast:
+    {
+        icon: surecast,
+        color: '#62626f'
+    },
+    swiftcast:
+    {
+        icon: swiftcast,
+        color: '#825f7d'
     },
     synastry:
     {

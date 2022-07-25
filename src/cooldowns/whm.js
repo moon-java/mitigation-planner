@@ -1,8 +1,10 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
+import healerSkills from './healers.js';
 
 export const whmSkills =
 [
+    ...healerSkills,
     {
         skillId: 'benediction',
         name: 'Benediction',

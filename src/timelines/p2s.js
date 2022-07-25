@@ -13,6 +13,7 @@ const p2sSkills = {
         id: 'doubled_impact',
         name: "Doubled Impact",
         damageType: damageTypes.PHYS,
+        tankbuster: true,
         target: targets.MT,
         notes: "Shared tankbuster (stack)",
         avoidable: false

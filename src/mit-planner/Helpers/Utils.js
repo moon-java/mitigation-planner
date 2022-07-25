@@ -45,6 +45,10 @@ export const formatEffectString = (effect) =>
 
 export const getTimelineEventColor = (event) =>
 {
+    if (event.interruptable)
+    {
+        return uiConstants.INTERRUPTABLE_BG;
+    }
     if (event.damageType == damageTypes.NONE)
     {
         return uiConstants.INFO_BG;
@@ -57,14 +61,17 @@ export const getTimelineEventColor = (event) =>
     {
         return uiConstants.AVOIDABLE_BG;
     }
+    if (event.damageType == damageTypes.DARK)
+    {
+        return uiConstants.DARK_BG;
+    }
     if (event.damageType == damageTypes.MAGIC)
     {
         if (event.target == targets.PARTY)
         {
             return uiConstants.MAGIC_AOE_BG;
         }
-        else if (event.target.includes(targets.MT) ||
-                 event.target.includes(targets.OT))
+        else if (event.tankbuster)
         {
             return uiConstants.MAGIC_TB_BG;
         }
@@ -78,8 +85,7 @@ export const getTimelineEventColor = (event) =>
         {
             return uiConstants.PHYS_AOE_BG;
         }
-        else if (event.target.includes(targets.MT) ||
-                 event.target.includes(targets.OT))
+        else if (event.tankbuster)
         {
             return uiConstants.PHYS_TB_BG;
         }
@@ -92,6 +98,10 @@ export const getTimelineEventColor = (event) =>
 
 export const getTimelineEventBorderColor = (event) =>
 {
+    if (event.interruptable)
+    {
+        return uiConstants.INTERRUPTABLE_BORDER;
+    }
     if (event.damageType == damageTypes.NONE)
     {
         return uiConstants.INFO_BORDER;
@@ -104,14 +114,17 @@ export const getTimelineEventBorderColor = (event) =>
     {
         return uiConstants.AVOIDABLE_BORDER;
     }
+    if (event.damageType == damageTypes.DARK)
+    {
+        return uiConstants.DARK_BORDER;
+    }
     if (event.damageType == damageTypes.MAGIC)
     {
         if (event.target == targets.PARTY)
         {
             return uiConstants.MAGIC_AOE_BORDER;
         }
-        else if (event.target.includes(targets.MT) ||
-                 event.target.includes(targets.OT))
+        else if (event.tankbuster)
         {
             return uiConstants.MAGIC_TB_BORDER;
         }
@@ -125,8 +138,7 @@ export const getTimelineEventBorderColor = (event) =>
         {
             return uiConstants.PHYS_AOE_BORDER;
         }
-        else if (event.target.includes(targets.MT) ||
-                 event.target.includes(targets.OT))
+        else if (event.tankbuster)
         {
             return uiConstants.PHYS_TB_BORDER;
         }

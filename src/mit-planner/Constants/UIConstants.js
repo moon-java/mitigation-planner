@@ -32,5 +32,8 @@ export const INFO_BORDER = '#59999c';
 export const ENRAGE_BG = '#4a0a1a';
 export const ENRAGE_BORDER = '#26050d';
 
+export const DARK_BG = '#5e075b';
+export const DARK_BORDER = '#30012f';
+
 export const DEFAULT_BG = 'gray';
 export const DEFAULT_BORDER = 'black';

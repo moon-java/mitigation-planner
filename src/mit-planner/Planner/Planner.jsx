@@ -68,15 +68,12 @@ export const Planner = props => {
 
         window.addEventListener( 'resize', updateScreenSizeHandler );
         return () => window.removeEventListener( 'resize', updateScreenSizeHandler );
-    }, [props.options.startTime, props.options.endTime]);
+    }, [props.options.startTime, props.options.endTime, props.duration, props.partyView]);
 
 
     const updateScreenSizeHandler = () => {
-        // Get the Planner element size 
-        const PlannerElement = PlannerRef.current.getBoundingClientRect();
-
         // Update the state with the width of the timneline width
-        const width = props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :
+        const width = /*props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :*/
                                         props.duration * secWidth;
         setPlannerWidth(width);
 
@@ -250,7 +247,7 @@ export const Planner = props => {
                                                   borderRight: `2px solid #c0c0c0`,
                                                   borderBottom: `2px solid #c0c0c0`,
                                                   position: 'absolute',
-                                                  zIndex: `50`,
+                                                  zIndex: `5000`,
                                                   backgroundColor: `#3e3f41`,
                                                   height: `${timelineHeight}px`,
                                                   width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`}}/> : null;

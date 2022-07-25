@@ -10,7 +10,6 @@ const TimelineGrid = props => {
 
     const [gridItems, setGridItems] = useState();
     const [resizeListener, sizes] = useResizeAware();
-    const effectiveWidth = props.width;
   
     useEffect(() => {
         props.syncTimelineHeight(sizes.height);
@@ -18,10 +17,9 @@ const TimelineGrid = props => {
     
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
-
         for ( let i = 0; i < props.duration ; i++ )
         {
-            columnTemplate.push(effectiveWidth / props.duration + `px`);
+            columnTemplate.push(props.width / props.duration + `px`);
         }
 
         return columnTemplate
@@ -69,7 +67,7 @@ const TimelineGrid = props => {
         <div
             className={classes.TimelineGrid}
             style={{...style, ...props.style,
-            width: effectiveWidth,
+            width: props.width,
             left: props.leftWidth + 0.5}}
         >
             {resizeListener}

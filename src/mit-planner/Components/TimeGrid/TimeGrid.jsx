@@ -10,8 +10,6 @@ const TimeGrid = props => {
     const skillsDropGrid = [];
     const fightTimelineGrid = [];
 
-    const effectiveWidth = width;
-
     let skillsGridCellStyle = {
         width: '20px'
     };
@@ -62,7 +60,7 @@ const TimeGrid = props => {
         <div 
             className={classes.TimeGrid} 
             style={{
-                width: effectiveWidth,
+                width: props.width,
                 left: offset,
             }}
             >
@@ -71,8 +69,9 @@ const TimeGrid = props => {
                 style={{
                     ...props.style,
                     ...borderSytle,
-                    width: effectiveWidth,
-                    height: props.height, zIndex: 2
+                    height: props.height, zIndex: 2,
+                    width: props.width,
+                    right: 0
                     }}
                 >
                 {fightTimelineGrid}
@@ -82,7 +81,8 @@ const TimeGrid = props => {
                 style={{
                     ...props.style,
                     ...borderSytle,
-                    width: effectiveWidth
+                    right: 0,
+                    width: props.width
                     }}
                 >
                 {skillsDropGrid}

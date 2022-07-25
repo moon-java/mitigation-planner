@@ -6,6 +6,26 @@ export const pldSkills =
 [
     ...tankSkills,
     {
+        skillId: 'shield_bash',
+        name: 'Shield Bash',
+        imgFile: skillIcons['shield_bash'].icon,
+        imgColor: skillIcons['shield_bash'].color,
+        level: 10,
+        cooldown: 2.5,
+        effects:
+        [
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                valueType: valueTypes.NONE,
+                value: 0,
+                duration: 6,
+                note: "Stuns target"
+            }
+        ]
+    },
+    {
         skillId: 'sheltron',
         name: 'Sheltron',
         imgFile: skillIcons['sheltron'].icon,

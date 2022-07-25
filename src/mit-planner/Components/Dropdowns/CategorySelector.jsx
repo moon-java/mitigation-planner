@@ -2,29 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseDropdown from './BaseDropdown';
 
-const FightSelector = props => {
+const CategorySelector = props => {
     let items = [];
-    props.fights.forEach(fight => {
-        items.push({name: fight.info.name, id: fight.id});
+    props.categories.forEach(category => {
+        items.push({name: category.name, id: category.id});
     });
 
     let onChange = (e) => {
-        let fight = items.find(item => item.name == e.target.value);
-        props.onFightChange(fight.id);
+        let category = items.find(item => item.name == e.target.value);
+        props.onCategoryChange(category.id);
     };
     return (
         <BaseDropdown items={items} onChange={onChange}/>
     );
 }
 
-FightSelector.defaultProps = {
+CategorySelector.defaultProps = {
     items: []
 }
 
-FightSelector.propTypes = {
+CategorySelector.propTypes = {
     items: PropTypes.array.isRequired,
     style: PropTypes.object,
     className: PropTypes.string,
 }
 
-export default FightSelector;
+export default CategorySelector;

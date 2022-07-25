@@ -1,35 +1,8 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
 
-export const casterSkills =
+export const healerSkills =
 [
-    {
-        skillId: 'addle',
-        name: 'Addle',
-        imgFile: skillIcons['addle'].icon,
-        imgColor: skillIcons['addle'].color,
-        level: 8,
-        cooldown: 90,
-        effects:
-        [
-            {
-                target: targets.ENEMY,
-                damageType: damageTypes.MAGIC,
-                effect: effects.DMG_OUT,
-                valueType: valueTypes.PERCENT,
-                value: 10,
-                duration: 10
-            },
-            {
-                target: targets.ENEMY,
-                damageType: damageTypes.PHYS,
-                effect: effects.DMG_OUT,
-                valueType: valueTypes.PERCENT,
-                value: 5,
-                duration: 10
-            },
-        ]
-    },
     {
         skillId: 'swiftcast',
         name: "Swiftcast",
@@ -69,7 +42,27 @@ export const casterSkills =
                 note: "Prevents most knockback and draw-in effects"
             }
         ]
+    },
+    {
+        skillId: 'rescue',
+        name: "Rescue",
+        imgFile: skillIcons['rescue'].icon,
+        imgColor: skillIcons['rescue'].color,
+        level: 48,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.NONE,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                valueType: valueTypes.NONE,
+                value: 0,
+                duration: 0,
+                note: "Draw target party member to your side"
+            }
+        ]
     }
 ];
 
-export default casterSkills;
+export default healerSkills;

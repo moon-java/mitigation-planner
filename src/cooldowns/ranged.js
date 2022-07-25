@@ -1,8 +1,28 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
 
-export const meleeSkills =
+export const rangedSkills =
 [
+    {
+        skillId: 'leg_graze',
+        name: "Leg Graze",
+        imgFile: skillIcons['leg_graze'].icon,
+        imgColor: skillIcons['leg_graze'].color,
+        level: 6,
+        cooldown: 30,
+        effects:
+        [
+            {
+                target: targets.NONE,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                valueType: valueTypes.NONE,
+                value: 0,
+                duration: 10,
+                note: "Afflicts target with Heavy +40%"
+            }
+        ]
+    },
     {
         skillId: 'second_wind',
         name: 'Second Wind',
@@ -23,68 +43,43 @@ export const meleeSkills =
         ]
     },
     {
-        skillId: 'leg_sweep',
-        name: 'Leg Sweep',
-        imgFile: skillIcons['leg_sweep'].icon,
-        imgColor: skillIcons['leg_sweep'].color,
+        skillId: 'foot_graze',
+        name: "Foot Graze",
+        imgFile: skillIcons['foot_graze'].icon,
+        imgColor: skillIcons['foot_graze'].color,
         level: 10,
-        cooldown: 40,
+        cooldown: 30,
         effects:
         [
             {
-                target: targets.ENEMY,
+                target: targets.NONE,
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
                 valueType: valueTypes.NONE,
                 value: 0,
-                duration: 3,
-                note: "Stuns target"
+                duration: 10,
+                note: "Binds target; target unbound if damage taken"
             }
         ]
     },
     {
-        skillId: 'bloodbath',
-        name: 'Bloodbath',
-        imgFile: skillIcons['bloodbath'].icon,
-        imgColor: skillIcons['bloodbath'].color,
-        level: 12,
-        cooldown: 90,
+        skillId: 'head_graze',
+        name: "Head Graze",
+        imgFile: skillIcons['head_graze'].icon,
+        imgColor: skillIcons['head_graze'].color,
+        level: 24,
+        cooldown: 30,
         effects:
         [
             {
-                target: targets.SELF,
+                target: targets.NONE,
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
-                note: "Converts a portion of physical damage dealt into HP",
-                duration: 20
+                valueType: valueTypes.NONE,
+                value: 0,
+                duration: 10,
+                note: "Interrupts use of the target's action"
             }
-        ]
-    },
-    {
-        skillId: 'feint',
-        name: 'Feint',
-        imgFile: skillIcons['feint'].icon,
-        imgColor: skillIcons['feint'].color,
-        level: 22,
-        cooldown: 90,
-        effects:
-        [
-            {
-                target: targets.ENEMY,
-                damageType: damageTypes.PHYS,
-                effect: effects.DMG_OUT,
-                valueType: valueTypes.PERCENT,
-                value: 10,
-                duration: 10
-            },
-            {
-                target: targets.ENEMY,
-                damageType: damageTypes.MAGIC,
-                effect: effects.DMG_OUT,
-                valueType: valueTypes.PERCENT,
-                value: 5,
-                duration: 10
-            },
         ]
     },
     {
@@ -106,7 +101,7 @@ export const meleeSkills =
                 note: "Prevents most knockback and draw-in effects"
             }
         ]
-    }
+    },
 ];
 
-export default meleeSkills;
+export default rangedSkills;

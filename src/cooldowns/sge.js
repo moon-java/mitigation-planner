@@ -1,8 +1,10 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
+import healerSkills from './healers.js';
 
 export const sgeSkills =
 [
+    ...healerSkills,
     {
         skillId: 'soteria',
         name: 'Soteria',
@@ -21,7 +23,7 @@ export const sgeSkills =
             }
         ]
     },
-    /*{
+    {
         skillId: 'icarus',
         name: 'Icarus',
         imgFile: skillIcons['icarus'].icon,
@@ -38,7 +40,7 @@ export const sgeSkills =
                 duration: 0
             }
         ]
-    },*/
+    },
     {
         skillId: 'kerachole',
         name: 'Kerachole',

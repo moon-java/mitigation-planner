@@ -22,6 +22,7 @@ const LayoutGrid = props => {
             duration={props.duration}
             height={props.timelineHeight}
             items={props.items}
+            partyView={props.partyView}
         >
         </TimeGrid>
         </>

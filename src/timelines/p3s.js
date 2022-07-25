@@ -20,6 +20,7 @@ const p3sSkills = {
         id: 'heat_of_condemnation',
         name: "Heat of Condemnation",
         damageType: damageTypes.MAGIC,
+        tankbuster: true,
         target: targets.MT + " + " + targets.OT,
         notes: "AoE tankbuster on 2 people with tethers",
         avoidable: false
@@ -871,5 +872,10 @@ export const p3sTimeline = [
         ...p3sSkills["scorched_exaltation"],
         startTime: 642,
         endTime: 647
-     }
+     },
+     {
+      ...p3sSkills["final_exaltation"],
+      startTime: 649,
+      endTime: 659
+   }
     ]

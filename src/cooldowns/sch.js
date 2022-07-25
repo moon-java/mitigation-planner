@@ -1,8 +1,10 @@
 import { targets, damageTypes, effects, valueTypes } from './constants.js';
 import skillIcons from '../assets/skills/skillIcons';
+import healerSkills from './healers.js';
 
 export const schSkills =
 [
+    ...healerSkills,
     {
         skillId: 'whispering_dawn',
         name: 'Whispering Dawn',
@@ -111,7 +113,7 @@ export const schSkills =
                 effect: effects.HEAL,
                 valueType: valueTypes.POTENCY,
                 value: 400,
-                duration: 15
+                duration: 0
             }
         ]
     },

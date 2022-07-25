@@ -5,11 +5,12 @@ import MouseBackEnd from 'react-dnd-mouse-backend';
 import classes from './App.module.css';
 import { Planner, SkillEvent} from './mit-planner';
 import skills from './cooldowns/skills.js';
-import timelines from './timelines/timelines.js';
+import { timelines, categories } from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
 import * as uiConstants from './mit-planner/Constants/UIConstants.js'; 
 
 import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
+import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
 
@@ -28,9 +29,11 @@ const Option = props => (
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
-    const [selectedFight, setSelectedFight] = useState('p1s');
-    const [fightInfo, setFightInfo] = useState(timelines['p1s'].info);
-    const [fightTimeline, setFightTimeline] = useState(timelines['p1s'].timeline);
+    const [selectedCategory, setSelectedCategory] = useState('asphodelos');
+    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4]]);
+    const [selectedFight, setSelectedFight] = useState(timelines[0].id);
+    const [fightInfo, setFightInfo] = useState(timelines[0].info);
+    const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
     const [partyMembers, setPartyMembers] = useState([
         {
             partyMemberId: 0,
@@ -83,7 +86,6 @@ const App = () =>  {
     const addHandler = ( {item, items} ) => {
         console.log( `Added : ${item}` );
         setTimelineItems( items );
-        console.log(items);
     }
 
     const removeHandler = ( {item, items} ) => {
@@ -100,9 +102,26 @@ const App = () =>  {
     }
 
     const selectedFightChangedHandler = ( fightId ) => {
-        setFightInfo(timelines[fightId].info);
-        setFightTimeline(timelines[fightId].timeline);
+        let fight = timelines.find(item => item.id == fightId);
+        setFightInfo(fight.info);
+        setFightTimeline(fight.timeline);
         setSelectedFight(fightId);
+    }
+
+    const selectedCategoryChangedHandler = ( categoryId ) => {
+        let category = categories.find(item => item.id == categoryId);
+        setSelectedCategory(category);
+        let categoryTimelines = [];
+        category.timelines.forEach(timelineId => {
+            categoryTimelines.push(timelines.find(item => item.id == timelineId));
+        })
+        setAvailableTimelines(categoryTimelines);
+        if (categoryTimelines[0])
+        {
+            setFightInfo(categoryTimelines[0].info);
+            setFightTimeline(categoryTimelines[0].timeline);
+            setSelectedFight(categoryTimelines[0].id);
+        }
     }
 
     const updatePrimaryJobHandler = ( job ) => {
@@ -160,8 +179,9 @@ const App = () =>  {
         <div className={classes.Header}>
             <h1 className={classes.Title}>mitigation planner</h1>
         <div className={classes.Options}>
-            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '50%', justifyContent: 'center'}}>
-                <FightSelector onFightChange={selectedFightChangedHandler} />
+            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '70%', justifyContent: 'center'}}>
+                <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories}/>
+                <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines}/>
                 <JobSelector onJobChange={updatePrimaryJobHandler}/>
                 <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
             </div>
@@ -258,7 +278,14 @@ const App = () =>  {
                         </div>
                     </div>
                     <div>
-
+                    <div style={{ color: '#c0c0c0',
+                                      backgroundColor: `${uiConstants.DARK_BG}`,
+                                      border: `4px solid ${uiConstants.DARK_BORDER}`,
+                                      borderRadius: '2px',
+                                      padding: '5px',
+                                      margin: '5px'}}>
+                            darkness (not physical or magical)
+                        </div>
                     <div style={{ color: '#c0c0c0',
                                       backgroundColor: `${uiConstants.ENRAGE_BG}`,
                                       border: `4px solid ${uiConstants.ENRAGE_BORDER}`,
@@ -281,10 +308,8 @@ const App = () =>  {
                 </div>
                 <p>known issues, may fix:</p>
                 <ul style={{listStylePosition: 'inside'}}>
-                    <li>hover tooltips are kinda buggy</li>
                     <li>things that target party members (e.g. intervention) will calculate mit as if on self-
                         <br/>will probably fix the mit being calculated on self, but specifying a target <br/> and having the mit calc work correctly for these is aspirational at best</li>
-                    <li>p4sp2 timeline isnt done bc damage timing depends on how mechs are handled and im too lazy</li>
                 </ul>
                 <p>known issues, probably won't fix:</p>
                 <ul style={{listStylePosition: 'inside'}}>
@@ -299,8 +324,6 @@ const App = () =>  {
                 <div className={classes.SkillBank}>
                     {
                         activeJobSkills.map(( item, index ) =>  {
-                            console.log("item" + item.level);
-                            console.log("fight" + fightInfo.level);
                             let maxApplicableLevel = item.maxApplicableLevel ? item.maxApplicableLevel : 90;
                             if (item.level <= fightInfo.level && maxApplicableLevel >= fightInfo.level) {
                              return (<div style={{marginRight: '10px'}} key={`main_item_${index}`}>
