@@ -247,7 +247,7 @@ export const Planner = props => {
                                                   borderRight: `2px solid #c0c0c0`,
                                                   borderBottom: `2px solid #c0c0c0`,
                                                   position: 'absolute',
-                                                  zIndex: `5000`,
+                                                  zIndex: `3`,
                                                   backgroundColor: `#3e3f41`,
                                                   height: `${timelineHeight}px`,
                                                   width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`}}/> : null;

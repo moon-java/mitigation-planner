@@ -58,6 +58,7 @@ export const TimelineEvent = props => {
     let style = {...props.style};
     style.backgroundColor = getTimelineEventColor(props.item);
     style.border = '5px solid ' + getTimelineEventBorderColor(props.item);
+    style.zIndex = 5;
 
     const useStyles = makeStyles(theme => ({
         arrow: {
@@ -68,7 +69,8 @@ export const TimelineEvent = props => {
         },
         tooltip: {
           backgroundColor: '#c0c0c0',
-          width: 'fit-content'
+          width: 'fit-content',
+          zIndex: 5
         }
       }));
     let muiClasses = useStyles();
@@ -86,7 +88,7 @@ export const TimelineEvent = props => {
         }>
             <div data-for='tooltip'
                 className={classes.TimelineEvent}
-                style={{zIndex: 1000}}
+                style={{zIndex: 5}}
             >
                 <props.customElementType {...props} style={style} />
             </div>
