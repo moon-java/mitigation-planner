@@ -2,7 +2,7 @@
     position: relative;
     width: auto;
     height: calc(100% + 10px);
-    min-height: 400px;
+    min-height: 600px;
     transition: all .3s ease-in;
     box-sizing: content-box;
     margin-bottom: 30px;

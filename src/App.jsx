@@ -29,8 +29,8 @@ const Option = props => (
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
-    const [selectedCategory, setSelectedCategory] = useState('asphodelos');
-    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4]]);
+    const [selectedCategory, setSelectedCategory] = useState('dsr');
+    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]]);
     const [selectedFight, setSelectedFight] = useState(timelines[0].id);
     const [fightInfo, setFightInfo] = useState(timelines[0].info);
     const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
@@ -188,7 +188,7 @@ const App = () =>  {
         </div>
         </div>
         <div className={classes.FightInfo}>
-            <h2>{fightInfo.name} [{fightInfo.abbreviation}]</h2>
+            <h2>{fightInfo.name}</h2>
             <div style={{display: 'flex', flexDirection: 'horizontal', justifyContent: 'center'}}>
                 <h3 style={{marginRight: '30px'}}>Boss(es): {fightInfo.boss}</h3>
                 <h3 style={{marginRight: '30px'}}>Level: {fightInfo.level}</h3>

@@ -1,9 +1,9 @@
 import { damageTypes, targets } from "../cooldowns/constants";
 
 export const dsrp1Info = {
-    name: "Dragonsong Reprise (Ultimate) | Phase 1",
+    name: "Dragonsong's Reprise (Ultimate) | Phase 1",
     abbreviation: "DSR/DRU P1",
-    boss: "Ser Adelphel, Ser Grinnaux, Ser Charibert",
+    boss: "Ser Adelphel, Ser Grinnaux, & Ser Charibert",
     length: 162,
     level: 90
 }
@@ -47,7 +47,7 @@ const dsrp1Skills = {
         damageType: damageTypes.PHYS,
         tankbuster: true,
         target: targets.MT,
-        notes: "Downed tank hit for 5 hits",
+        notes: "Multi-hit tankbuster on downed tank",
         avoidable: false
     },
     heavensblaze: {
