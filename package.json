@@ -1,7 +1,7 @@
 {
-  "name": "mitigation-timeline",
+  "name": "mitigation-planner",
   "version": "0.1.0",
-  "homepage": "https://moon-java.github.io/mitigation-timeline/",
+  "homepage": "https://moon-java.github.io/mitigation-planner/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",

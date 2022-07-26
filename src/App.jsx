@@ -187,16 +187,16 @@ const App = () =>  {
             </div>
         </div>
         </div>
-        <div className={classes.FightInfo}>
-            <h2>{fightInfo.name}</h2>
-            <div style={{display: 'flex', flexDirection: 'horizontal', justifyContent: 'center'}}>
-                <h3 style={{marginRight: '30px'}}>Boss(es): {fightInfo.boss}</h3>
-                <h3 style={{marginRight: '30px'}}>Level: {fightInfo.level}</h3>
-                <h3 style={{marginRight: '30px'}}>Enrage: {enrageMin}:{enrageSec}</h3>
-            </div>
-        </div>
         <Collapsible className={classes.InfoBox} triggerStyle={triggerStyle} trigger="Info">
             <div className={classes.Info}>
+                <div className={classes.FightInfo}>
+                <h2>{fightInfo.name}</h2>
+                <div style={{display: 'flex', flexDirection: 'horizontal', justifyContent: 'center'}}>
+                    <h3 style={{marginRight: '30px'}}>Boss(es): {fightInfo.boss}</h3>
+                    <h3 style={{marginRight: '30px'}}>Level: {fightInfo.level}</h3>
+                    <h3 style={{marginRight: '30px'}}>Enrage: {enrageMin}:{enrageSec}</h3>
+                </div>
+        </div>
             <div style={{width: `fit-content`, margin: 'auto'}}>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <div>
@@ -306,17 +306,6 @@ const App = () =>  {
                     </div>
 
                 </div>
-                <p>known issues, may fix:</p>
-                <ul style={{listStylePosition: 'inside'}}>
-                    <li>things that target party members (e.g. intervention) will calculate mit as if on self-
-                        <br/>will probably fix the mit being calculated on self, but specifying a target <br/> and having the mit calc work correctly for these is aspirational at best</li>
-                    <li>dragging events is laggy for long timelines (e.g. DSR phase 2-7)</li>
-                </ul>
-                <p>known issues, probably won't fix:</p>
-                <ul style={{listStylePosition: 'inside'}}>
-                    <li>mit calc won't ignore non-stacking abilities, e.g. 2 reprisals, 2 oblations, tactician + troubadour</li>
-                    <li>doesnt work on mobile and never will, sorry</li>
-                </ul>
                 </div>
         </Collapsible>
         <DndProvider backend={MouseBackEnd}>
