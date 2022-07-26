@@ -310,6 +310,7 @@ const App = () =>  {
                 <ul style={{listStylePosition: 'inside'}}>
                     <li>things that target party members (e.g. intervention) will calculate mit as if on self-
                         <br/>will probably fix the mit being calculated on self, but specifying a target <br/> and having the mit calc work correctly for these is aspirational at best</li>
+                    <li>dragging events is laggy for long timelines (e.g. DSR phase 2-7)</li>
                 </ul>
                 <p>known issues, probably won't fix:</p>
                 <ul style={{listStylePosition: 'inside'}}>
