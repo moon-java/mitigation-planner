@@ -53,13 +53,29 @@ export const dsrp6Skills =
         avoidable: false,
         notes: "Stacks targeting each healer; Nidhogg & Hraesvelgr must be within 3% HP of each other or they do lethal damage",
     },
-    cauterize: {
-        id: "cauterize",
+    cauterize_2: {
+        id: "cauterize_2",
         name: "Cauterize",
         damageType: damageTypes.MAGIC,
         target: targets.ARENA,
         avoidable: true,
-        notes: "Divebomb",
+        notes: "Nidhogg divebombs half the arena",
+    },
+    cauterize_3: {
+        id: "cauterize_3",
+        name: "Cauterize",
+        damageType: damageTypes.MAGIC,
+        target: targets.ARENA,
+        avoidable: true,
+        notes: "Hraesvelgr divebombs the middle of the arena",
+    },
+    cauterize_4: {
+        id: "cauterize_4",
+        name: "Cauterize",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Nidhogg & Hraesvelger both divebomb half the arena; tanks line up with whichever dragon they have aggro on, non-tanks with ice debuffs get behind Nidhogg tank, non-tanks with fire debuffs get behind Hraesvelgr tank and STOP MOVING",
     },
     hallowed_wings: {
         id: "hallowed_wings",
@@ -180,7 +196,7 @@ export const dsrp6Timeline =
         endTime: 45,
     },
     {
-        ...dsrp6Skills["cauterize"],
+        ...dsrp6Skills["cauterize_2"],
         startTime: 41,
         endTime: 46,
     },
@@ -205,7 +221,7 @@ export const dsrp6Timeline =
         endTime: 71,
     },
     {
-        ...dsrp6Skills["cauterize"],
+        ...dsrp6Skills["cauterize_3"],
         startTime: 66,
         endTime: 71,
     },
@@ -270,7 +286,7 @@ export const dsrp6Timeline =
         endTime: 134,
     },
     {
-        ...dsrp6Skills["cauterize"],
+        ...dsrp6Skills["cauterize_4"],
         startTime: 141,
         endTime: 146,
     },

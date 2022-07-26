@@ -129,13 +129,29 @@ export const dsrpostdoorbossSkills =
         avoidable: true,
         notes: "Divebombs from Darkscale & Vidofnir",
     },
-    cauterize: {
-        id: "cauterize",
+    cauterize_2: {
+        id: "cauterize_2",
         name: "Cauterize",
         damageType: damageTypes.MAGIC,
         target: targets.ARENA,
         avoidable: true,
-        notes: "Divebomb",
+        notes: "Nidhogg divebombs half the arena",
+    },
+    cauterize_3: {
+        id: "cauterize_3",
+        name: "Cauterize",
+        damageType: damageTypes.MAGIC,
+        target: targets.ARENA,
+        avoidable: true,
+        notes: "Hraesvelgr divebombs the middle of the arena",
+    },
+    cauterize_4: {
+        id: "cauterize_4",
+        name: "Cauterize",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Nidhogg & Hraesvelger both divebomb half the arena; tanks line up with whichever dragon they have aggro on, non-tanks with ice debuffs get behind Nidhogg tank, non-tanks with fire debuffs get behind Hraesvelgr tank and STOP MOVING",
     },
     chain_lightning: {
         id: "chain_lightning",
@@ -1398,7 +1414,7 @@ export const dsrpostdoorbossTimeline =
         endTime: 725,
     },
     {
-        ...dsrpostdoorbossSkills["cauterize"],
+        ...dsrpostdoorbossSkills["cauterize_2"],
         startTime: 721,
         endTime: 726,
     },
@@ -1423,7 +1439,7 @@ export const dsrpostdoorbossTimeline =
         endTime: 751,
     },
     {
-        ...dsrpostdoorbossSkills["cauterize"],
+        ...dsrpostdoorbossSkills["cauterize_3"],
         startTime: 746,
         endTime: 751,
     },
@@ -1488,7 +1504,7 @@ export const dsrpostdoorbossTimeline =
         endTime: 814,
     },
     {
-        ...dsrpostdoorbossSkills["cauterize"],
+        ...dsrpostdoorbossSkills["cauterize_4"],
         startTime: 821,
         endTime: 826,
     },
