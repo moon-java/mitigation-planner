@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/mitigation-planner/static/css/main.96ef9d18.css",
+    "main.js": "/mitigation-planner/static/js/main.d69607e1.js",
+    "static/media/blackmage.png": "/mitigation-planner/static/media/blackmage.8367f5a0a82bbc8db47e.png",
+    "static/media/samurai.png": "/mitigation-planner/static/media/samurai.32008a2f8d7e4505e089.png",
+    "static/media/reaper.png": "/mitigation-planner/static/media/reaper.0bbb9ffae3a179be3ef0.png",
+    "static/media/sage.png": "/mitigation-planner/static/media/sage.c464845bbce94acfe28d.png",
+    "static/media/gunbreaker.png": "/mitigation-planner/static/media/gunbreaker.902f30430f56f9bffddc.png",
+    "static/media/warrior.png": "/mitigation-planner/static/media/warrior.575d760272f7dc3092ff.png",
+    "static/media/ninja.png": "/mitigation-planner/static/media/ninja.0185819e4532fadf3301.png",
+    "static/media/dancer.png": "/mitigation-planner/static/media/dancer.45d8a845d93ee94acc8c.png",
+    "static/media/machinist.png": "/mitigation-planner/static/media/machinist.301f15ee8b02efe93691.png",
+    "static/media/summoner.png": "/mitigation-planner/static/media/summoner.bc8cac7f26d76553d834.png",
+    "static/media/monk.png": "/mitigation-planner/static/media/monk.a063f327343309a7ca60.png",
+    "static/media/darkknight.png": "/mitigation-planner/static/media/darkknight.71e0ae3eabb2ca0cc1f4.png",
+    "static/media/redmage.png": "/mitigation-planner/static/media/redmage.dddcfce974bf522600ba.png",
+    "static/media/scholar.png": "/mitigation-planner/static/media/scholar.fefd1370ae9461ed7139.png",
+    "static/media/dragoon.png": "/mitigation-planner/static/media/dragoon.0fd8ea202f2182ae67f4.png",
+    "static/media/paladin.png": "/mitigation-planner/static/media/paladin.bcd6a024fa11359fdf8c.png",
+    "static/media/astrologian.png": "/mitigation-planner/static/media/astrologian.0a118c9d7e4d04187269.png",
+    "static/media/bard.png": "/mitigation-planner/static/media/bard.692e5c1abde177fd656d.png",
+    "static/media/whitemage.png": "/mitigation-planner/static/media/whitemage.d7542fc0ee420b947932.png",
+    "index.html": "/mitigation-planner/index.html",
+    "main.96ef9d18.css.map": "/mitigation-planner/static/css/main.96ef9d18.css.map",
+    "main.d69607e1.js.map": "/mitigation-planner/static/js/main.d69607e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96ef9d18.css",
+    "static/js/main.d69607e1.js"
+  ]
+}
