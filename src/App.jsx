@@ -4,7 +4,7 @@ import MouseBackEnd from 'react-dnd-mouse-backend';
 
 import classes from './App.module.css';
 import { Planner, SkillEvent} from './mit-planner';
-import skills from './cooldowns/skills.js';
+import skillsByJob from './cooldowns/skills.js';
 import { timelines, categories } from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
 import * as uiConstants from './mit-planner/Constants/UIConstants.js'; 
@@ -13,6 +13,7 @@ import DefaultBasicElement from './mit-planner/Components/DefaultElement/Default
 import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
+import ImportExportDialog from './mit-planner/Components/ImportExportDialog/ImportExportDialog';
 
 const Option = props => (
     <div className={classes.Option}>
@@ -77,14 +78,21 @@ const App = () =>  {
         }
     ]);
 
-    const [timelineItems, setTimelineItems] = useState([
-    ]);
-
+    const [timelineItems, setTimelineItems] = useState([]);
     const startTime = 0;
     const endTime = fightInfo.length;
+    let allSkills = {};
+    for (let job in skillsByJob)
+    {
+        let skillset = skillsByJob[job];
+        skillset.forEach(skill => {
+            allSkills[skill.skillId] = skill;
+        });
+    }
 
     const addHandler = ( {item, items} ) => {
         console.log( `Added : ${item}` );
+        console.log(items);
         setTimelineItems( items );
     }
 
@@ -140,6 +148,41 @@ const App = () =>  {
         setPartyMembers(tmpParty);
     }
 
+    const formatItemsForExport = () => {
+        let exportItems = [];
+        for (let i = 0; i < timelineItems.length; i++)
+        {
+            exportItems[i] = {
+                skillId: timelineItems[i].skillId,
+                partyMemberId: timelineItems[i].partyMemberId,
+                startTime: timelineItems[i].startTime
+            }
+        }
+        return exportItems;
+    }
+
+    const importHandler = (importInfo) => {
+        selectedCategoryChangedHandler(importInfo.selectedCategory);
+        selectedFightChangedHandler(importInfo.selectedFight);
+        setPartyViewEnabled(importInfo.partyViewEnabled);
+        updatePrimaryJobHandler(importInfo.partyMembers[0].job);
+        for (let i = 0; i < 8; i++)
+        {
+            partyMemberJobChangeHandler(importInfo.partyMembers[i].job, i);
+        }
+
+        let importItems = [];
+        for (let i = 0; i < importInfo.timelineItems.length; i++)
+        {
+            importItems[i] = {
+                ...allSkills[importInfo.timelineItems[i].skillId],
+                partyMemberId: importInfo.timelineItems[i].partyMemberId,
+                startTime: importInfo.timelineItems[i].startTime
+            }
+        }
+        setTimelineItems(importItems);
+    }
+
     const options = {
         callBacks : {
             onAdd : addHandler,
@@ -153,7 +196,7 @@ const App = () =>  {
     }
 
     const activeJob = partyMembers[activePartyMember].job;
-    const activeJobSkills = skills[activeJob];
+    const activeJobSkills = skillsByJob[activeJob];
     let isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
     if (isMobile) {
         return <div className={classes.Header}> <h1> mobile user BEGONE </h1> <h2>get that tiny screen outta here</h2> </div>
@@ -173,17 +216,24 @@ const App = () =>  {
 
     let enrageMin = Math.floor(fightInfo.length / 60);
     let enrageSec = (fightInfo.length % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+    let exportItems = formatItemsForExport();
 
     return (
         <>
         <div className={classes.Header}>
             <h1 className={classes.Title}>mitigation planner</h1>
         <div className={classes.Options}>
-            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '70%', justifyContent: 'center'}}>
-                <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories}/>
-                <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines}/>
-                <JobSelector onJobChange={updatePrimaryJobHandler}/>
+            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '80%', justifyContent: 'center'}}>
+                <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories} value={selectedCategory.name}/>
+                <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name}/>
+                <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
                 <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
+                <ImportExportDialog type='import' onImport={importHandler}/>
+                <ImportExportDialog type='export' selectedCategory={selectedCategory.id}
+                                                  selectedFight={selectedFight}
+                                                  partyViewEnabled={partyViewEnabled}
+                                                  partyMembers={partyMembers}
+                                                  timelineItems={exportItems}/>
             </div>
         </div>
         </div>

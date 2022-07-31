@@ -26,7 +26,8 @@ export const astSkills =
                 target: targets.PARTY_MEMBER,
                 damageType: damageTypes.NONE,
                 effect: effects.OTHER,
-                note: "Potency increases up to 900 as target HP decreases, maxing out at <= 30% max"
+                note: "Potency increases up to 900 as target HP decreases, maxing out at <= 30% max",
+                duration: 0
             },
         ]
     },

@@ -106,6 +106,7 @@ export const Planner = props => {
         //const item = JSON.parse(event.dataTransfer.getData("text"));
         const newItems = [...items];
         let existingId = -1;
+        console.log(item);
         let tmpItem = {
             ...item,
             id: item.id ? item.id : getNextId(), // Check if the item has an ID and if not assign one
@@ -247,7 +248,7 @@ export const Planner = props => {
                                                   borderRight: `2px solid #c0c0c0`,
                                                   borderBottom: `2px solid #c0c0c0`,
                                                   position: 'absolute',
-                                                  zIndex: `3`,
+                                                  zIndex: `10`,
                                                   backgroundColor: `#3e3f41`,
                                                   height: `${timelineHeight}px`,
                                                   width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`}}/> : null;

@@ -13,7 +13,7 @@ const FightSelector = props => {
         props.onFightChange(fight.id);
     };
     return (
-        <BaseDropdown items={items} onChange={onChange}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.value}/>
     );
 }
 

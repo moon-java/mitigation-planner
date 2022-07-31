@@ -11,7 +11,7 @@ export const pldSkills =
         imgFile: skillIcons['shield_bash'].icon,
         imgColor: skillIcons['shield_bash'].color,
         level: 10,
-        cooldown: 2.5,
+        cooldown: 3,
         effects:
         [
             {

@@ -18,7 +18,7 @@ import blmSkills from './blm';
 import smnSkills from './smn';
 import rdmSkills from './rdm';
 
-export const skills =
+export const skillsByJob =
 {
     PLD: pldSkills,
     WAR: warSkills,
@@ -41,4 +41,4 @@ export const skills =
     RDM: rdmSkills
 };
 
-export default skills;
+export default skillsByJob;

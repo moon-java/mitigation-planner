@@ -13,7 +13,7 @@ const CategorySelector = props => {
         props.onCategoryChange(category.id);
     };
     return (
-        <BaseDropdown items={items} onChange={onChange}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.value}/>
     );
 }
 
