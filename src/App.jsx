@@ -30,7 +30,7 @@ const Option = props => (
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
-    const [selectedCategory, setSelectedCategory] = useState('dsr');
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
     const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]]);
     const [selectedFight, setSelectedFight] = useState(timelines[0].id);
     const [fightInfo, setFightInfo] = useState(timelines[0].info);

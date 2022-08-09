@@ -19,6 +19,7 @@ const ImportExportDialog = props => {
     }
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState("");
+    const [error, setError] = React.useState("");
     const isImport = props.type == "import";
 
     const handleClickOpen = () => {
@@ -29,42 +30,47 @@ const ImportExportDialog = props => {
   
     const buttonText = isImport ? "Import" : "Export";
     const dialogText = isImport ? "Import a plan" : "Export this plan";
-    const closeText = isImport ? "Import" : "Close";
 
-    const handleClose = () => {
-      if (props.type == "import")
-      {
+    const handleImport = () => {
       try {
         let importInfo = JSON.parse(value);
         props.onImport(importInfo);
         setOpen(false);
       }
       catch (error) {
-        setValue("json's busted, babe");
+        setError("json's busted, babe");
       }
-    }
-    else
-    {
-      setOpen(false);
-    }
     };
 
+    const handleClose = () => {
+      setOpen(false);
+      setError("");
+    }
     const handleChange = (event) => {
         if (props.type == "import")
         {
             setValue(event.target.value);
         }
       };
+    
+      let importButton = <></>;
+    if (props.type == "import")
+    {
+      importButton = <Button autoFocus onClick={handleImport}>
+      Import
+    </Button>;
+    }
 
     return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         {buttonText}
       </Button>
-      <Dialog onClose={handleClose} open={open} style={{padding: '12px'}}>
+      <Dialog open={open} style={{padding: '12px'}}>
           <DialogContent>
             <Typography>
-                {dialogText}
+                {dialogText} <br/>
+                {error}
             </Typography>
             <textarea
                 value={value}
@@ -73,8 +79,9 @@ const ImportExportDialog = props => {
             />
         </DialogContent>
         <DialogActions>
+          {importButton}
           <Button autoFocus onClick={handleClose}>
-            {closeText}
+            Close
           </Button>
         </DialogActions>
     </Dialog>
