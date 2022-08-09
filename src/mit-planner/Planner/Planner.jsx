@@ -7,6 +7,8 @@ import classes from './Planner.module.css';
 import { damageTypes, targets, effects } from '../../cooldowns/constants';
 import { PARTY_VIEW_SIDEBAR_WIDTH } from '../Constants/UIConstants';
 
+import { useHorizontalScroll } from "../Helpers/SideScrollHook";
+
 
 // Component
 export const Planner = props => {
@@ -243,6 +245,7 @@ export const Planner = props => {
         timelineHeight: timelineHeight
     }
 
+    const scrollRef = useHorizontalScroll();
     // stupid block for hiding part of timeline over party list in party list view
     let blockDiv = props.partyView ? <div style={{borderLeft: `2px solid #c0c0c0`,
                                                   borderRight: `2px solid #c0c0c0`,
@@ -256,7 +259,7 @@ export const Planner = props => {
     return (
         <>
         {blockDiv}
-            <div style={{overflowX: props.scroll ? 'scroll' : 'hidden'}}>
+            <div style={{overflowX: props.scroll ? 'scroll' : 'hidden'}} ref={scrollRef}>
             <div
                 className={`${props.className}`}
                 style={{
