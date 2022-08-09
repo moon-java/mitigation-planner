@@ -11,6 +11,7 @@ export const smnSkills =
         imgFile: skillIcons['radiant_aegis'].icon,
         imgColor: skillIcons['radiant_aegis'].color,
         level: 2,
+        maxApplicableLevel: 87,
         cooldown: 60,
         effects:
         [
@@ -29,7 +30,7 @@ export const smnSkills =
         name: 'Enhanced Radiant Aegis',
         imgFile: skillIcons['radiant_aegis'].icon,
         imgColor: skillIcons['radiant_aegis'].color,
-        level: 2,
+        level: 88,
         cooldown: 60,
         maxConcurrentUses: 2,
         effects:

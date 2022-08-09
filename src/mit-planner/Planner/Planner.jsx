@@ -63,9 +63,6 @@ export const Planner = props => {
 
     // Update boxes size on window resized
     useEffect(() => {
-        let startTime = props.options.startTime;
-        const endTime = props.options.endTime;
-
         updateScreenSizeHandler();
 
         window.addEventListener( 'resize', updateScreenSizeHandler );
@@ -85,21 +82,21 @@ export const Planner = props => {
         let instanceCount = 0;
         items.forEach( existingItem =>
         {
-            if (item.id != existingItem.id &&
-                item.skillId == existingItem.skillId &&
-                item.partyMemberId == existingItem.partyMemberId)
+            if (item.id !== existingItem.id &&
+                item.skillId === existingItem.skillId &&
+                item.partyMemberId === existingItem.partyMemberId)
             {
                 let existingItemCooldown = existingItem.startTime + existingItem.cooldown;
                 let itemCooldown = item.startTime + item.cooldown;
                 if ((item.startTime < existingItem.startTime && itemCooldown > existingItem.startTime) ||
                     (item.startTime < existingItemCooldown && itemCooldown > existingItemCooldown) ||
-                    (item.startTime == existingItem.startTime && itemCooldown == existingItemCooldown))
+                    (item.startTime === existingItem.startTime && itemCooldown === existingItemCooldown))
                 {
                     instanceCount++;
                 }
             }
         });
-        if (!item.maxConcurrentUses) return instanceCount == 0;
+        if (!item.maxConcurrentUses) return instanceCount === 0;
         return instanceCount < item.maxConcurrentUses;
     }
 
@@ -108,7 +105,6 @@ export const Planner = props => {
         //const item = JSON.parse(event.dataTransfer.getData("text"));
         const newItems = [...items];
         let existingId = -1;
-        console.log(item);
         let tmpItem = {
             ...item,
             id: item.id ? item.id : getNextId(), // Check if the item has an ID and if not assign one
@@ -155,15 +151,12 @@ export const Planner = props => {
             // Update state with the new array items
             setItems( newItems );
         }
-        else 
-        {
-            console.log(`ID : ${itemID} not found`);
-        }
 
         if ( props.options.callBacks.onRemove ) props.options.callBacks.onRemove({item: {...item}, items: [...newItems]});
     }
 
     const calculateMitigation = time => {
+        //debugger;
         let mit = {
             partyMit: { all: 100, magic: 100, phys: 100},
             selfMit: { all: 100, magic: 100, phys: 100}
@@ -172,44 +165,44 @@ export const Planner = props => {
         {
             item.effects.forEach ( effect =>
             {
-                if (effect.effect == effects.BLOCK) {return;}
+                if (effect.effect === effects.BLOCK) {return;}
                 if (item.startTime < time && effect.endTime >= time)
                 {
-                    if (effect.damageType == damageTypes.ALL)
+                    if (effect.damageType === damageTypes.ALL)
                     {
-                        if (effect.target == targets.PARTY ||
-                            effect.target == targets.ENEMY)
+                        if (effect.target === targets.PARTY ||
+                            effect.target === targets.ENEMY)
                         {
                             mit.partyMit.all *= (100 - effect.value) / 100;
                             mit.selfMit.all *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember == item.partyMemberId)
+                        else if (props.activePartyMember === item.partyMemberId)
                         {
                             mit.selfMit.all *= (100 - effect.value) / 100;
                         }
                     }
-                    if (effect.damageType == damageTypes.MAGIC)
+                    if (effect.damageType === damageTypes.MAGIC)
                     {
-                        if (effect.target == targets.PARTY ||
-                            effect.target == targets.ENEMY)
+                        if (effect.target === targets.PARTY ||
+                            effect.target === targets.ENEMY)
                         {
                             mit.partyMit.magic *= (100 - effect.value) / 100;
                             mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember == item.partyMemberId)
+                        else if (props.activePartyMember === item.partyMemberId)
                         {
                             mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
                     }
-                    if (effect.damageType == damageTypes.PHYS)
+                    if (effect.damageType === damageTypes.PHYS)
                     {
-                        if (effect.target == targets.PARTY ||
-                            effect.target == targets.ENEMY)
+                        if (effect.target === targets.PARTY ||
+                            effect.target === targets.ENEMY)
                         {
                             mit.partyMit.phys *= (100 - effect.value) / 100;
                             mit.selfMit.phys *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember == item.partyMemberId)
+                        else if (props.activePartyMember === item.partyMemberId)
                         {
                             mit.selfMit.phys *= (100 - effect.value) / 100;
                         }

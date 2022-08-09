@@ -13,7 +13,8 @@ import DefaultBasicElement from './mit-planner/Components/DefaultElement/Default
 import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
-import ImportExportDialog from './mit-planner/Components/ImportExportDialog/ImportExportDialog';
+import LoadSaveDialog from './mit-planner/Components/LoadSaveDialog/LoadSaveDialog';
+import { Typography } from '@mui/material';
 
 const Option = props => (
     <div className={classes.Option}>
@@ -91,13 +92,10 @@ const App = () =>  {
     }
 
     const addHandler = ( {item, items} ) => {
-        console.log( `Added : ${item}` );
-        console.log(items);
         setTimelineItems( items );
     }
 
     const removeHandler = ( {item, items} ) => {
-        console.log( `Removed : ${item}` );
         setTimelineItems( items );
     }
 
@@ -110,18 +108,18 @@ const App = () =>  {
     }
 
     const selectedFightChangedHandler = ( fightId ) => {
-        let fight = timelines.find(item => item.id == fightId);
+        let fight = timelines.find(item => item.id === fightId);
         setFightInfo(fight.info);
         setFightTimeline(fight.timeline);
         setSelectedFight(fightId);
     }
 
     const selectedCategoryChangedHandler = ( categoryId ) => {
-        let category = categories.find(item => item.id == categoryId);
+        let category = categories.find(item => item.id === categoryId);
         setSelectedCategory(category);
         let categoryTimelines = [];
         category.timelines.forEach(timelineId => {
-            categoryTimelines.push(timelines.find(item => item.id == timelineId));
+            categoryTimelines.push(timelines.find(item => item.id === timelineId));
         })
         setAvailableTimelines(categoryTimelines);
         if (categoryTimelines[0])
@@ -179,6 +177,10 @@ const App = () =>  {
                 partyMemberId: importInfo.timelineItems[i].partyMemberId,
                 startTime: importInfo.timelineItems[i].startTime
             }
+            for (let j = 0; j < importItems[i].effects.length; j++)
+            {
+                importItems[i].effects[j].endTime = importItems[i].startTime + importItems[i].effects[j].duration
+            }
         }
         setTimelineItems(importItems);
     }
@@ -228,8 +230,8 @@ const App = () =>  {
                 <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name}/>
                 <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
                 <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
-                <ImportExportDialog type='import' onImport={importHandler}/>
-                <ImportExportDialog type='export' selectedCategory={selectedCategory.id}
+                <LoadSaveDialog type='load' onLoad={importHandler}/>
+                <LoadSaveDialog type='save' selectedCategory={selectedCategory.id}
                                                   selectedFight={selectedFight}
                                                   partyViewEnabled={partyViewEnabled}
                                                   partyMembers={partyMembers}
@@ -379,6 +381,9 @@ const App = () =>  {
                         }
                         )
                     }
+                </div>
+                <div className={classes.UsageInfo}>
+                    Double-click a placed skill to remove
                 </div>
                 <div className={classes.Timeline}>
                     <Planner items={timelineItems}

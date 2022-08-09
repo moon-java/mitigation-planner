@@ -34,22 +34,20 @@ const styles = {
 
 // Main component
 export const TimelineEvent = props => {
-    const [visible, setVisible] = useState(false)
-
     let selfMit = 0;
     let partyMit = 0;
     let mit = props.calculateMitigation(props.item.endTime);
-    if (props.item.damageType == damageTypes.ALL)
+    if (props.item.damageType === damageTypes.ALL)
     {
         selfMit = mit.selfMit.all;
         partyMit = mit.partyMit.all;
     }
-    else if (props.item.damageType == damageTypes.MAGIC)
+    else if (props.item.damageType === damageTypes.MAGIC)
     {
         selfMit = 100 - (mit.selfMit.all * mit.selfMit.magic / 100);
         partyMit = 100 - (mit.partyMit.all * mit.partyMit.magic / 100);
     }
-    else if (props.item.damageType == damageTypes.PHYS)
+    else if (props.item.damageType === damageTypes.PHYS)
     {
         selfMit = 100 - (mit.selfMit.all * mit.selfMit.phys / 100);
         partyMit = 100 - (mit.partyMit.all * mit.partyMit.phys / 100);
@@ -107,7 +105,6 @@ TimelineEvent.defaultProps = {
         endTime: '',
         elementType: 'range',
     },
-    overlay: false,
     move: false,
     customElementType: SkillEventElement,
     occurences: 0,
@@ -117,12 +114,10 @@ TimelineEvent.defaultProps = {
 TimelineEvent.propTypes = {
     item: PropTypes.object.isRequired,
     width: PropTypes.number,
-    overlay: PropTypes.bool,
     move: PropTypes.bool,
     onClick: PropTypes.func,
     remove: PropTypes.func,
     customElementType: PropTypes.elementType,
-    bgColor: PropTypes.array,
     occurences: PropTypes.number,
     showOccurences: PropTypes.bool
 }

@@ -21,7 +21,7 @@
 }
 
 .Timeline {
-  margin-top: 30px;
+  margin-top: 10px;
   height: fit-content;
   border: #c0c0c0 5px solid;
 }
@@ -102,6 +102,14 @@ input:checked + .Slider:before {
   display: flex;
   align-items: center; 
   justify-content: center;
+}
+
+.UsageInfo {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  color: #c0c0c0;
+  margin-top: 10px;
 }
 
 .Title {

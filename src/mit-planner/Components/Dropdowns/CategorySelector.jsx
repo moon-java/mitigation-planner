@@ -9,7 +9,7 @@ const CategorySelector = props => {
     });
 
     let onChange = (e) => {
-        let category = items.find(item => item.name == e.target.value);
+        let category = items.find(item => item.name === e.target.value);
         props.onCategoryChange(category.id);
     };
     return (

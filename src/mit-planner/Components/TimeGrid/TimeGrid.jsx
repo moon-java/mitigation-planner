@@ -31,8 +31,8 @@ const TimeGrid = props => {
             fightTimelineGridCellStyle = {...fightTimelineGridCellStyle, borderRight: 'solid 1.5px #404040', boxSizing: 'border-box'};
         }
         let innerDiv = "";
-        if (i % 60 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i / 60}m</div>; }
-        else if (i % 15 == 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i % 60}</div>; }
+        if (i % 60 === 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i / 60}m</div>; }
+        else if (i % 15 === 0) { innerDiv = <div style={{verticalAlign: 'bottom', color: '#202020', fontSize:'10px', width: '20px', boxSizing: 'border-box'}}>{i % 60}</div>; }
 
         skillsDropGrid.push(
             <DropZone 

@@ -65,9 +65,9 @@ const JobSelector = props => {
             name: "RDM"
         },
     ]
-    let selectedIndex = props.selectedJob ? items.findIndex( i => i.name === props.selectedJob ) : 0;
+
     return (
-        <BaseDropdown items={items} onChange={onChange} value={props.value}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.selectedJob}/>
     );
 }
 

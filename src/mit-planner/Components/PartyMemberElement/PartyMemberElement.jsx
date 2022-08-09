@@ -15,7 +15,7 @@ const PartyMemberElement = props => {
         props.onPartyMemberJobChange(job, props.person.partyMemberId);
     }
 
-    const bgColor = props.activePartyMember == props.person.partyMemberId ? '#918966' : '#3e3f41';
+    const bgColor = props.activePartyMember === props.person.partyMemberId ? '#918966' : '#3e3f41';
     const icon = icons[props.person.job];
 
     return (
@@ -34,18 +34,12 @@ PartyMemberElement.defaultProps = {
         description: '',
         type: 'range',
     },
-    randomColor: false,
-    innerElement: false,
-    shadowed: false
 }
 
 PartyMemberElement.propTypes = {
     item: PropTypes.object.isRequired,
     style: PropTypes.object,
     className: PropTypes.string,
-    innerElement: PropTypes.bool,
-    bgColor: PropTypes.array,
-    shadowed: PropTypes.bool
 }
 
 export default PartyMemberElement;
