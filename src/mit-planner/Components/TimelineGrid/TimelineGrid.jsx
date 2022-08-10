@@ -13,13 +13,13 @@ const TimelineGrid = props => {
   
     useEffect(() => {
         props.syncTimelineHeight(sizes.height);
-    }, [sizes.width, sizes.height]);
+    }, [sizes.width, sizes.height, props.prepullTime]);
     
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
-        for ( let i = 0; i < props.duration ; i++ )
+        for ( let i = props.prepullTime; i < props.duration ; i++ )
         {
-            columnTemplate.push(props.width / props.duration + `px`);
+            columnTemplate.push(props.width / (props.duration + Math.abs(props.prepullTime)) + `px`);
         }
 
         return columnTemplate
@@ -33,7 +33,7 @@ const TimelineGrid = props => {
     useEffect(() => {
         const newGridItems = props.timeline.map((item, index) => {
 
-            const position = item.startTime;
+            const position = item.startTime + Math.abs(props.prepullTime);
 
             return (
                 <div 
@@ -60,7 +60,7 @@ const TimelineGrid = props => {
         });
 
         setGridItems( newGridItems );
-    }, [props.items, props.startTime, props.activePartyMember, props.timeline, props.leftWidth]);
+    }, [props.items, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
 
     return (
         <>

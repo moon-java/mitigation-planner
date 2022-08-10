@@ -49,6 +49,23 @@ const ClearAllButton = props => (
     </div>
 )
 
+const PrepullInput = props => (
+    <div className={classes.Option}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+            <div style={{marginRight: '10px'}}>Prepull</div>
+            <input
+                type="number"
+                style={{width: '40px', color: '#202020', textAlign: "center", background: '#d0d0d0', paddingTop: '3px', paddingBottom: '3px', marginLeft: '5px', marginRight: '5px'}}
+                onChange={props.onChange}
+                defaultValue="0"
+                value={props.prepullTime}
+                max="30"
+                min="0"
+            />
+        </div>
+    </div>
+)
+
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
@@ -58,6 +75,7 @@ const App = () =>  {
     const [selectedFight, setSelectedFight] = useState(timelines[0].id);
     const [fightInfo, setFightInfo] = useState(timelines[0].info);
     const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
+    const [prepullTime, setPrepullTime] = useState(0);
     const [partyMembers, setPartyMembers] = useState([
         {
             partyMemberId: 0,
@@ -223,6 +241,9 @@ const App = () =>  {
             }
         }
         setTimelineItems(importItems);
+        const prepullTime = importInfo.prepullTime === undefined ? 0 : importInfo.prepullTime;
+        console.log(prepullTime);
+        setPrepullTime(prepullTime);
     }
 
     const options = {
@@ -272,12 +293,14 @@ const App = () =>  {
                                                   selectedFight={selectedFight}
                                                   partyViewEnabled={partyViewEnabled}
                                                   partyMembers={partyMembers}
-                                                  timelineItems={exportItems}/>
+                                                  timelineItems={exportItems}
+                                                  prepullTime={prepullTime}/>
                 <MergeDialog selectedCategory={selectedCategory.id}
                                                   selectedFight={selectedFight}
                                                   partyViewEnabled={partyViewEnabled}
                                                   partyMembers={partyMembers}
                                                   items={exportItems}
+                                                  prepullTime={prepullTime}
                                                   handleImport={importHandler}/>
                                                   </div>
                 <ClearAllButton onClick={() => setTimelineItems([])}/>
@@ -288,6 +311,8 @@ const App = () =>  {
                 <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
                 <PartyViewToggle className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
                 <GaugeViewToggle className={classes.PartyToggle} checked={gaugeViewEnabled} onChange={() => setGaugeViewEnabled( !gaugeViewEnabled )}/>
+                <PrepullInput prepullTime={-1 * prepullTime} onChange={(e) => { e.target.value = e.target.value > 30 ? 30 : (e.target.value < 0 ? 0 : e.target.value);
+                                                     setPrepullTime(-1 * e.target.value)}}/>
 
             </div>
         </div>
@@ -447,7 +472,8 @@ const App = () =>  {
                              activePartyMember={activePartyMember}
                              duration={fightInfo.length}
                              timeline={fightTimeline}
-                             isGaugeViewEnabled={gaugeViewEnabled}/>
+                             isGaugeViewEnabled={gaugeViewEnabled}
+                             prepullTime={prepullTime}/>
                 </div>
 
             </div>

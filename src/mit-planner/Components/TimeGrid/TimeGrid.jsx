@@ -20,7 +20,7 @@ const TimeGrid = props => {
         height: `100%`
     };
 
-    for( let i = 1; i <= props.duration; i++ )
+    for( let i = props.prepullTime + 1; i <= props.duration; i++ )
     {
         if ( i % 5 === 0 ) {
             skillsGridCellStyle = {...skillsGridCellStyle, borderRight: 'solid 1.5px #707070'};
@@ -52,7 +52,7 @@ const TimeGrid = props => {
         </div>)
     }
 
-    const borderSytle = {
+    const borderStyle = {
         borderBottom: 'solid #404040',
     }
     
@@ -68,7 +68,7 @@ const TimeGrid = props => {
                 className={classes.FightTimelineGrid}
                 style={{
                     ...props.style,
-                    ...borderSytle,
+                    ...borderStyle,
                     height: props.height, zIndex: 2,
                     width: props.width,
                     right: 0
@@ -80,7 +80,7 @@ const TimeGrid = props => {
                 className={classes.SkillDropZones} 
                 style={{
                     ...props.style,
-                    ...borderSytle,
+                    ...borderStyle,
                     right: 0,
                     width: props.width
                     }}

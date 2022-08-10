@@ -67,13 +67,13 @@ export const Planner = props => {
 
         window.addEventListener( 'resize', updateScreenSizeHandler );
         return () => window.removeEventListener( 'resize', updateScreenSizeHandler );
-    }, [props.options.startTime, props.options.endTime, props.duration, props.partyView]);
+    }, [props.options.startTime, props.options.endTime, props.duration, props.partyView, props.prepullTime]);
 
 
     const updateScreenSizeHandler = () => {
         // Update the state with the width of the timneline width
         const width = /*props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :*/
-                                        props.duration * secWidth;
+                                        (props.duration + Math.abs(props.prepullTime)) * secWidth;
         setPlannerWidth(width);
 
     }
@@ -237,7 +237,8 @@ export const Planner = props => {
         syncTimelineHeight: syncTimelineHeight,
         timelineHeight: timelineHeight,
         skillGridHeight: PlannerRef.current == null ? 0 : PlannerRef.current.clientHeight - timelineHeight,
-        isGaugeViewEnabled: props.isGaugeViewEnabled
+        isGaugeViewEnabled: props.isGaugeViewEnabled,
+        prepullTime: props.prepullTime
     }
 
     const scrollRef = useHorizontalScroll();

@@ -5,13 +5,12 @@ import { SkillEvent } from '../SkillEvent/SkillEvent';
 import classes from './SkillsGrid.module.css';
 
 const SkillsGrid = props => {
-
     const [gridItems, setGridItems] = useState();
     
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
 
-        for ( let i = 0; i < props.duration ; i++ )
+        for ( let i = props.prepullTime; i < props.duration ; i++ )
         {
             columnTemplate.push(`20px`);
         }
@@ -34,7 +33,6 @@ const SkillsGrid = props => {
     }
 
     let gaugeDivs = [];
-    console.log(props.person);
 
     if (props.person.hasGauge && props.isGaugeViewEnabled)
     {
@@ -64,12 +62,12 @@ const SkillsGrid = props => {
             }
         });
         gaugeEvents.sort((a, b) => a.time - b.time);
-        let lastTime = 1;
+        let lastTime = props.prepullTime + 1;
         let currentTotal = props.person.startingGauge;
         for (let i = 0; i < gaugeEvents.length; i++)
         {
             const event = gaugeEvents[i];
-            const colSpan = lastTime + " / " + event.time;
+            const colSpan = (lastTime + Math.abs(props.prepullTime)) + " / " + (event.time + Math.abs(props.prepullTime));
             let bgColor = 'RGBA(92, 214, 125, 0.3)';
             let borderColor = '1px solid RGBA(92, 214, 125, 0.4)';
             let rowIndex = currentTotal;
@@ -96,7 +94,7 @@ const SkillsGrid = props => {
                 currentTotal = currentTotal - event.value
             }
         }
-        const colSpan = lastTime + " / " + (props.duration + 1);
+        const colSpan = (lastTime  + Math.abs(props.prepullTime)) + " / " + (props.duration + 1  + Math.abs(props.prepullTime));
         let bgColor = 'RGBA(92, 214, 125, 0.3)';
         let borderColor = '1px solid RGBA(92, 214, 125, 0.4)';
         let rowIndex = currentTotal;
@@ -121,7 +119,7 @@ const SkillsGrid = props => {
 
         const newGridItems = props.items.map(( item, index) => {
 
-            const position = item.startTime;
+            const position = item.startTime + Math.abs(props.prepullTime);
             return (
                 <div 
                     style={{
@@ -145,7 +143,7 @@ const SkillsGrid = props => {
         });
 
         setGridItems( newGridItems );
-    }, [props.items, props.startTime]);
+    }, [props.items, props.startTime, props.prepullTime]);
 
     return (
         <>

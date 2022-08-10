@@ -8,29 +8,24 @@ import GroupSkillsGrid from '../GroupSkillsGrid/GroupSkillsGrid';
 import { PARTY_VIEW_SIDEBAR_WIDTH } from '../../Constants/UIConstants';
 
 const LayoutGrid = props => {
-    const TimeGridElements = ( width, offset ) => (
-        <>
-        <TimeGrid 
-            key={`TimeGrid`}
-            onDrop={props.onDrop}
-            activePartyMember={props.activePartyMember}
-            index={1}
-            scroll={props.scroll}
-            grouped={props.grouped}
-            offset={offset}
-            width={width}
-            duration={props.duration}
-            height={props.timelineHeight}
-            items={props.items}
-            partyView={props.partyView}
-        >
-        </TimeGrid>
-        </>
-    );
 
     const singleView = (
         <>
-            {TimeGridElements( props.width )}
+            <TimeGrid 
+                key={`TimeGrid`}
+                onDrop={props.onDrop}
+                activePartyMember={props.activePartyMember}
+                index={1}
+                scroll={props.scroll}
+                grouped={props.grouped}
+                offset={0}
+                width={props.width}
+                duration={props.duration}
+                height={props.timelineHeight}
+                items={props.items}
+                partyView={props.partyView}
+                prepullTime={props.prepullTime}
+            />
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={0}/>
             <SkillsGrid {...props} person={props.partyMembers[0]}/>
         </>
@@ -38,7 +33,21 @@ const LayoutGrid = props => {
 
     const partyView = (
         <>
-            {TimeGridElements( props.width, PARTY_VIEW_SIDEBAR_WIDTH )}
+            <TimeGrid 
+                key={`TimeGrid`}
+                onDrop={props.onDrop}
+                activePartyMember={props.activePartyMember}
+                index={1}
+                scroll={props.scroll}
+                grouped={props.grouped}
+                offset={PARTY_VIEW_SIDEBAR_WIDTH}
+                width={props.width}
+                duration={props.duration}
+                height={props.timelineHeight}
+                items={props.items}
+                partyView={props.partyView}
+                prepullTime={props.prepullTime}
+            />
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={PARTY_VIEW_SIDEBAR_WIDTH}/>
             <GroupSkillsGrid
                 {...props} 

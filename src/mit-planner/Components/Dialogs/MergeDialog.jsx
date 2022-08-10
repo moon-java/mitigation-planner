@@ -14,6 +14,7 @@ const MergeDialog = props => {
     const [mergeError, setMergeError] = useState("");
     const [loadedGroupItems, setLoadedGroupItems] = useState( {} );
     const [loadedPartyMembers, setLoadedPartyMembers] = useState( {} );
+    const [loadedPrepullTime, setLoadedPrepullTime] = useState(0);
     const [selectedCurrent, setSelectedCurrent] = useState( [true, true, true, true, true, true, true, true]);
     const [selectedLoaded, setSelectedLoaded] = useState( [false, false, false, false, false, false, false, false]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -35,7 +36,6 @@ const MergeDialog = props => {
 
     const currentGroupItems = groupItems(props.items);
     const currentPartyMembers = props.partyMembers;
-    console.log(currentPartyMembers)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -54,8 +54,8 @@ const MergeDialog = props => {
                 const loadedItems = groupItems(res.data.timelineItems)
                 setLoadedGroupItems(loadedItems);
                 setLoadedPartyMembers(res.data.partyMembers);
+                setLoadedPrepullTime(res.data.prepullTime === undefined ? 0 : res.data.prepullTime);
                 setIsLoaded(true);
-                console.log(loadedItems);
             }
         }
         else
@@ -143,13 +143,17 @@ const MergeDialog = props => {
                 }
             }
         }
+        debugger
+        const prepullTime = Math.min(props.prepullTime, loadedPrepullTime)
+        console.log(prepullTime)
         props.handleImport(
             {
                 selectedFight: props.selectedFight,
                 selectedCategory: props.selectedCategory,
                 partyViewEnabled: true,
                 partyMembers: newPartyMembers,
-                timelineItems: newItems
+                timelineItems: newItems,
+                prepullTime: prepullTime
             }
         )
         handleClose();

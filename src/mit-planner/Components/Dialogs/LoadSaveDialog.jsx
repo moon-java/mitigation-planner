@@ -14,7 +14,8 @@ const LoadSaveDialog = props => {
         selectedFight: props.selectedFight,
         partyViewEnabled: props.partyViewEnabled,
         partyMembers: props.partyMembers,
-        timelineItems: props.timelineItems
+        timelineItems: props.timelineItems,
+        prepullTime: props.prepullTime
     }
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState("");
