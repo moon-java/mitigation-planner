@@ -27,7 +27,7 @@ const SkillsGrid = props => {
         gridTemplateColumns: getGridTemplateColumns().join(' '),
         gridTemplateRows: '33% 33% 33%'
     }
-    if (props.skillGridHeight != 0)
+    if (props.skillGridHeight !== 0)
     {
         style2 = {...style2, height: props.skillGridHeight}
     }
@@ -51,7 +51,7 @@ const SkillsGrid = props => {
             }
         }
         props.items.forEach(item => {
-            if (item.gaugeEvent != null)
+            if (item.gaugeEvent !== null)
             {
                 gaugeEvents.push(
                     {
@@ -113,13 +113,11 @@ const SkillsGrid = props => {
         }
     }
 
+    const { items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove } = props;
 
     useEffect(() => {
-        const gridColors = [];
-
-        const newGridItems = props.items.map(( item, index) => {
-
-            const position = item.startTime + Math.abs(props.prepullTime);
+        const newGridItems = items.map(( item, index) => {
+            const position = item.startTime + Math.abs(prepullTime);
             return (
                 <div 
                     style={{
@@ -131,11 +129,11 @@ const SkillsGrid = props => {
                         item={item}
                         overlay
                         move
-                        elementClassName={props.elementClassName}
+                        elementClassName={elementClassName}
                         innerElement
-                        customElementType={props.customInnerElementType}
+                        customElementType={customInnerElementType}
                         style={{marginLeft: 0}}
-                        remove={() => props.onRemove( item.id )}
+                        remove={() => onRemove( item.id )}
                         onTimeline={true}
                     />
                 </div>
@@ -143,7 +141,7 @@ const SkillsGrid = props => {
         });
 
         setGridItems( newGridItems );
-    }, [props.items, props.startTime, props.prepullTime]);
+    }, [items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove]);
 
     return (
         <>

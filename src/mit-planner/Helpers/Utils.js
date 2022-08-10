@@ -9,7 +9,7 @@ export const formatEffectString = (effect) =>
         effect.effect === effects.SHIELD)
     {
         const valueSuffix = effect.valueType === valueTypes.PERCENT ? "% max HP" : " potency"
-        const durationSuffix = effect.effect != effects.HEAL ? " for " + effect.duration + "s" : "";
+        const durationSuffix = effect.effect !== effects.HEAL ? " for " + effect.duration + "s" : "";
         return ("Apply " + effect.effect + " of " + effect.value + valueSuffix + " to " + effect.target + durationSuffix);
     }
 

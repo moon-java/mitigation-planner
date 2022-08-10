@@ -184,7 +184,7 @@ const App = () =>  {
 
     const updatePrimaryJobHandler = ( job ) => {
         let tmpParty = {...partyMembers};
-        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != 0);
+        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId !== 0);
         tmpParty[0].job = job;
         tmpParty[0].hasGauge = job === "SGE" || job === "WHM" || job === "SCH";
         tmpParty[0].startingGauge = job === "SGE" ? 3 : 0;
@@ -195,7 +195,7 @@ const App = () =>  {
 
     const partyMemberJobChangeHandler = ( job, index ) => {
         let tmpParty = {...partyMembers};
-        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != index);
+        let tmpItems = timelineItems.filter((item, i) => item.partyMemberId !== index);
         tmpParty[index].job = job;
         tmpParty[index].hasGauge = job === "SGE" || job === "WHM" || job === "SCH";
         tmpParty[index].startingGauge = job === "SGE" ? 3 : 0;
@@ -456,6 +456,7 @@ const App = () =>  {
                                 />
                             </div>);
                             }
+                            return <></>
                         }
                         )
                     }

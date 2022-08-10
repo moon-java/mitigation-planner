@@ -19,7 +19,7 @@ export const loadFromDB = async (value) => {
         return {success: false, text: res};
       }
       const data = await response.json()
-      if (data.length != 0)
+      if (data.length !== 0)
       {
         return {success: true, data: data.plan}
       }
@@ -31,7 +31,7 @@ export const loadFromDB = async (value) => {
 
 export const saveToDB = async (value, plan) => {
     try {
-      const id = value != "" ? value : generateId();
+      const id = value !== "" ? value : generateId();
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +44,7 @@ export const saveToDB = async (value, plan) => {
         return {success: false, text: res};
       }
       const data = await response.json()
-      if (data.length != 0)
+      if (data.length !== 0)
       {
         return {success: true, text: "Successfully saved plan with ID: " + id}
       }
