@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import TimeGrid from '../TimeGrid/TimeGrid';
@@ -8,6 +8,19 @@ import GroupSkillsGrid from '../GroupSkillsGrid/GroupSkillsGrid';
 import { PARTY_VIEW_SIDEBAR_WIDTH } from '../../Constants/UIConstants';
 
 const LayoutGrid = props => {
+    const [primaryJobItems, setPrimaryJobItems] = useState( [] );
+    useEffect(() => {
+        const tmpPrimaryJobItems = [];
+        props.items.forEach( item => {
+            if ( item.partyMemberId === 0) 
+            {
+                tmpPrimaryJobItems.push( item );
+            }
+        })
+
+        setPrimaryJobItems( tmpPrimaryJobItems );
+
+    }, [props.items, props.startTime, props.partyView]);
 
     const singleView = (
         <>
@@ -27,7 +40,7 @@ const LayoutGrid = props => {
                 prepullTime={props.prepullTime}
             />
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={0}/>
-            <SkillsGrid {...props} person={props.partyMembers[0]}/>
+            <SkillsGrid {...props} items={primaryJobItems} person={props.partyMembers[0]}/>
         </>
     )
 
