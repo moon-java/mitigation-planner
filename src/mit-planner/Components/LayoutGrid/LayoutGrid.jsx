@@ -32,7 +32,7 @@ const LayoutGrid = props => {
         <>
             {TimeGridElements( props.width )}
             <TimelineGrid {...props} syncTimelineHeight={props.syncTimelineHeight} leftWidth={0}/>
-            <SkillsGrid {...props}/>
+            <SkillsGrid {...props} person={props.partyMembers[0]}/>
         </>
     )
 

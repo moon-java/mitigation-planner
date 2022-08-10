@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import MouseBackEnd from 'react-dnd-mouse-backend';
 
@@ -8,6 +8,7 @@ import skillsByJob from './cooldowns/skills.js';
 import { timelines, categories } from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
 import * as uiConstants from './mit-planner/Constants/UIConstants.js'; 
+import Button from '@mui/material/Button';
 
 import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
@@ -15,9 +16,8 @@ import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
 import LoadSaveDialog from './mit-planner/Components/Dialogs/LoadSaveDialog';
 import MergeDialog from './mit-planner/Components/Dialogs/MergeDialog';
-import { Typography } from '@mui/material';
 
-const Option = props => (
+const PartyViewToggle = props => (
     <div className={classes.Option}>
         <div style={{display: 'flex', alignItems: 'center'}}>
         <div style={{marginRight: '10px'}}>Party View</div>
@@ -29,9 +29,30 @@ const Option = props => (
     </div>
 )
 
+const GaugeViewToggle = props => (
+    <div className={classes.Option}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div style={{marginRight: '10px'}}>Show Gauges</div>
+        <label className={classes.Switch}>
+            <input type="checkbox" checked={props.checked} onChange={props.onChange}/>
+            <span className={`${classes.Slider} ${classes.Round}`}></span>
+        </label>
+        </div>
+    </div>
+)
+
+const ClearAllButton = props => (
+    <div className={classes.Option}>
+        <Button variant="outlined" style={{color: '#d0d0d0', background: '#aa3030', marginBottom: '20px'}} onClick={props.onClick}>
+            Remove All
+        </Button>
+    </div>
+)
+
 const App = () =>  {
     const [activePartyMember, setActivePartyMember] = useState( 0 );
     const [partyViewEnabled, setPartyViewEnabled] = useState( false );
+    const [gaugeViewEnabled, setGaugeViewEnabled] = useState( false );
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
     const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]]);
     const [selectedFight, setSelectedFight] = useState(timelines[0].id);
@@ -41,42 +62,54 @@ const App = () =>  {
         {
             partyMemberId: 0,
             job: "PLD",
-            level: 90
+            level: 90,
+            hasGauge: false
         },
         {
             partyMemberId: 1,
             job: "GNB",
-            level: 90
+            level: 90,
+            hasGauge: false
         },
         {
             partyMemberId: 2,
             job: "WHM",
-            level: 90
+            level: 90,
+            hasGauge: true,
+            passiveGaugeTimer: 20,
+            startingGauge: 0
         },
         {
             partyMemberId: 3,
             job: "SCH",
-            level: 90
+            level: 90,
+            hasGauge: true,
+            startingGauge: 0,
+            passiveGaugeTimer: -1
         },
         {
             partyMemberId: 4,
             job: "MNK",
-            level: 90
+            level: 90,
+            hasGauge: false
         },
         {
             partyMemberId: 5,
             job: "DRG",
-            level: 90
+            level: 90,
+            hasGauge: false
         },
         {
             partyMemberId: 6,
             job: "BRD",
-            level: 90
+            level: 90,
+            hasGauge: false
         },
         {
             partyMemberId: 7,
             job: "BLM",
-            level: 90
+            level: 90,
+            hasGauge: false
         }
     ]);
 
@@ -135,6 +168,9 @@ const App = () =>  {
         let tmpParty = {...partyMembers};
         let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != 0);
         tmpParty[0].job = job;
+        tmpParty[0].hasGauge = job === "SGE" || job === "WHM" || job === "SCH";
+        tmpParty[0].startingGauge = job === "SGE" ? 3 : 0;
+        tmpParty[0].passiveGaugeTimer = job === "SGE" ? 30 : (job === "WHM" ? 20 : 0);
         setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
     }
@@ -143,6 +179,9 @@ const App = () =>  {
         let tmpParty = {...partyMembers};
         let tmpItems = timelineItems.filter((item, i) => item.partyMemberId != index);
         tmpParty[index].job = job;
+        tmpParty[index].hasGauge = job === "SGE" || job === "WHM" || job === "SCH";
+        tmpParty[index].startingGauge = job === "SGE" ? 3 : 0;
+        tmpParty[index].passiveGaugeTimer = job === "SGE" ? 30 : (job === "WHM" ? 20 : 0);
         setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
     }
@@ -226,11 +265,8 @@ const App = () =>  {
         <div className={classes.Header}>
             <h1 className={classes.Title}>mitigation planner</h1>
         <div className={classes.Options}>
-            <div style={{display: 'flex', flexDirection: 'horizontal', margin: 'auto', width: '80%', justifyContent: 'center'}}>
-                <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories} value={selectedCategory.name}/>
-                <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name}/>
-                <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
-                <Option className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
+        <div style={{display: 'flex', flexDirection: 'horizontal', marginRight: 'auto', justifyContent: 'center'}}>
+            <div style={{display: 'flex', flexDirection: 'horizontal', marginRight: 'auto', marginBottom: 'auto', verticalAlign: 'center'}}>
                 <LoadSaveDialog type='load' onLoad={importHandler}/>
                 <LoadSaveDialog type='save' selectedCategory={selectedCategory.id}
                                                   selectedFight={selectedFight}
@@ -243,6 +279,16 @@ const App = () =>  {
                                                   partyMembers={partyMembers}
                                                   items={exportItems}
                                                   handleImport={importHandler}/>
+                                                  </div>
+                <ClearAllButton onClick={() => setTimelineItems([])}/>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'horizontal', marginRight: 'auto', justifyContent: 'center'}}>
+                <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories} value={selectedCategory.name}/>
+                <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name}/>
+                <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
+                <PartyViewToggle className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
+                <GaugeViewToggle className={classes.PartyToggle} checked={gaugeViewEnabled} onChange={() => setGaugeViewEnabled( !gaugeViewEnabled )}/>
+
             </div>
         </div>
         </div>
@@ -400,7 +446,8 @@ const App = () =>  {
                              partyMembers={partyMembers}
                              activePartyMember={activePartyMember}
                              duration={fightInfo.length}
-                             timeline={fightTimeline}/>
+                             timeline={fightTimeline}
+                             isGaugeViewEnabled={gaugeViewEnabled}/>
                 </div>
 
             </div>

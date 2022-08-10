@@ -87,9 +87,7 @@ input:checked + .Slider:before {
 }
 
 .Options{
-  align-items: center;
   text-align: center;
-  margin: auto;
   border-top: #3e3f41 3px solid;
   border-bottom: #3e3f41 3px solid;
   padding: 10px;

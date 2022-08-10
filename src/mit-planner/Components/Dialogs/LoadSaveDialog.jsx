@@ -74,7 +74,7 @@ const LoadSaveDialog = props => {
 
     return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px'}}>
         {buttonText}
       </Button>
       <Dialog open={open} style={{padding: '12px'}}>

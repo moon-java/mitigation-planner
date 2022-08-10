@@ -1,4 +1,7 @@
 import addle from './addle.png'
+import aetherflow from './aetherflow.png'
+import afflatus_rapture from './afflatus_rapture.png'
+import afflatus_solace from './afflatus_solace.png'
 import aquaveil from './aquaveil.png'
 import arcane_crest from './arcane_crest.png'
 import arms_length from './arms_length.png'
@@ -23,6 +26,7 @@ import divine_veil from './divine_veil.png'
 import druochole from './druochole.png'
 import earthly_star from './earthly_star.png'
 import emergency_tactics from './emergency_tactics.png'
+import energy_drain from './energy_drain.png'
 import equilibrium from './equilibrium.png'
 import essential_dignity from './essential_dignity.png'
 import exaltation from './exaltation.png'
@@ -55,6 +59,7 @@ import leg_sweep from './leg_sweep.png'
 import liturgy_of_the_bell from './liturgy_of_the_bell.png'
 import living_dead from './living_dead.png'
 import low_blow from './low_blow.png'
+import lustrate from './lustrate.png'
 import macrocosmos from './macrocosmos.png'
 import magick_barrier from './magick_barrier.png'
 import manaward from './manaward.png'
@@ -112,6 +117,21 @@ export const skillIcons =
     {
         icon: addle,
         color: '#484379'
+    },
+    aetherflow:
+    {
+        icon: aetherflow,
+        color: '#884084'
+    },
+    afflatus_rapture:
+    {
+        icon: afflatus_rapture,
+        color: '#63a1b1'
+    },
+    afflatus_solace:
+    {
+        icon: afflatus_solace,
+        color: '#4b8ba8'
     },
     aquaveil:
     {
@@ -232,6 +252,11 @@ export const skillIcons =
     {
         icon: emergency_tactics,
         color: '#95973e'
+    },
+    energy_drain:
+    {
+        icon: energy_drain,
+        color: '#8e7039'
     },
     equilibrium:
     {
@@ -392,6 +417,11 @@ export const skillIcons =
     {
         icon: low_blow,
         color: '#8b694a'
+    },
+    lustrate:
+    {
+        icon: lustrate,
+        color: '#7d853a'
     },
     macrocosmos:
     {

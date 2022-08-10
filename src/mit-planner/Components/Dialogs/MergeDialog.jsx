@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import { Typography } from '@mui/material';
-import { loadFromDB, saveToDB } from '../../Helpers/DBHelpers';
+import { loadFromDB } from '../../Helpers/DBHelpers';
 
 const MergeDialog = props => {
     const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ const MergeDialog = props => {
         {
             if (res.data.selectedFight !== props.selectedFight)
             {
-                setLoadError("The loaded plan is not for the currently selected fight")
+                setLoadError("That plan isn't for the currently selected fight")
             }
             else
             {
@@ -82,12 +82,10 @@ const MergeDialog = props => {
             setMergeError("Select 8 party members");
             return;
         }
-        setMergeError("ok")
         let newPartyMembers = [];
         let newItems = [];
         if (keepIndexes)
         {
-            debugger;
             let j = 0;
             for (let i = 0; i < 8; i++)
             {
@@ -214,7 +212,7 @@ const MergeDialog = props => {
 
     return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px'}}>
         Import/Merge
       </Button>
       <Dialog open={open} style={{padding: '12px'}}>
@@ -227,14 +225,14 @@ const MergeDialog = props => {
                 Enter a plan ID:
                 </div>
                 <textarea
-                value={value}
-                onChange={handleChange}
+                    value={value}
+                    onChange={handleChange}
                 />      
                 <Button autoFocus onClick={handleLoad}>
                 Load
               </Button><br/>
               </div>
-                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
+                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000'}}>
                     {loadError}
                 </div>
                 <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
@@ -242,7 +240,7 @@ const MergeDialog = props => {
                     then select which party members to import from the loaded plan on the right. <br/> <br/>
                     Total number of selected party members must equal 8.
                 </div>
-                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
+                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000'}}>
                     {mergeError}
                 </div>
                 <div style={{display: `${isLoaded ? "grid" : "none"}`, textAlign: "center", border: '2px solid black'}}>
@@ -295,7 +293,7 @@ const MergeDialog = props => {
                 </div>
         </DialogContent>
         <DialogActions>
-           <Button autoFocus onClick={handleMerge}>
+           <Button autoFocus disabled={!isLoaded} onClick={handleMerge}>
             Merge
           </Button>
           <Button autoFocus onClick={handleClose}>

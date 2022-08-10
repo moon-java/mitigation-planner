@@ -52,6 +52,83 @@ export const schSkills =
         ]
     },
     {
+        skillId: 'aetherflow',
+        name: 'Aetherflow',
+        imgFile: skillIcons['aetherflow'].icon,
+        imgColor: skillIcons['aetherflow'].color,
+        level: 45,
+        cooldown: 60,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Gain 3 Aetherflow stacks',
+                duration: 0
+            }
+        ],
+        gaugeEvent:
+        {
+            type: 'add',
+            value: 3
+        }
+    },
+    {
+        skillId: 'lustrate',
+        name: 'Lustrate',
+        imgFile: skillIcons['lustrate'].icon,
+        imgColor: skillIcons['lustrate'].color,
+        level: 45,
+        cooldown: 1,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 600,
+                duration: 0
+            }
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
+    },
+    {
+        skillId: 'energy_drain',
+        name: 'Energy Drain',
+        imgFile: skillIcons['energy_drain'].icon,
+        imgColor: skillIcons['energy_drain'].color,
+        level: 45,
+        cooldown: 1,
+        effects:
+        [
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.MAGIC,
+                effect: effects.OTHER,
+                note: 'Deals unaspected damage with a potency of 100',
+                duration: 0
+            },
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.MAGIC,
+                effect: effects.OTHER,
+                note: 'Absorbs a portion of damage dealt as HP',
+                duration: 0
+            },
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
+    },
+    {
         skillId: 'sacred_soil',
         name: 'Sacred Soil',
         imgFile: skillIcons['sacred_soil'].icon,
@@ -69,7 +146,12 @@ export const schSkills =
                 value: 10,
                 duration: 15
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'enhanced_sacred_soil',
@@ -96,7 +178,12 @@ export const schSkills =
                 value: 100,
                 duration: 15
             },
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'indomitability',
@@ -115,7 +202,12 @@ export const schSkills =
                 value: 400,
                 duration: 0
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'deployment_tactics',
@@ -196,7 +288,12 @@ export const schSkills =
                 value: 20,
                 duration: 30
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'add',
+            value: 3
+        }
     },
     {
         skillId: 'excogitation',
@@ -215,7 +312,12 @@ export const schSkills =
                 value: 800,
                 duration: 45
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'recitation',

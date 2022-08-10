@@ -96,6 +96,7 @@ export const Planner = props => {
                 }
             }
         });
+
         if (!item.maxConcurrentUses) return instanceCount === 0;
         return instanceCount < item.maxConcurrentUses;
     }
@@ -156,7 +157,6 @@ export const Planner = props => {
     }
 
     const calculateMitigation = time => {
-        //debugger;
         let mit = {
             partyMit: { all: 100, magic: 100, phys: 100},
             selfMit: { all: 100, magic: 100, phys: 100}
@@ -235,7 +235,9 @@ export const Planner = props => {
         onPartyMemberJobChange: props.options.callBacks.onPartyMemberJobChange,
         timeline: props.timeline,
         syncTimelineHeight: syncTimelineHeight,
-        timelineHeight: timelineHeight
+        timelineHeight: timelineHeight,
+        skillGridHeight: PlannerRef.current == null ? 0 : PlannerRef.current.clientHeight - timelineHeight,
+        isGaugeViewEnabled: props.isGaugeViewEnabled
     }
 
     const scrollRef = useHorizontalScroll();

@@ -8,7 +8,7 @@ const BaseDropdown = props => {
         options.push(<option key={props.items[item].name}>{props.items[item].name}</option>);
     }  
     return (
-        <select onChange={props.onChange} style={{margin: `auto` }} value={props.value}>
+        <select onChange={props.onChange} style={{marginRight: `auto` }} value={props.value}>
             {options}
         </select>
     );

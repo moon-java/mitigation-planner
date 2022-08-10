@@ -50,6 +50,8 @@ const GroupSkillsGrid = props => {
                     >
                         <SkillsGrid 
                             {...props}
+                            skillGridHeight='0'
+                            person={props.partyMembers[index]}
                             style={{
                                 ...props.style,
                                 ...borderStyle,

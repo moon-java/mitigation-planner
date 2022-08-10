@@ -25,6 +25,30 @@ export const whmSkills =
         ]
     },
     {
+        skillId: 'afflatus_solace',
+        name: 'Afflatus Solace',
+        imgFile: skillIcons['afflatus_solace'].icon,
+        imgColor: skillIcons['afflatus_solace'].color,
+        level: 52,
+        cooldown: 3,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 800,
+                duration: 0
+            }
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
+    },
+    {
         skillId: 'asylum',
         name: 'Asylum',
         imgFile: skillIcons['asylum'].icon,
@@ -166,6 +190,30 @@ export const whmSkills =
                 duration: 10
             }
         ]
+    },
+    {
+        skillId: 'afflatus_rapture',
+        name: 'Afflatus Rapture',
+        imgFile: skillIcons['afflatus_rapture'].icon,
+        imgColor: skillIcons['afflatus_rapture'].color,
+        level: 76,
+        cooldown: 3,
+        effects:
+        [
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 400,
+                duration: 0
+            }
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'temperance',

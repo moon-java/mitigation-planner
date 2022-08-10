@@ -42,6 +42,30 @@ export const sgeSkills =
         ]
     },
     {
+        skillId: 'druochole',
+        name: 'Druochole',
+        imgFile: skillIcons['druochole'].icon,
+        imgColor: skillIcons['druochole'].color,
+        level: 45,
+        cooldown: 1,
+        effects:
+        [
+            {
+                target: targets.PARTY_MEMBER,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 600,
+                duration: 0
+            },
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
+    },
+    {
         skillId: 'kerachole',
         name: 'Kerachole',
         imgFile: skillIcons['kerachole'].icon,
@@ -59,7 +83,12 @@ export const sgeSkills =
                 value: 10,
                 duration: 15
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'enhanced_kerachole',
@@ -86,7 +115,12 @@ export const sgeSkills =
                 value: 100,
                 duration: 15
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'ixochole',
@@ -105,7 +139,12 @@ export const sgeSkills =
                 value: 400,
                 duration: 0
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'zoe',
@@ -234,7 +273,12 @@ export const sgeSkills =
                 value: 10,
                 duration: 15
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'remove',
+            value: 1
+        }
     },
     {
         skillId: 'haima',
@@ -285,7 +329,12 @@ export const sgeSkills =
                 note: "Grants 1 stack of Addersgall",
                 duration: 0
             }
-        ]
+        ],
+        gaugeEvent:
+        {
+            type: 'add',
+            value: 1
+        }
     },
     {
         skillId: 'holos',
