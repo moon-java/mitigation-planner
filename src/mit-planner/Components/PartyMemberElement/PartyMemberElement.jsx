@@ -5,13 +5,11 @@ import JobSelector from '../Dropdowns/JobSelector';
 import icons from '../icons';
 
 const PartyMemberElement = props => {
-    const onClick = () =>
-    {
+    const onClick = () => {
         props.onClick(props.person.partyMemberId);
     }
 
-    const onJobChange = (job) =>
-    {
+    const onJobChange = (job) => {
         props.onPartyMemberJobChange(job, props.person.partyMemberId);
     }
 
@@ -20,9 +18,9 @@ const PartyMemberElement = props => {
 
     return (
         <div className={classes.PartyMemberElement} onClick={onClick}
-        style={{textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}`}}>
-            <img src={icon} width="40px" height="40px" padding="10px"/> <br/>
-            <JobSelector onJobChange={onJobChange} selectedJob={props.person.job}/>
+            style={{ textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}` }}>
+            <img src={icon} width="40px" height="40px" padding="10px" /> <br />
+            <JobSelector onJobChange={onJobChange} selectedJob={props.person.job} />
         </div>
     )
 }

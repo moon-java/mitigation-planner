@@ -11,43 +11,42 @@ const DropZone = props => {
         accept: ELEMENT,
         drop: item => {
             let updatedItem = item;
-            if ( !item.resizing && !item.moving )
-            {
-                updatedItem = initItem( item );
+            if (!item.resizing && !item.moving) {
+                updatedItem = initItem(item);
             }
-            
-            props.onDrop( updatedItem, true );
+
+            props.onDrop(updatedItem, true);
         },
-        hover: ( item, monitor ) => {
-            if ( !hovered && item.moving ) {
+        hover: (item, monitor) => {
+            if (!hovered && item.moving) {
                 let updatedItem = item;
-                if ( item.moving ){
-                    updatedItem = moveItem( item );
+                if (item.moving) {
+                    updatedItem = moveItem(item);
                 }
-                
-                props.onDrop( updatedItem );
-                setHovered( true );
+
+                props.onDrop(updatedItem);
+                setHovered(true);
             }
         },
-		collect: monitor => ({
-			isOver: !!monitor.isOver(),
-		}),
+        collect: monitor => ({
+            isOver: !!monitor.isOver(),
+        }),
     });
 
-    const[hovered, setHovered] = useState( false );
-    const[canDropItem, setCanDrop] = useState( false );
+    const [hovered, setHovered] = useState(false);
+    const [canDropItem, setCanDrop] = useState(false);
 
 
     useEffect(() => {
-        setHovered( false );
-        setCanDrop( true );
+        setHovered(false);
+        setCanDrop(true);
     }, [isOver]);
 
     // Update the item on drop and propagate to host element
     const moveItem = item => {
         let diff = item.startTime ? props.time - item.startTime : 0;
         item.startTime = props.time;
-        item.effects.forEach( effect => {
+        item.effects.forEach(effect => {
             effect.endTime += diff;
         })
 
@@ -58,7 +57,7 @@ const DropZone = props => {
         let newItem = structuredClone(item);
         newItem.effects = structuredClone(item.effects);
         newItem.startTime = props.time;
-        newItem.effects.forEach( effect => {
+        newItem.effects.forEach(effect => {
             effect.endTime = props.time + effect.duration;
         })
         newItem.partyMemberId = props.activePartyMember;
@@ -69,14 +68,14 @@ const DropZone = props => {
     const overClass = isOver ? classes.DropZoneOver : null;
 
     return (
-        <div 
+        <div
             ref={drop}
             className={[classes.DropZone, overClass].join(' ')}
             style={props.style}
         >
-            <div 
-                className={classes.Day} 
-                style={{color: isOver ? 'white' : '#7787a8'}}
+            <div
+                className={classes.Day}
+                style={{ color: isOver ? 'white' : '#7787a8' }}
             >
             </div>
         </div>

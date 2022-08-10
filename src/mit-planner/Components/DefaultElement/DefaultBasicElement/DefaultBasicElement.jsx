@@ -6,8 +6,8 @@ import classes from './DefaultBasicElement.module.css';
 const alpha = 0.7;
 
 const DefaultBasicElement = props => {
-    const content = props.useIcon ? <img src={props.item.imgFile}/> :
-                                    <></>;
+    const content = props.useIcon ? <img src={props.item.imgFile} /> :
+        <></>;
     const bgColor = props.useIcon ? props.item.imgColor : props.style.backgroundColor;
     return (
         <div
@@ -16,8 +16,8 @@ const DefaultBasicElement = props => {
                 ...props.style,
                 backgroundColor: bgColor
             }} >
-                <div className={classes.Content}>
-                    {content}
+            <div className={classes.Content}>
+                {content}
             </div>
         </div>
     )

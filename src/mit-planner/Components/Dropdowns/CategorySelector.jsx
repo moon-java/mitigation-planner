@@ -5,7 +5,7 @@ import BaseDropdown from './BaseDropdown';
 const CategorySelector = props => {
     let items = [];
     props.categories.forEach(category => {
-        items.push({name: category.name, id: category.id});
+        items.push({ name: category.name, id: category.id });
     });
 
     let onChange = (e) => {
@@ -13,7 +13,7 @@ const CategorySelector = props => {
         props.onCategoryChange(category.id);
     };
     return (
-        <BaseDropdown items={items} onChange={onChange} value={props.value}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.value} />
     );
 }
 

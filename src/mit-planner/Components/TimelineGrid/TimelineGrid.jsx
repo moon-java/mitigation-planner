@@ -10,15 +10,14 @@ const TimelineGrid = props => {
 
     const [gridItems, setGridItems] = useState();
     const [resizeListener, sizes] = useResizeAware();
-  
+
     useEffect(() => {
         props.syncTimelineHeight(sizes.height);
     }, [sizes.width, sizes.height, props.prepullTime]);
-    
+
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
-        for ( let i = props.prepullTime; i < props.duration ; i++ )
-        {
+        for (let i = props.prepullTime; i < props.duration; i++) {
             columnTemplate.push(props.width / (props.duration + Math.abs(props.prepullTime)) + `px`);
         }
 
@@ -36,11 +35,11 @@ const TimelineGrid = props => {
             const position = item.startTime + Math.abs(props.prepullTime);
 
             return (
-                <div 
+                <div
                     style={{
-                        gridColumn: `${position} / ${position + ( item.endTime - item.startTime )}`,
+                        gridColumn: `${position} / ${position + (item.endTime - item.startTime)}`,
                         gridRow: 0
-                    }} 
+                    }}
                     key={`item_${item.id}_${index}`}
                 >
                     <TimelineEvent
@@ -50,8 +49,8 @@ const TimelineGrid = props => {
                         elementClassName={props.elementClassName}
                         innerElement
                         customElementType={DefaultBasicElement}
-                        style={{marginLeft: 0, backgroundColor: `#842e2e`}}
-                        remove={() => props.onRemove( item.id )}
+                        style={{ marginLeft: 0, backgroundColor: `#842e2e` }}
+                        remove={() => props.onRemove(item.id)}
                         calculateMitigation={props.calculateMitigation}
                         activePartyMember={props.activePartyMember}
                     />
@@ -59,20 +58,22 @@ const TimelineGrid = props => {
             )
         });
 
-        setGridItems( newGridItems );
+        setGridItems(newGridItems);
     }, [props.items, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
 
     return (
         <>
-        <div
-            className={classes.TimelineGrid}
-            style={{...style, ...props.style,
-            width: props.width,
-            left: props.leftWidth + 0.5}}
-        >
-            {resizeListener}
-            {gridItems}
-        </div>
+            <div
+                className={classes.TimelineGrid}
+                style={{
+                    ...style, ...props.style,
+                    width: props.width,
+                    left: props.leftWidth + 0.5
+                }}
+            >
+                {resizeListener}
+                {gridItems}
+            </div>
         </>
     );
 }

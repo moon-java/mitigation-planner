@@ -5,7 +5,7 @@ import BaseDropdown from './BaseDropdown';
 const FightSelector = props => {
     let items = [];
     props.fights.forEach(fight => {
-        items.push({name: fight.info.name, id: fight.id});
+        items.push({ name: fight.info.name, id: fight.id });
     });
 
     let onChange = (e) => {
@@ -13,7 +13,7 @@ const FightSelector = props => {
         props.onFightChange(fight.id);
     };
     return (
-        <BaseDropdown items={items} onChange={onChange} value={props.value}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.value} />
     );
 }
 

@@ -67,7 +67,7 @@ const JobSelector = props => {
     ]
 
     return (
-        <BaseDropdown items={items} onChange={onChange} value={props.selectedJob}/>
+        <BaseDropdown items={items} onChange={onChange} value={props.selectedJob} />
     );
 }
 

@@ -17,8 +17,8 @@ export const Planner = props => {
     const PlannerRef = useRef();
     const secWidth = 20;
 
-    const [items, setItems] = useState( [] );
-    const [PlannerWidth, setPlannerWidth] = useState( 0 );
+    const [items, setItems] = useState([]);
+    const [PlannerWidth, setPlannerWidth] = useState(0);
     const [timelineHeight, setTimelineHeight] = useState();
 
     const syncTimelineHeight = (height) => {
@@ -27,8 +27,7 @@ export const Planner = props => {
 
     // Get the higher id and increase
     const getNextId = () => {
-        if (items.length > 0)
-        {
+        if (items.length > 0) {
             return Math.max.apply(Math, items.map(item => { return item.id; })) + 1
         }
         return baseIndex;
@@ -36,20 +35,20 @@ export const Planner = props => {
 
     // Loop inside props.items to assign an ID if missing
 
-    useEffect (() => {
+    useEffect(() => {
         const verifiedItems = [];
 
-        props.items.forEach(( item, index ) => {
+        props.items.forEach((item, index) => {
             const tmpItem = {
                 ...item,
                 startTime: item.startTime ? item.startTime : null,
                 endTime: item.endTime ? item.endTime : null
             }
 
-            if ( item.id ){
+            if (item.id) {
                 verifiedItems.push(tmpItem);
             }
-            else{
+            else {
                 verifiedItems.push({
                     ...tmpItem,
                     id: baseIndex + index
@@ -57,7 +56,7 @@ export const Planner = props => {
             }
         });
 
-        setItems( verifiedItems );
+        setItems(verifiedItems);
 
     }, [props.items]);
 
@@ -65,33 +64,30 @@ export const Planner = props => {
     useEffect(() => {
         updateScreenSizeHandler();
 
-        window.addEventListener( 'resize', updateScreenSizeHandler );
-        return () => window.removeEventListener( 'resize', updateScreenSizeHandler );
+        window.addEventListener('resize', updateScreenSizeHandler);
+        return () => window.removeEventListener('resize', updateScreenSizeHandler);
     }, [props.options.startTime, props.options.endTime, props.duration, props.partyView, props.prepullTime]);
 
 
     const updateScreenSizeHandler = () => {
         // Update the state with the width of the timneline width
         const width = /*props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :*/
-                                        (props.duration + Math.abs(props.prepullTime)) * secWidth;
+            (props.duration + Math.abs(props.prepullTime)) * secWidth;
         setPlannerWidth(width);
 
     }
 
     const canDropItem = (item) => {
         let instanceCount = 0;
-        items.forEach( existingItem =>
-        {
+        items.forEach(existingItem => {
             if (item.id !== existingItem.id &&
                 item.skillId === existingItem.skillId &&
-                item.partyMemberId === existingItem.partyMemberId)
-            {
+                item.partyMemberId === existingItem.partyMemberId) {
                 let existingItemCooldown = existingItem.startTime + existingItem.cooldown;
                 let itemCooldown = item.startTime + item.cooldown;
                 if ((item.startTime < existingItem.startTime && itemCooldown > existingItem.startTime) ||
                     (item.startTime < existingItemCooldown && itemCooldown > existingItemCooldown) ||
-                    (item.startTime === existingItem.startTime && itemCooldown === existingItemCooldown))
-                {
+                    (item.startTime === existingItem.startTime && itemCooldown === existingItemCooldown)) {
                     instanceCount++;
                 }
             }
@@ -101,7 +97,7 @@ export const Planner = props => {
         return instanceCount < item.maxConcurrentUses;
     }
 
-    const onDropHandler = ( item, propagate ) => {
+    const onDropHandler = (item, propagate) => {
         // Parsing data from dropped component
         //const item = JSON.parse(event.dataTransfer.getData("text"));
         const newItems = [...items];
@@ -112,28 +108,25 @@ export const Planner = props => {
         }
         let canDrop = canDropItem(item);
 
-        if (canDrop)
-        {
+        if (canDrop) {
             //Check if the item is updated or created
-            if ( item.id )
-            {
-                existingId = newItems.findIndex( i => i.id === item.id );
+            if (item.id) {
+                existingId = newItems.findIndex(i => i.id === item.id);
             }
 
             // Add the new item to the item array only if it is not already present
-            if( existingId === -1 )
-            {
-                newItems.push( tmpItem );
-                if ( props.options.callBacks.onAdd && propagate ) props.options.callBacks.onAdd({item: {...tmpItem}, items: [...newItems]});
+            if (existingId === -1) {
+                newItems.push(tmpItem);
+                if (props.options.callBacks.onAdd && propagate) props.options.callBacks.onAdd({ item: { ...tmpItem }, items: [...newItems] });
             }
             else //Update item
             {
                 newItems[existingId] = tmpItem;
-                if ( props.options.callBacks.onUpdate && propagate ) props.options.callBacks.onUpdate({item: {...tmpItem}, items: [...newItems]});
+                if (props.options.callBacks.onUpdate && propagate) props.options.callBacks.onUpdate({ item: { ...tmpItem }, items: [...newItems] });
             }
 
             // Update state with the updated items array
-            setItems( newItems );
+            setItems(newItems);
         }
 
     }
@@ -142,68 +135,55 @@ export const Planner = props => {
         const newItems = [...items];
         let item = null;
 
-        const found = newItems.findIndex(i => i.id === itemID );
+        const found = newItems.findIndex(i => i.id === itemID);
 
         // Remove the item at the 'index' position if founded
-        if ( found !== -1 )
-        {
+        if (found !== -1) {
             item = newItems[found];
-            newItems.splice( found, 1 );
+            newItems.splice(found, 1);
             // Update state with the new array items
-            setItems( newItems );
+            setItems(newItems);
         }
 
-        if ( props.options.callBacks.onRemove ) props.options.callBacks.onRemove({item: {...item}, items: [...newItems]});
+        if (props.options.callBacks.onRemove) props.options.callBacks.onRemove({ item: { ...item }, items: [...newItems] });
     }
 
     const calculateMitigation = time => {
         let mit = {
-            partyMit: { all: 100, magic: 100, phys: 100},
-            selfMit: { all: 100, magic: 100, phys: 100}
+            partyMit: { all: 100, magic: 100, phys: 100 },
+            selfMit: { all: 100, magic: 100, phys: 100 }
         }
-        items.forEach( item =>
-        {
-            item.effects.forEach ( effect =>
-            {
-                if (effect.effect === effects.BLOCK) {return;}
-                if (item.startTime < time && effect.endTime >= time)
-                {
-                    if (effect.damageType === damageTypes.ALL)
-                    {
+        items.forEach(item => {
+            item.effects.forEach(effect => {
+                if (effect.effect === effects.BLOCK) { return; }
+                if (item.startTime < time && effect.endTime >= time) {
+                    if (effect.damageType === damageTypes.ALL) {
                         if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY)
-                        {
+                            effect.target === targets.ENEMY) {
                             mit.partyMit.all *= (100 - effect.value) / 100;
                             mit.selfMit.all *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember === item.partyMemberId)
-                        {
+                        else if (props.activePartyMember === item.partyMemberId) {
                             mit.selfMit.all *= (100 - effect.value) / 100;
                         }
                     }
-                    if (effect.damageType === damageTypes.MAGIC)
-                    {
+                    if (effect.damageType === damageTypes.MAGIC) {
                         if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY)
-                        {
+                            effect.target === targets.ENEMY) {
                             mit.partyMit.magic *= (100 - effect.value) / 100;
                             mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember === item.partyMemberId)
-                        {
+                        else if (props.activePartyMember === item.partyMemberId) {
                             mit.selfMit.magic *= (100 - effect.value) / 100;
                         }
                     }
-                    if (effect.damageType === damageTypes.PHYS)
-                    {
+                    if (effect.damageType === damageTypes.PHYS) {
                         if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY)
-                        {
+                            effect.target === targets.ENEMY) {
                             mit.partyMit.phys *= (100 - effect.value) / 100;
                             mit.selfMit.phys *= (100 - effect.value) / 100;
                         }
-                        else if (props.activePartyMember === item.partyMemberId)
-                        {
+                        else if (props.activePartyMember === item.partyMemberId) {
                             mit.selfMit.phys *= (100 - effect.value) / 100;
                         }
                     }
@@ -243,28 +223,30 @@ export const Planner = props => {
 
     const scrollRef = useHorizontalScroll();
     // stupid block for hiding part of timeline over party list in party list view
-    let blockDiv = props.partyView ? <div style={{borderLeft: `2px solid #c0c0c0`,
-                                                  borderRight: `2px solid #c0c0c0`,
-                                                  borderBottom: `2px solid #c0c0c0`,
-                                                  position: 'absolute',
-                                                  zIndex: `10`,
-                                                  backgroundColor: `#3e3f41`,
-                                                  height: `${timelineHeight}px`,
-                                                  width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`}}/> : null;
+    let blockDiv = props.partyView ? <div style={{
+        borderLeft: `2px solid #c0c0c0`,
+        borderRight: `2px solid #c0c0c0`,
+        borderBottom: `2px solid #c0c0c0`,
+        position: 'absolute',
+        zIndex: `10`,
+        backgroundColor: `#3e3f41`,
+        height: `${timelineHeight}px`,
+        width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`
+    }} /> : null;
 
     return (
         <>
-        {blockDiv}
-            <div style={{overflowX: props.scroll ? 'scroll' : 'hidden'}} ref={scrollRef}>
-            <div
-                className={`${props.className}`}
-                style={{
-                    overflowY: 'clip',
-                    ...props.style
-                }}
-                ref={PlannerRef}
-            >
-                <LayoutGrid {...propagatedProps} />
+            {blockDiv}
+            <div style={{ overflowX: props.scroll ? 'scroll' : 'hidden' }} ref={scrollRef}>
+                <div
+                    className={`${props.className}`}
+                    style={{
+                        overflowY: 'clip',
+                        ...props.style
+                    }}
+                    ref={PlannerRef}
+                >
+                    <LayoutGrid {...propagatedProps} />
                 </div>
             </div>
         </>

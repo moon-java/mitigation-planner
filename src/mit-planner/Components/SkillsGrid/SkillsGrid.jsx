@@ -6,12 +6,11 @@ import classes from './SkillsGrid.module.css';
 
 const SkillsGrid = props => {
     const [gridItems, setGridItems] = useState();
-    
+
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
 
-        for ( let i = props.prepullTime; i < props.duration ; i++ )
-        {
+        for (let i = props.prepullTime; i < props.duration; i++) {
             columnTemplate.push(`20px`);
         }
 
@@ -29,20 +28,16 @@ const SkillsGrid = props => {
         gridTemplateRows: '33% 33% 33%',
         height: '100%'
     }
-    if (parseInt(props.skillGridHeight) !== 0)
-    {
-        style2 = {...style2, height: props.skillGridHeight}
+    if (parseInt(props.skillGridHeight) !== 0) {
+        style2 = { ...style2, height: props.skillGridHeight }
     }
 
     let gaugeDivs = [];
 
-    if (props.person.hasGauge && props.isGaugeViewEnabled)
-    {
+    if (props.person.hasGauge && props.isGaugeViewEnabled) {
         let gaugeEvents = [];
-        if (props.person.passiveGaugeTimer > 0)
-        {
-            for (let i = props.person.passiveGaugeTimer; i < props.duration; i += props.person.passiveGaugeTimer)
-            {
+        if (props.person.passiveGaugeTimer > 0) {
+            for (let i = props.person.passiveGaugeTimer; i < props.duration; i += props.person.passiveGaugeTimer) {
                 gaugeEvents.push(
                     {
                         time: i + 1,
@@ -53,8 +48,7 @@ const SkillsGrid = props => {
             }
         }
         props.items.forEach(item => {
-            if (item.gaugeEvent !== null)
-            {
+            if (item.gaugeEvent !== null) {
                 gaugeEvents.push(
                     {
                         time: item.startTime,
@@ -66,51 +60,44 @@ const SkillsGrid = props => {
         gaugeEvents.sort((a, b) => a.time - b.time);
         let lastTime = props.prepullTime + 1;
         let currentTotal = props.person.startingGauge;
-        for (let i = 0; i < gaugeEvents.length; i++)
-        {
+        for (let i = 0; i < gaugeEvents.length; i++) {
             const event = gaugeEvents[i];
             const colSpan = (lastTime + Math.abs(props.prepullTime)) + " / " + (event.time + Math.abs(props.prepullTime));
             let bgColor = 'RGBA(92, 214, 125, 0.3)';
             let borderColor = '1px solid RGBA(92, 214, 125, 0.4)';
             let rowIndex = currentTotal;
-            if (currentTotal < 0)
-            {
+            if (currentTotal < 0) {
                 rowIndex = Math.abs(rowIndex);
                 bgColor = 'RGBA(214, 94, 92, 0.3)';
                 borderColor = 'RGBA(214, 94, 92, 0.4)';
             }
-            for (let j = 1; j <= rowIndex; j++)
-            {
+            for (let j = 1; j <= rowIndex; j++) {
                 const rowSpan = (4 - j) + " / " + (5 - j);
                 gaugeDivs.push(
-                    <div key={i + "_" + j} style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
+                    <div key={i + "_" + j} style={{ gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor }} />
                 )
             }
             lastTime = event.time
-            if (event.type === "add")
-            {
+            if (event.type === "add") {
                 currentTotal = Math.min(3, currentTotal + event.value)
             }
-            else
-            {
+            else {
                 currentTotal = currentTotal - event.value
             }
         }
-        const colSpan = (lastTime  + Math.abs(props.prepullTime)) + " / " + (props.duration + 1  + Math.abs(props.prepullTime));
+        const colSpan = (lastTime + Math.abs(props.prepullTime)) + " / " + (props.duration + 1 + Math.abs(props.prepullTime));
         let bgColor = 'RGBA(92, 214, 125, 0.3)';
         let borderColor = '1px solid RGBA(92, 214, 125, 0.4)';
         let rowIndex = currentTotal;
-        if (currentTotal < 0)
-        {
+        if (currentTotal < 0) {
             rowIndex = Math.abs(rowIndex);
             bgColor = 'RGBA(214, 94, 92, 0.3)';
             borderColor = 'RGBA(214, 94, 92, 0.4)';
         }
-        for (let j = 1; j <= rowIndex; j++)
-        {
+        for (let j = 1; j <= rowIndex; j++) {
             const rowSpan = (4 - j) + " / " + (5 - j);
             gaugeDivs.push(
-                <div key={"_" + j} style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
+                <div key={"_" + j} style={{ gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor }} />
             )
         }
     }
@@ -118,13 +105,13 @@ const SkillsGrid = props => {
     const { items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove } = props;
 
     useEffect(() => {
-        const newGridItems = items.map(( item, index) => {
+        const newGridItems = items.map((item, index) => {
             const position = item.startTime + Math.abs(prepullTime);
             return (
-                <div 
+                <div
                     style={{
-                        gridColumn: `${position} / ${position + ( item.cooldown )}`
-                    }} 
+                        gridColumn: `${position} / ${position + (item.cooldown)}`
+                    }}
                     key={`item_${item.id}_${index}`}
                 >
                     <SkillEvent
@@ -134,31 +121,31 @@ const SkillsGrid = props => {
                         elementClassName={elementClassName}
                         innerElement
                         customElementType={customInnerElementType}
-                        style={{marginLeft: 0}}
-                        remove={() => onRemove( item.id )}
+                        style={{ marginLeft: 0 }}
+                        remove={() => onRemove(item.id)}
                         onTimeline={true}
                     />
                 </div>
             )
         });
 
-        setGridItems( newGridItems );
+        setGridItems(newGridItems);
     }, [items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove]);
 
     return (
         <>
-        <div
-            className={classes.SkillsGrid}
-            style={{...style, ...props.style}}
-        >
-        <div
-        className={classes.SkillsGrid}
-        style={{...style2, ...props.style, position: "absolute", marginTop: "1px", zIndex: "0"}}
-        >
-        {gaugeDivs}
-    </div>
-            {gridItems}
-        </div>
+            <div
+                className={classes.SkillsGrid}
+                style={{ ...style, ...props.style }}
+            >
+                <div
+                    className={classes.SkillsGrid}
+                    style={{ ...style2, ...props.style, position: "absolute", marginTop: "1px", zIndex: "0" }}
+                >
+                    {gaugeDivs}
+                </div>
+                {gridItems}
+            </div>
         </>
     );
 }

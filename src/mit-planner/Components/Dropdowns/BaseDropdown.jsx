@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 const BaseDropdown = props => {
     let options = [];
-    for (var item in props.items)
-    {
+    for (var item in props.items) {
         options.push(<option key={props.items[item].name}>{props.items[item].name}</option>);
-    }  
+    }
     return (
-        <select onChange={props.onChange} style={{marginRight: `auto` }} value={props.value}>
+        <select onChange={props.onChange} style={{ marginRight: `auto` }} value={props.value}>
             {options}
         </select>
     );

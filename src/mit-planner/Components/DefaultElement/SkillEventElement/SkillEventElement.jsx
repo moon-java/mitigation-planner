@@ -16,31 +16,31 @@ const SkillEventElement = props => {
                 <div className={classes.ItemFlex}
                     key={props.item.id + ` ` + index}
                     style={{
-                    display: `flex`,
-                    flexDirection: `row`,
-                    justifyContent: `left`,
-                    height: `${height}px`,
-                    alignItems: `center`,
-                    width: `${width}px`,
-                    backgroundColor: `${props.item.imgColor}`,
-                    padding: `0px`}}/>
+                        display: `flex`,
+                        flexDirection: `row`,
+                        justifyContent: `left`,
+                        height: `${height}px`,
+                        alignItems: `center`,
+                        width: `${width}px`,
+                        backgroundColor: `${props.item.imgColor}`,
+                        padding: `0px`
+                    }} />
             );
         });
 
-        setEffects( newEffectBoxes );
+        setEffects(newEffectBoxes);
     }, [props.item]);
 
     let grayerColor = props.item.imgColor + '55'
     return (
-        <div 
+        <div
             className={[classes.SkillEventElement, props.className].join(' ')}
             style={{
                 backgroundColor: grayerColor,
                 ...props.style,
             }}
-                
         >
-            <img src={props.item.imgFile} width='40px' height='40px' style={{padding: `5px`, position: `absolute`}}/>
+            <img src={props.item.imgFile} width='40px' height='40px' style={{ padding: `5px`, position: `absolute` }} />
             <div>{effectBoxes}</div>
         </div>
     )

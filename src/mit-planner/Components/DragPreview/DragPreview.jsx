@@ -37,20 +37,20 @@ const DragPreview = props => {
     const renderItem = () => {
         const bgColor = item.imgColor;
         return (
-        <div 
-            className={[classes.DefaultBasicElement, props.className].join(' ')}
-            style={{
-            ...props.style,
-            backgroundColor: bgColor,
-            padding: `5px`
-            }}  
+            <div
+                className={[classes.DefaultBasicElement, props.className].join(' ')}
+                style={{
+                    ...props.style,
+                    backgroundColor: bgColor,
+                    padding: `5px`
+                }}
             >
-            <div className={classes.Content}>
-            <img src={item.imgFile}/>
+                <div className={classes.Content}>
+                    <img src={item.imgFile} />
+                </div>
             </div>
-        </div>
         )
-      }
+    }
 
     if (!isDragging || item.id) {
         return null
@@ -58,8 +58,8 @@ const DragPreview = props => {
 
     return (
         <div className={classes.DragPreview}>
-            <div 
-                className={classes.ItemStyle} 
+            <div
+                className={classes.ItemStyle}
                 style={getItemStyles(initialOffset, currentOffset)}
             >
                 {renderItem()}

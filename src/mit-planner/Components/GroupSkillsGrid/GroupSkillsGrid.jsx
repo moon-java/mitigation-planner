@@ -8,49 +8,48 @@ import classes from './GroupSkillsGrid.module.css';
 
 const GroupSkillsGrid = props => {
 
-    const [groupedItems, setGroupItems] = useState( {} );
-    const [elementHovered, setElementHovered] = useState( null );
+    const [groupedItems, setGroupItems] = useState({});
+    const [elementHovered, setElementHovered] = useState(null);
 
     useEffect(() => {
-        const groupedItemsTmp = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
-        props.items.forEach( item => {
-            if ( !groupedItemsTmp[item.partyMemberId] ) 
-            {
+        const groupedItemsTmp = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [] };
+        props.items.forEach(item => {
+            if (!groupedItemsTmp[item.partyMemberId]) {
                 groupedItemsTmp[item.partyMemberId] = []
             }
 
-            groupedItemsTmp[item.partyMemberId].push( item );
+            groupedItemsTmp[item.partyMemberId].push(item);
         })
 
-        setGroupItems( groupedItemsTmp );
+        setGroupItems(groupedItemsTmp);
 
     }, [props.items, props.startTime]);
 
-    const hoverStyle = {background: '#2f3031'} 
+    const hoverStyle = { background: '#2f3031' }
 
     const grouped = (
-        Object.keys(groupedItems).map(( items, index ) => {
-            const borderStyle = {borderBottom:  '1px solid #c0c0c0'}
+        Object.keys(groupedItems).map((items, index) => {
+            const borderStyle = { borderBottom: '1px solid #c0c0c0' }
             return (
                 <React.Fragment key={`groups_items_${items}${index}`}>
-                    <div 
+                    <div
                         className={classes.Groups}
-                        style={elementHovered === index ? {...hoverStyle} : null} 
-                        onMouseOver={() => setElementHovered( index )}
-                        onMouseLeave={() => setElementHovered( null )}
+                        style={elementHovered === index ? { ...hoverStyle } : null}
+                        onMouseOver={() => setElementHovered(index)}
+                        onMouseLeave={() => setElementHovered(null)}
                     >
                         <PartyMemberElement person={props.partyMembers[index]} onClick={props.onPartyMemberClick}
-                        onPartyMemberJobChange={props.onPartyMemberJobChange} activePartyMember={props.activePartyMember}/>
+                            onPartyMemberJobChange={props.onPartyMemberJobChange} activePartyMember={props.activePartyMember} />
                     </div>
-                    <div 
+                    <div
                         className={classes.Items}
                         style={elementHovered === index ? hoverStyle : null}
-                        onMouseOver={() => setElementHovered( index )}
-                        onMouseLeave={() => setElementHovered( null )}
+                        onMouseOver={() => setElementHovered(index)}
+                        onMouseLeave={() => setElementHovered(null)}
                     >
-                        <SkillsGrid 
+                        <SkillsGrid
                             {...props}
-                            skillGridHeight= '0'
+                            skillGridHeight='0'
                             person={props.partyMembers[index]}
                             style={{
                                 ...props.style,
@@ -69,8 +68,8 @@ const GroupSkillsGrid = props => {
     )
 
     return (
-        <div 
-            className={classes.GroupViewGrid} 
+        <div
+            className={classes.GroupViewGrid}
             style={{
                 width: `${props.width}px`,
                 gridTemplateColumns: `${props.leftWidth}px ${(props.width - props.leftWidth)}px`

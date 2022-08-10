@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -12,24 +12,22 @@ const MergeDialog = props => {
     const [value, setValue] = useState("");
     const [loadError, setLoadError] = useState("");
     const [mergeError, setMergeError] = useState("");
-    const [loadedGroupItems, setLoadedGroupItems] = useState( {} );
-    const [loadedPartyMembers, setLoadedPartyMembers] = useState( {} );
+    const [loadedGroupItems, setLoadedGroupItems] = useState({});
+    const [loadedPartyMembers, setLoadedPartyMembers] = useState({});
     const [loadedPrepullTime, setLoadedPrepullTime] = useState(0);
-    const [selectedCurrent, setSelectedCurrent] = useState( [true, true, true, true, true, true, true, true]);
-    const [selectedLoaded, setSelectedLoaded] = useState( [false, false, false, false, false, false, false, false]);
+    const [selectedCurrent, setSelectedCurrent] = useState([true, true, true, true, true, true, true, true]);
+    const [selectedLoaded, setSelectedLoaded] = useState([false, false, false, false, false, false, false, false]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [keepIndexes, setKeepIndexes] = useState(true);
 
-    const groupItems = (items) =>
-    {
-        const groupedItemsTmp = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
-        items.forEach( item => {
-            if ( !groupedItemsTmp[item.partyMemberId] ) 
-            {
+    const groupItems = (items) => {
+        const groupedItemsTmp = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [] };
+        items.forEach(item => {
+            if (!groupedItemsTmp[item.partyMemberId]) {
                 groupedItemsTmp[item.partyMemberId] = []
             }
 
-            groupedItemsTmp[item.partyMemberId].push( item );
+            groupedItemsTmp[item.partyMemberId].push(item);
         })
         return groupedItemsTmp
     }
@@ -43,14 +41,11 @@ const MergeDialog = props => {
 
     const handleLoad = async () => {
         const res = await loadFromDB(value);
-        if (res.success)
-        {
-            if (res.data.selectedFight !== props.selectedFight)
-            {
+        if (res.success) {
+            if (res.data.selectedFight !== props.selectedFight) {
                 setLoadError("That plan isn't for the currently selected fight")
             }
-            else
-            {
+            else {
                 const loadedItems = groupItems(res.data.timelineItems)
                 setLoadedGroupItems(loadedItems);
                 setLoadedPartyMembers(res.data.partyMembers);
@@ -58,11 +53,10 @@ const MergeDialog = props => {
                 setIsLoaded(true);
             }
         }
-        else
-        {
+        else {
             setLoadError(res.text)
         }
-      };
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -77,29 +71,22 @@ const MergeDialog = props => {
     const handleMerge = () => {
         const selectedCurrentCount = selectedCurrent.filter(x => x === true).length;
         const selectedLoadedCount = selectedLoaded.filter(x => x === true).length;
-        if (selectedCurrentCount + selectedLoadedCount !== 8)
-        {
+        if (selectedCurrentCount + selectedLoadedCount !== 8) {
             setMergeError("Select 8 party members");
             return;
         }
         let newPartyMembers = [];
         let newItems = [];
-        if (keepIndexes)
-        {
+        if (keepIndexes) {
             let j = 0;
-            for (let i = 0; i < 8; i++)
-            {
-                if (selectedCurrent[i])
-                {
+            for (let i = 0; i < 8; i++) {
+                if (selectedCurrent[i]) {
                     newPartyMembers[i] = currentPartyMembers[i];
                     newItems = [...newItems, ...currentGroupItems[i]];
                 }
-                else
-                {
-                    for (; j < 8; j++)
-                    {
-                        if (selectedLoaded[j])
-                        {
+                else {
+                    for (; j < 8; j++) {
+                        if (selectedLoaded[j]) {
                             newPartyMembers[i] = loadedPartyMembers[j];
                             newPartyMembers[i].partyMemberId = i;
                             loadedGroupItems[j].forEach(item => {
@@ -113,13 +100,10 @@ const MergeDialog = props => {
                 }
             }
         }
-        else
-        {
+        else {
             let index = 0;
-            for (let i = 0; i < 8; i++)
-            {
-                if (selectedCurrent[i])
-                {
+            for (let i = 0; i < 8; i++) {
+                if (selectedCurrent[i]) {
                     newPartyMembers[index] = currentPartyMembers[i];
                     newPartyMembers[index].partyMemberId = index;
                     currentGroupItems[i].forEach(item => {
@@ -129,10 +113,8 @@ const MergeDialog = props => {
                     index++
                 }
             }
-            for (let i = 0; i < 8; i++)
-            {
-                if (selectedLoaded[i])
-                {
+            for (let i = 0; i < 8; i++) {
+                if (selectedLoaded[i]) {
                     newPartyMembers[index] = loadedPartyMembers[i];
                     newPartyMembers[index].partyMemberId = index;
                     loadedGroupItems[i].forEach(item => {
@@ -145,7 +127,6 @@ const MergeDialog = props => {
         }
         debugger
         const prepullTime = Math.min(props.prepullTime, loadedPrepullTime)
-        console.log(prepullTime)
         props.handleImport(
             {
                 selectedFight: props.selectedFight,
@@ -162,150 +143,147 @@ const MergeDialog = props => {
     let currentItems = []
     let loadedItems = []
 
-    if (isLoaded)
-    {
-        for (let i = 0; i < 8; i++)
-        {
+    if (isLoaded) {
+        for (let i = 0; i < 8; i++) {
             const partyMember = currentPartyMembers[i];
             currentItems.push(
                 <>
-                <input
-                    onChange={() => {
-                        const tmpSelected = [...selectedCurrent];
-                        tmpSelected[i] = !tmpSelected[i]
-                        setSelectedCurrent(tmpSelected);
-                    }}
-                    checked={selectedCurrent[i]}
-                    type="checkbox"
-                    style={{gridColumn: '1', gridRow: `${i+3}`}}
+                    <input
+                        onChange={() => {
+                            const tmpSelected = [...selectedCurrent];
+                            tmpSelected[i] = !tmpSelected[i]
+                            setSelectedCurrent(tmpSelected);
+                        }}
+                        checked={selectedCurrent[i]}
+                        type="checkbox"
+                        style={{ gridColumn: '1', gridRow: `${i + 3}` }}
                     />
-                <div style={{gridColumn: `2`, gridRow: `${i+3}`}}>
-                    {partyMember.job}
-                </div>
-                <div style={{gridColumn: `3`, gridRow: `${i+3}`}}>
-                    {currentGroupItems[partyMember.partyMemberId].length}
-                </div>
+                    <div style={{ gridColumn: `2`, gridRow: `${i + 3}` }}>
+                        {partyMember.job}
+                    </div>
+                    <div style={{ gridColumn: `3`, gridRow: `${i + 3}` }}>
+                        {currentGroupItems[partyMember.partyMemberId].length}
+                    </div>
                 </>
             )
         }
-        for (let i = 0; i < 8; i++)
-        {
+        for (let i = 0; i < 8; i++) {
             const partyMember = loadedPartyMembers[i];
             loadedItems.push(
                 <>
-                <input
-                    onChange={() => {
-                        const tmpSelected = [...selectedLoaded];
-                        tmpSelected[i] = !tmpSelected[i]
-                        setSelectedLoaded(tmpSelected);
-                    }}
-                    checked={selectedLoaded[i]}
-                    type="checkbox"
-                    style={{gridColumn: '1', gridRow: `${i+3}`}}
-                />
-                <div style={{gridColumn: `2`, gridRow: `${i+3}`}}>
-                    {partyMember.job}
-                </div>
-                <div style={{gridColumn: `3`, gridRow: `${i+3}`}}>
-                    {loadedGroupItems[partyMember.partyMemberId].length}
-                </div>
+                    <input
+                        onChange={() => {
+                            const tmpSelected = [...selectedLoaded];
+                            tmpSelected[i] = !tmpSelected[i]
+                            setSelectedLoaded(tmpSelected);
+                        }}
+                        checked={selectedLoaded[i]}
+                        type="checkbox"
+                        style={{ gridColumn: '1', gridRow: `${i + 3}` }}
+                    />
+                    <div style={{ gridColumn: `2`, gridRow: `${i + 3}` }}>
+                        {partyMember.job}
+                    </div>
+                    <div style={{ gridColumn: `3`, gridRow: `${i + 3}` }}>
+                        {loadedGroupItems[partyMember.partyMemberId].length}
+                    </div>
                 </>
             )
         }
     }
 
     return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen} style={{color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px'}}>
-        Import/Merge
+        <div>
+            <Button variant="outlined" onClick={handleClickOpen} style={{ color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px' }}>
+                Import/Merge
       </Button>
-      <Dialog open={open} style={{padding: '12px'}}>
-          <DialogContent>
-            <Typography>
-                Import from/merge with a saved plan
-            </Typography><br/>
-            <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
-                <div style={{marginTop: "auto", marginBottom: "auto"}}>
-                Enter a plan ID:
+            <Dialog open={open} style={{ padding: '12px' }}>
+                <DialogContent>
+                    <Typography>
+                        Import from/merge with a saved plan
+            </Typography><br />
+                    <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle" }}>
+                        <div style={{ marginTop: "auto", marginBottom: "auto" }}>
+                            Enter a plan ID:
                 </div>
-                <textarea
-                    value={value}
-                    onChange={handleChange}
-                />      
-                <Button autoFocus onClick={handleLoad}>
-                Load
-              </Button><br/>
-              </div>
-                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000'}}>
-                    {loadError}
-                </div>
-                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
-                    Select which party members to keep in the current plan on the left,
-                    then select which party members to import from the loaded plan on the right. <br/> <br/>
+                        <textarea
+                            value={value}
+                            onChange={handleChange}
+                        />
+                        <Button autoFocus onClick={handleLoad}>
+                            Load
+              </Button><br />
+                    </div>
+                    <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000' }}>
+                        {loadError}
+                    </div>
+                    <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle" }}>
+                        Select which party members to keep in the current plan on the left,
+                    then select which party members to import from the loaded plan on the right. <br /> <br />
                     Total number of selected party members must equal 8.
                 </div>
-                <div style={{display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000'}}>
-                    {mergeError}
-                </div>
-                <div style={{display: `${isLoaded ? "grid" : "none"}`, textAlign: "center", border: '2px solid black'}}>
-                <div style={{display: "grid", gridColumn: '1', borderRight: '2px solid black'}}>
-                        <div style={{gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black'}}>
-                            Current
-                        </div>
-                        <div style={{gridColumn: `1`, gridRow: `2`}}>
-                            Keep?
-                        </div>
-                        <div style={{gridColumn: `2`, gridRow: `2`}}>
-                            Job
-                        </div>
-                        <div style={{gridColumn: `3`, gridRow: `2`}}>
-                            # Skills<br/>Placed
-                        </div>
-                        {currentItems}
+                    <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000' }}>
+                        {mergeError}
                     </div>
-                    <div style={{display: "grid", gridColumn: '2'}}>
-                        <div style={{gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black'}}>
-                            Loaded
+                    <div style={{ display: `${isLoaded ? "grid" : "none"}`, textAlign: "center", border: '2px solid black' }}>
+                        <div style={{ display: "grid", gridColumn: '1', borderRight: '2px solid black' }}>
+                            <div style={{ gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black' }}>
+                                Current
                         </div>
-                        <div style={{gridColumn: `1`, gridRow: `2`}}>
-                            Keep?
+                            <div style={{ gridColumn: `1`, gridRow: `2` }}>
+                                Keep?
                         </div>
-                        <div style={{gridColumn: `2`, gridRow: `2`}}>
-                            Job
+                            <div style={{ gridColumn: `2`, gridRow: `2` }}>
+                                Job
                         </div>
-                        <div style={{gridColumn: `3`, gridRow: `2`}}>
-                            # Skills<br/>Placed
+                            <div style={{ gridColumn: `3`, gridRow: `2` }}>
+                                # Skills<br />Placed
                         </div>
-                        {loadedItems}
+                            {currentItems}
+                        </div>
+                        <div style={{ display: "grid", gridColumn: '2' }}>
+                            <div style={{ gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black' }}>
+                                Loaded
+                        </div>
+                            <div style={{ gridColumn: `1`, gridRow: `2` }}>
+                                Keep?
+                        </div>
+                            <div style={{ gridColumn: `2`, gridRow: `2` }}>
+                                Job
+                        </div>
+                            <div style={{ gridColumn: `3`, gridRow: `2` }}>
+                                # Skills<br />Placed
+                        </div>
+                            {loadedItems}
+                        </div>
                     </div>
+                    <br />
+                    <div style={{ display: `${isLoaded ? "flex" : "none"}`, margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle" }}>
+                        <input
+                            onChange={() => {
+                                setKeepIndexes(!keepIndexes)
+                            }}
+                            checked={keepIndexes}
+                            type="checkbox"
+                        />
+                        <div style={{ paddingLeft: "10px", width: "80%" }}>
+                            Select to keep current party members in their current spots
+                            and have imported party members fill in the gaps.
+                            Unselect to have current party members move up to fill any gaps,
+                            and have imported party members added to the bottom.
                 </div>
-                <br/>
-                <div style={{display: `${isLoaded ? "flex" : "none"}`, margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle"}}>
-                <input
-                    onChange={() => {
-                        setKeepIndexes(!keepIndexes)
-                    }}
-                    checked={keepIndexes}
-                    type="checkbox"
-                />
-                <div style={{paddingLeft: "10px", width: "80%"}}>
-                    Select to keep current party members in their current spots
-                    and have imported party members fill in the gaps.
-                    Unselect to have current party members move up to fill any gaps,
-                    and have imported party members added to the bottom.
-                </div>
-                </div>
-        </DialogContent>
-        <DialogActions>
-           <Button autoFocus disabled={!isLoaded} onClick={handleMerge}>
-            Merge
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus disabled={!isLoaded} onClick={handleMerge}>
+                        Merge
           </Button>
-          <Button autoFocus onClick={handleClose}>
-            Close
+                    <Button autoFocus onClick={handleClose}>
+                        Close
           </Button>
-        </DialogActions>
-    </Dialog>
-    </div>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 }
 

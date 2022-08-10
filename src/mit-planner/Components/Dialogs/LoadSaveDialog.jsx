@@ -23,83 +23,79 @@ const LoadSaveDialog = props => {
     const isLoad = props.type === "load";
 
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
+
     const buttonText = isLoad ? "Load" : "Save";
     const dialogTitle = isLoad ? "Load a plan" : "Save a plan";
     const dialogText = isLoad ? "Enter the plan ID to load" : "Enter a plan ID to update a pre-existing plan, or leave blank to make a new one";
     const warningText = isLoad ? "" : "Warning: updating a pre-existing plan will save over it, this is not reversible";
 
     const handleLoad = async () => {
-      const res = await loadFromDB(value);
-      if (res.success)
-      {
-        props.onLoad(res.data);
-        setOpen(false);
-      }
-      else
-      {
-        setResult(res.text)
-      }
+        const res = await loadFromDB(value);
+        if (res.success) {
+            props.onLoad(res.data);
+            setOpen(false);
+        }
+        else {
+            setResult(res.text)
+        }
     };
 
     const handleSave = async () => {
-      const res = await saveToDB(value, saveJson);
-      setResult(res.text)
+        const res = await saveToDB(value, saveJson);
+        setResult(res.text)
     };
 
     const handleClose = () => {
-      setOpen(false);
-      setResult("");
+        setOpen(false);
+        setResult("");
     }
     const handleChange = (event) => {
         setValue(event.target.value);
-      };
-    
+    };
+
     let loadSaveButton = <></>;
-    if (props.type === "load")
-    {
-      loadSaveButton =
-      <Button autoFocus onClick={handleLoad}>
-        Load
+    if (props.type === "load") {
+        loadSaveButton =
+            <Button autoFocus onClick={handleLoad}>
+                Load
       </Button>;
     }
-    else
-    {
-      loadSaveButton =
-      <Button autoFocus onClick={handleSave}>
-        Save
+    else {
+        loadSaveButton =
+            <Button autoFocus onClick={handleSave}>
+                Save
       </Button>;
     }
 
     return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen} style={{color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px'}}>
-        {buttonText}
-      </Button>
-      <Dialog open={open} style={{padding: '12px'}}>
-          <DialogContent>
-            <Typography>
-                {dialogTitle}
-            </Typography><br/>
-                {dialogText}<br/>
-                {warningText}<br/>
-                {result}<br/>
-            <textarea
-                value={value}
-                style={{width: '400px', height: '100px'}}
-                onChange={handleChange}
-            />
-        </DialogContent>
-        <DialogActions>
-          {loadSaveButton}
-          <Button autoFocus onClick={handleClose}>
-            Close
+        <div>
+            <Button variant="outlined" onClick={handleClickOpen} style={{ color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px' }}>
+                {buttonText}
+            </Button>
+            <Dialog open={open} style={{ padding: '12px' }}>
+                <DialogContent>
+                    <Typography>
+                        {dialogTitle}
+                    </Typography><br />
+                    {dialogText}<br />
+                    {warningText}<br />
+                    {result}<br />
+                    <textarea
+                        value={value}
+                        style={{ width: '400px', height: '100px' }}
+                        onChange={handleChange}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    {loadSaveButton}
+                    <Button autoFocus onClick={handleClose}>
+                        Close
           </Button>
-        </DialogActions>
-    </Dialog>
-    </div>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 }
 
