@@ -57,7 +57,6 @@ const PrepullInput = props => (
                 type="number"
                 style={{width: '40px', color: '#202020', textAlign: "center", background: '#d0d0d0', paddingTop: '3px', paddingBottom: '3px', marginLeft: '5px', marginRight: '5px'}}
                 onChange={props.onChange}
-                defaultValue="0"
                 value={props.prepullTime}
                 max="30"
                 min="0"
@@ -67,16 +66,30 @@ const PrepullInput = props => (
 )
 
 const App = () =>  {
+    console.log(localStorage)
+    let tempTimelines = [];
+    if (localStorage.getItem('selectedCategory'))
+    {
+        const category = JSON.parse(localStorage.getItem('selectedCategory'));
+        category.timelines.forEach(timelineId => {
+            tempTimelines.push(timelines.find(item => item.id === timelineId));
+        })
+    }
+    else
+    {
+        tempTimelines = [timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]];
+    }
+
     const [activePartyMember, setActivePartyMember] = useState( 0 );
-    const [partyViewEnabled, setPartyViewEnabled] = useState( false );
-    const [gaugeViewEnabled, setGaugeViewEnabled] = useState( false );
-    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]]);
-    const [selectedFight, setSelectedFight] = useState(timelines[0].id);
-    const [fightInfo, setFightInfo] = useState(timelines[0].info);
-    const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
-    const [prepullTime, setPrepullTime] = useState(0);
-    const [partyMembers, setPartyMembers] = useState([
+    const [partyViewEnabled, setPartyViewEnabled] = useState( localStorage.getItem('partyViewEnabled') ? JSON.parse(localStorage.getItem('partyViewEnabled')) : false );
+    const [gaugeViewEnabled, setGaugeViewEnabled] = useState( localStorage.getItem('gaugeViewEnabled') ? JSON.parse(localStorage.getItem('gaugeViewEnabled')) : false );
+    const [selectedCategory, setSelectedCategory] = useState( localStorage.getItem('selectedCategory') ? JSON.parse(localStorage.getItem('selectedCategory')) : categories[0]);
+    const [availableTimelines, setAvailableTimelines] = useState(tempTimelines);
+    const [selectedFight, setSelectedFight] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).id : timelines[0].id);
+    const [fightInfo, setFightInfo] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).info : timelines[0].info);
+    const [fightTimeline, setFightTimeline] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).timeline : timelines[0].timeline);
+    const [prepullTime, setPrepullTime] = useState(localStorage.getItem('prepullTime') ? parseInt(localStorage.getItem('prepullTime')) : 0);
+    const [partyMembers, setPartyMembers] = useState(localStorage.getItem('partyMembers') ? JSON.parse(localStorage.getItem('partyMembers')) :[
         {
             partyMemberId: 0,
             job: "PLD",
@@ -130,10 +143,6 @@ const App = () =>  {
             hasGauge: false
         }
     ]);
-
-    const [timelineItems, setTimelineItems] = useState([]);
-    const startTime = 0;
-    const endTime = fightInfo.length;
     let allSkills = {};
     for (let job in skillsByJob)
     {
@@ -143,16 +152,40 @@ const App = () =>  {
         });
     }
 
+    let importItems = [];
+    if (localStorage.getItem('timelineItems'))
+    {
+        const loadedItems = JSON.parse(localStorage.getItem('timelineItems'))
+        for (let i = 0; i < loadedItems.length; i++)
+        {
+            importItems[i] = {
+                ...allSkills[loadedItems[i].skillId],
+                partyMemberId: loadedItems[i].partyMemberId,
+                startTime: loadedItems[i].startTime
+            }
+            for (let j = 0; j < importItems[i].effects.length; j++)
+            {
+                importItems[i].effects[j].endTime = importItems[i].startTime + importItems[i].effects[j].duration
+            }
+        }
+    }
+    const [timelineItems, setTimelineItems] =  useState(importItems);
+    const startTime = 0;
+    const endTime = fightInfo.length;
+
     const addHandler = ( {item, items} ) => {
         setTimelineItems( items );
+        localStorage.setItem('timelineItems', JSON.stringify(formatItemsForExport(items)));
     }
 
     const removeHandler = ( {item, items} ) => {
         setTimelineItems( items );
+        localStorage.setItem('timelineItems', JSON.stringify(formatItemsForExport(items)));
     }
 
     const updateHandler = ( {item, items} ) => {
         setTimelineItems( items );
+        localStorage.setItem('timelineItems', JSON.stringify(formatItemsForExport(items)));
     }
 
     const partyMemberClickHandler = ( partyMemberId ) => {
@@ -164,6 +197,7 @@ const App = () =>  {
         setFightInfo(fight.info);
         setFightTimeline(fight.timeline);
         setSelectedFight(fightId);
+        localStorage.setItem('selectedFight', JSON.stringify(fight))
     }
 
     const selectedCategoryChangedHandler = ( categoryId ) => {
@@ -180,6 +214,7 @@ const App = () =>  {
             setFightTimeline(categoryTimelines[0].timeline);
             setSelectedFight(categoryTimelines[0].id);
         }
+        localStorage.setItem('selectedCategory', JSON.stringify(category))
     }
 
     const updatePrimaryJobHandler = ( job ) => {
@@ -191,6 +226,7 @@ const App = () =>  {
         tmpParty[0].passiveGaugeTimer = job === "SGE" ? 30 : (job === "WHM" ? 20 : 0);
         setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
+        localStorage.setItem('partyMembers', JSON.stringify(tmpParty));
     }
 
     const partyMemberJobChangeHandler = ( job, index ) => {
@@ -202,16 +238,17 @@ const App = () =>  {
         tmpParty[index].passiveGaugeTimer = job === "SGE" ? 30 : (job === "WHM" ? 20 : 0);
         setTimelineItems(tmpItems);
         setPartyMembers(tmpParty);
+        localStorage.setItem('partyMembers', JSON.stringify(tmpParty));
     }
 
-    const formatItemsForExport = () => {
+    const formatItemsForExport = (items) => {
         let exportItems = [];
-        for (let i = 0; i < timelineItems.length; i++)
+        for (let i = 0; i < items.length; i++)
         {
             exportItems[i] = {
-                skillId: timelineItems[i].skillId,
-                partyMemberId: timelineItems[i].partyMemberId,
-                startTime: timelineItems[i].startTime
+                skillId: items[i].skillId,
+                partyMemberId: items[i].partyMemberId,
+                startTime: items[i].startTime
             }
         }
         return exportItems;
@@ -241,9 +278,13 @@ const App = () =>  {
             }
         }
         setTimelineItems(importItems);
-        const prepullTime = importInfo.prepullTime === undefined ? 0 : importInfo.prepullTime;
-        console.log(prepullTime);
-        setPrepullTime(prepullTime);
+        const tmpPrepullTime = importInfo.prepullTime === undefined ? 0 : importInfo.prepullTime;
+        console.log(tmpPrepullTime);
+        setPrepullTime(tmpPrepullTime);
+
+        localStorage.setItem('timelineItems', JSON.stringify(importInfo.timelineItems));
+        localStorage.setItem('partyViewEnabled', importInfo.partyViewEnabled);
+        localStorage.setItem('prepullTime', tmpPrepullTime);
     }
 
     const options = {
@@ -279,7 +320,7 @@ const App = () =>  {
 
     let enrageMin = Math.floor(fightInfo.length / 60);
     let enrageSec = (fightInfo.length % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-    let exportItems = formatItemsForExport();
+    let exportItems = formatItemsForExport(timelineItems);
 
     return (
         <>
@@ -308,11 +349,12 @@ const App = () =>  {
             <div style={{display: 'flex', flexDirection: 'horizontal', marginRight: 'auto', justifyContent: 'center'}}>
                 <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories} value={selectedCategory.name}/>
                 <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name}/>
-                <JobSelector onJobChange={updatePrimaryJobHandler} value={partyMembers[0].job}/>
-                <PartyViewToggle className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => setPartyViewEnabled( !partyViewEnabled )}/>
-                <GaugeViewToggle className={classes.PartyToggle} checked={gaugeViewEnabled} onChange={() => setGaugeViewEnabled( !gaugeViewEnabled )}/>
+                <JobSelector onJobChange={updatePrimaryJobHandler} selectedJob={partyMembers[0].job}/>
+                <PartyViewToggle className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => { localStorage.setItem('partyViewEnabled', !partyViewEnabled); setPartyViewEnabled( !partyViewEnabled ); }}/>
+                <GaugeViewToggle className={classes.PartyToggle} checked={gaugeViewEnabled} onChange={() => { localStorage.setItem('gaugeViewEnabled', !gaugeViewEnabled); setGaugeViewEnabled( !gaugeViewEnabled );}}/>
                 <PrepullInput prepullTime={-1 * prepullTime} onChange={(e) => { e.target.value = e.target.value > 30 ? 30 : (e.target.value < 0 ? 0 : e.target.value);
-                                                     setPrepullTime(-1 * e.target.value)}}/>
+                                                     setPrepullTime(-1 * e.target.value)
+                                                     localStorage.setItem('prepullTime', -1*e.target.value)}}/>
 
             </div>
         </div>

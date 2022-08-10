@@ -22,12 +22,14 @@ const SkillsGrid = props => {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
     }
+
     let style2 = {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
-        gridTemplateRows: '33% 33% 33%'
+        gridTemplateRows: '33% 33% 33%',
+        height: '100%'
     }
-    if (props.skillGridHeight !== 0)
+    if (parseInt(props.skillGridHeight) !== 0)
     {
         style2 = {...style2, height: props.skillGridHeight}
     }
@@ -81,7 +83,7 @@ const SkillsGrid = props => {
             {
                 const rowSpan = (4 - j) + " / " + (5 - j);
                 gaugeDivs.push(
-                    <div style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
+                    <div key={i + "_" + j} style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
                 )
             }
             lastTime = event.time
@@ -108,7 +110,7 @@ const SkillsGrid = props => {
         {
             const rowSpan = (4 - j) + " / " + (5 - j);
             gaugeDivs.push(
-                <div style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
+                <div key={"_" + j} style={{gridColumn: colSpan, gridRow: rowSpan, background: bgColor, border: borderColor}}/>
             )
         }
     }
