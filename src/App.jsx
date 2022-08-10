@@ -13,7 +13,8 @@ import DefaultBasicElement from './mit-planner/Components/DefaultElement/Default
 import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
-import LoadSaveDialog from './mit-planner/Components/LoadSaveDialog/LoadSaveDialog';
+import LoadSaveDialog from './mit-planner/Components/Dialogs/LoadSaveDialog';
+import MergeDialog from './mit-planner/Components/Dialogs/MergeDialog';
 import { Typography } from '@mui/material';
 
 const Option = props => (
@@ -236,6 +237,12 @@ const App = () =>  {
                                                   partyViewEnabled={partyViewEnabled}
                                                   partyMembers={partyMembers}
                                                   timelineItems={exportItems}/>
+                <MergeDialog selectedCategory={selectedCategory.id}
+                                                  selectedFight={selectedFight}
+                                                  partyViewEnabled={partyViewEnabled}
+                                                  partyMembers={partyMembers}
+                                                  items={exportItems}
+                                                  handleImport={importHandler}/>
             </div>
         </div>
         </div>

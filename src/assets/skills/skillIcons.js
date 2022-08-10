@@ -17,6 +17,7 @@ import curing_waltz from './curing_waltz.png'
 import dark_mind from './dark_mind.png'
 import dark_missionary from './dark_missionary.png'
 import deployment_tactics from './deployment_tactics.png'
+import dissipation from './dissipation.png'
 import divine_benison from './divine_benison.png'
 import divine_veil from './divine_veil.png'
 import druochole from './druochole.png'
@@ -201,6 +202,11 @@ export const skillIcons =
     {
         icon: deployment_tactics,
         color: '#90722e'
+    },
+    dissipation:
+    {
+        icon: dissipation,
+        color: '#848d9b'
     },
     divine_benison:
     {

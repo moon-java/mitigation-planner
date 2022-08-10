@@ -173,6 +173,32 @@ export const schSkills =
         ]
     },
     {
+        skillId: 'dissipation',
+        name: 'Dissipation',
+        imgFile: skillIcons['dissipation'].icon,
+        imgColor: skillIcons['dissipation'].color,
+        level: 60,
+        cooldown: 180,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: 'Dismiss Eos/Selene in exchange for 3 Aetherflow stacks',
+                duration: 30
+            },
+            {
+                target: targets.SELF,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL_OUT,
+                valueType: valueTypes.PERCENT,
+                value: 20,
+                duration: 30
+            }
+        ]
+    },
+    {
         skillId: 'excogitation',
         name: 'Excogitation',
         imgFile: skillIcons['excogitation'].icon,
