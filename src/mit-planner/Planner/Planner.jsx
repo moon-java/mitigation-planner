@@ -153,10 +153,10 @@ export const Planner = props => {
             partyMit: { all: 100, magic: 100, phys: 100 },
             selfMit: { all: 100, magic: 100, phys: 100 }
         }
-        items.forEach(item => {
+        props.items.forEach(item => {
             item.effects.forEach(effect => {
                 if (effect.effect === effects.BLOCK) { return; }
-                if (item.startTime < time && effect.endTime >= time) {
+                if (item.startTime < time && (effect.duration + item.startTime) >= time) {
                     if (effect.damageType === damageTypes.ALL) {
                         if (effect.target === targets.PARTY ||
                             effect.target === targets.ENEMY) {

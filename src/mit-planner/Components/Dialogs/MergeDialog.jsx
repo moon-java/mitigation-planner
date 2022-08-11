@@ -196,23 +196,23 @@ const MergeDialog = props => {
         <div>
             <Button variant="outlined" onClick={handleClickOpen} style={{ color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px' }}>
                 Import/Merge
-      </Button>
+            </Button>
             <Dialog open={open} style={{ padding: '12px' }}>
                 <DialogContent>
                     <Typography>
                         Import from/merge with a saved plan
-            </Typography><br />
+                    </Typography><br />
                     <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle" }}>
                         <div style={{ marginTop: "auto", marginBottom: "auto" }}>
                             Enter a plan ID:
-                </div>
+                        </div>
                         <textarea
                             value={value}
                             onChange={handleChange}
                         />
                         <Button autoFocus onClick={handleLoad}>
                             Load
-              </Button><br />
+                        </Button><br />
                     </div>
                     <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000' }}>
                         {loadError}
@@ -221,7 +221,7 @@ const MergeDialog = props => {
                         Select which party members to keep in the current plan on the left,
                     then select which party members to import from the loaded plan on the right. <br /> <br />
                     Total number of selected party members must equal 8.
-                </div>
+                    </div>
                     <div style={{ display: "flex", margin: "auto", justifyContent: "center", textAlign: "center", verticalAlign: "middle", color: '#aa0000' }}>
                         {mergeError}
                     </div>
@@ -229,31 +229,31 @@ const MergeDialog = props => {
                         <div style={{ display: "grid", gridColumn: '1', borderRight: '2px solid black' }}>
                             <div style={{ gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black' }}>
                                 Current
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `1`, gridRow: `2` }}>
                                 Keep?
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `2`, gridRow: `2` }}>
                                 Job
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `3`, gridRow: `2` }}>
                                 # Skills<br />Placed
-                        </div>
+                            </div>
                             {currentItems}
                         </div>
                         <div style={{ display: "grid", gridColumn: '2' }}>
                             <div style={{ gridColumnStart: `1`, gridColumnEnd: `4`, gridRow: `1`, borderBottom: '2px solid black' }}>
                                 Loaded
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `1`, gridRow: `2` }}>
                                 Keep?
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `2`, gridRow: `2` }}>
                                 Job
-                        </div>
+                            </div>
                             <div style={{ gridColumn: `3`, gridRow: `2` }}>
                                 # Skills<br />Placed
-                        </div>
+                            </div>
                             {loadedItems}
                         </div>
                     </div>
@@ -271,16 +271,16 @@ const MergeDialog = props => {
                             and have imported party members fill in the gaps.
                             Unselect to have current party members move up to fill any gaps,
                             and have imported party members added to the bottom.
-                </div>
+                        </div>
                     </div>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus disabled={!isLoaded} onClick={handleMerge}>
                         Merge
-          </Button>
+                    </Button>
                     <Button autoFocus onClick={handleClose}>
                         Close
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

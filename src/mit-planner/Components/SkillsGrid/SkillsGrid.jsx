@@ -48,7 +48,7 @@ const SkillsGrid = props => {
             }
         }
         props.items.forEach(item => {
-            if (item.gaugeEvent !== null) {
+            if (item.gaugeEvent !== undefined) {
                 gaugeEvents.push(
                     {
                         time: item.startTime,
