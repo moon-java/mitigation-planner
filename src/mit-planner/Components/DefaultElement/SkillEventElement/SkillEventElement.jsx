@@ -10,7 +10,7 @@ const SkillEventElement = props => {
 
             const position = props.item.startTime;
             let width = effect.duration * 20;
-            let height = 50 / props.item.effects.length;
+            let height = 30 / props.item.effects.length;
 
             return (
                 <div className={classes.ItemFlex}
@@ -22,8 +22,7 @@ const SkillEventElement = props => {
                         height: `${height}px`,
                         alignItems: `center`,
                         width: `${width}px`,
-                        backgroundColor: `${props.item.imgColor}`,
-                        padding: `0px`
+                        backgroundColor: `${props.item.imgColor}`
                     }} />
             );
         });
@@ -40,7 +39,7 @@ const SkillEventElement = props => {
                 ...props.style,
             }}
         >
-            <img src={props.item.imgFile} width='40px' height='40px' style={{ padding: `5px`, position: `absolute` }} />
+            <img src={props.item.imgFile} width='25px' height='25px' style={{ padding: `2.5px`, position: `absolute` }} />
             <div>{effectBoxes}</div>
         </div>
     )

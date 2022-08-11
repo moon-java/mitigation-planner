@@ -20,7 +20,7 @@ import MergeDialog from './mit-planner/Components/Dialogs/MergeDialog';
 const PartyViewToggle = props => (
     <div className={classes.Option}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginRight: '10px' }}>Party View</div>
+            <div style={{ marginRight: '10px', fontSize: '14px' }}>Party View</div>
             <label className={classes.Switch}>
                 <input type="checkbox" checked={props.checked} onChange={props.onChange} />
                 <span className={`${classes.Slider} ${classes.Round}`}></span>
@@ -32,7 +32,7 @@ const PartyViewToggle = props => (
 const GaugeViewToggle = props => (
     <div className={classes.Option}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginRight: '10px' }}>Show Gauges</div>
+            <div style={{ marginRight: '10px', fontSize: '14px' }}>Show Gauges</div>
             <label className={classes.Switch}>
                 <input type="checkbox" checked={props.checked} onChange={props.onChange} />
                 <span className={`${classes.Slider} ${classes.Round}`}></span>
@@ -43,7 +43,7 @@ const GaugeViewToggle = props => (
 
 const ClearAllButton = props => (
     <div className={classes.Option}>
-        <Button variant="outlined" style={{ color: '#d0d0d0', background: '#aa3030', marginBottom: '20px' }} onClick={props.onClick}>
+        <Button variant="outlined" size='small' style={{ color: '#d0d0d0', background: '#aa3030', marginBottom: '20px' }} onClick={props.onClick}>
             Remove All
         </Button>
     </div>
@@ -52,7 +52,7 @@ const ClearAllButton = props => (
 const PrepullInput = props => (
     <div className={classes.Option}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginRight: '10px' }}>Prepull</div>
+            <div style={{ marginRight: '10px', fontSize: '14px' }}>Prepull</div>
             <input
                 type="number"
                 style={{ width: '40px', color: '#202020', textAlign: "center", background: '#d0d0d0', paddingTop: '3px', paddingBottom: '3px', marginLeft: '5px', marginRight: '5px' }}

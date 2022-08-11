@@ -5,7 +5,7 @@
     font-size: 12px;
     height: fit-content;
     display: flex;
-    margin: 10px 0;
+    margin: 5px 0;
     user-select: none;
     text-overflow: ellipsis;
 }

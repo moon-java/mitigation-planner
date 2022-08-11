@@ -1,8 +1,5 @@
 .DefaultBasicElement {
-    width: calc(100% - 10px);
-    padding: 5px;
-    height: 40px;
-    border-radius: 4px;
+    width: 100%;
     color: #282725;
     text-overflow: ellipsis;
 }
@@ -17,8 +14,6 @@
 }
 
 .Content {
-    padding-left: 2px;
-    padding-right: 2px;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -43,7 +38,7 @@
 }
 
 .ImagesWrapper {
-    width: 35px;
+    width: 25px;
 
 }
 

@@ -42,11 +42,11 @@ const DragPreview = props => {
                 style={{
                     ...props.style,
                     backgroundColor: bgColor,
-                    padding: `5px`
+                    padding: `2.5px`
                 }}
             >
                 <div className={classes.Content}>
-                    <img src={item.imgFile} />
+                    <img src={item.imgFile} width='25px' height='25px' />
                 </div>
             </div>
         )

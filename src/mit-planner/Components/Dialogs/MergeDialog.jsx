@@ -194,7 +194,7 @@ const MergeDialog = props => {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen} style={{ color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px' }}>
+            <Button variant="outlined" size='small' onClick={handleClickOpen} style={{ color: '#d0d0d0', fontWeight: 'bold', background: '#196dc3', marginLeft: '5px', marginRight: '5px' }}>
                 Import/Merge
             </Button>
             <Dialog open={open} style={{ padding: '12px' }}>

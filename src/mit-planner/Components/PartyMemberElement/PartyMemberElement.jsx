@@ -19,7 +19,7 @@ const PartyMemberElement = props => {
     return (
         <div className={classes.PartyMemberElement} onClick={onClick}
             style={{ textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}` }}>
-            <img src={icon} width="40px" height="40px" padding="10px" /> <br />
+            <img src={icon} width="30px" height="30px" padding="10px" /> <br />
             <JobSelector onJobChange={onJobChange} selectedJob={props.person.job} />
         </div>
     )

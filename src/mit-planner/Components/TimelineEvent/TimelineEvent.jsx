@@ -26,8 +26,8 @@ const ToolTipBody = (props) => {
     }
 
     return (
-        <div style={{ backgroundColor: '#3e3f41', color: '#c0c0c0', fontSize: 14, padding: 10, borderTop: "2px solid #c0c0c0", borderBottom: "2px solid #c0c0c0", textAlign: `center` }}>
-            <div style={{ borderBottom: '1px solid #c0c0c0', margin: 'auto', marginBottom: 5, fontSize: 15, width: 'fit-content', paddingLeft: '15px', paddingRight: '15px' }}>{props.item.name}</div>
+        <div style={{ backgroundColor: '#3e3f41', color: '#c0c0c0', fontSize: 12, padding: 10, borderTop: "2px solid #c0c0c0", borderBottom: "2px solid #c0c0c0", textAlign: `center` }}>
+            <div style={{ borderBottom: '1px solid #c0c0c0', margin: 'auto', marginBottom: 5, fontSize: 13, width: 'fit-content', paddingLeft: '15px', paddingRight: '15px' }}>{props.item.name}</div>
             <div>Damage type: {props.item.damageType}</div>
             <div>Target: {props.item.target}</div>
             <div>{props.item.notes}</div>
@@ -41,7 +41,7 @@ const ToolTipBody = (props) => {
 export const TimelineEvent = props => {
     let style = { ...props.style };
     style.backgroundColor = getTimelineEventColor(props.item);
-    style.border = '5px solid ' + getTimelineEventBorderColor(props.item);
+    style.border = '3px solid ' + getTimelineEventBorderColor(props.item);
     style.zIndex = 5;
 
     return (
