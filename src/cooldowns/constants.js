@@ -14,6 +14,8 @@ export const targets =
     PROXIMITY_CLOSE2: 'closest two targets',
     PROXIMITY_FAR3: 'furthest three targets',
     PROXIMITY_CLOSE3: 'closest three targets',
+    PROXIMITY_FAR4: 'furthest four targets',
+    PROXIMITY_CLOSE4: 'closest four targets',
     DIRECTIONAL: 'directional',
     ARENA: 'arena',
     GAZE: 'gaze'

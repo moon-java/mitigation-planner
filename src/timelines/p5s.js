@@ -1,0 +1,536 @@
+import { damageTypes, targets } from '../cooldowns/constants';
+
+export const p5sInfo =
+{
+    name: "Abyssos: The Fifth Circle (Savage)",
+    abbreviation: "P5S",
+    boss: "Proto-Carbuncle",
+    length: 598,
+    level: 90
+}
+
+export const p5sSkills =
+{
+    sonic_howl: {
+        id: "sonic_howl",
+        name: "Sonic Howl",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Raidwide",
+    },
+    ruby_glow: {
+        id: "ruby_glow",
+        name: "Ruby Glow",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Heavy-hitting raidwide",
+    },
+    topaz_stones: {
+        id: "topaz_stones",
+        name: "Topaz Stones",
+        damageType: damageTypes.NONE,
+        target: targets.ARENA,
+        avoidable: false,
+        notes: "Spawns topaz stones",
+    },
+    topaz_ray_ruby_reflection: {
+        id: "topaz_ray_ruby_reflection",
+        name: "Topaz Ray/Ruby Reflection",
+        damageType: damageTypes.MAGIC,
+        target: targets.ARENA,
+        avoidable: true,
+        notes: "Topaz stone AoEs go off (ray) and reflect throughout their cells (reflection)",
+    },
+    venomous_mass: {
+        id: "venomous_mass",
+        name: "Venomous Mass",
+        damageType: damageTypes.MAGIC,
+        target: targets.MT,
+        avoidable: false,
+        tankbuster: true,
+        notes: "Tankbuster with bleed & vuln up; requires swap",
+    },
+    toxic_crunch: {
+        id: "toxic_crunch",
+        name: "Toxic Crunch",
+        damageType: damageTypes.PHYS,
+        target: targets.MT,
+        avoidable: false,
+        tankbuster: true,
+        notes: "Tankbuster with bleed",
+    },
+    poison_puddles_resolve: {
+        id: "poison_puddles_resolve",
+        name: "Poison Puddles Resolve",
+        damageType: damageTypes.MAGIC,
+        target: targets.ARENA,
+        avoidable: false,
+        notes: "Poison puddles resolve, requiring 2 people standing in each or an add will spawn",
+    },
+    double_rush_1: {
+        id: "double_rush_1",
+        name: "Double Rush",
+        damageType: damageTypes.PHYS,
+        target: targets.ARENA,
+        avoidable: false,
+        notes: "Boss dashes to a corner, stand behind",
+    },
+    double_rush_2: {
+        id: "double_rush_2",
+        name: "Double Rush",
+        damageType: damageTypes.PHYS,
+        target: targets.ARENA,
+        avoidable: false,
+        notes: "Boss dashes to diagonally opposite corner, deals heavy damage with knockback",
+    },
+    venom_surge_squall: {
+        id: "venom_surge_squall",
+        name: "Venom Surge/Squall",
+        damageType: damageTypes.NONE,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Surge = light party stacks first, squall = spread first",
+    },
+    venom_pool_rain: {
+        id: "venom_pool_rain",
+        name: "Venom Pool/Rain",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Light party stacks or spread AoEs",
+    },
+    venom_drops: {
+        id: "venom_drops",
+        name: "Venom Drops",
+        damageType: damageTypes.MAGIC,
+        target: targets.ARENA,
+        avoidable: true,
+        notes: "Avoidable baited AoEs on all party members",
+    },
+    tail_claw: {
+        id: "tail_claw",
+        name: "Claw to Tail/Tail to Claw",
+        damageType: damageTypes.PHYS,
+        target: targets.DIRECTIONAL,
+        avoidable: true,
+        notes: "Claw = six cleaves hitting everything in front of boss, tail = one cleave behind boss",
+    },
+    starving_stampede: {
+        id: "starving_stampede",
+        name: "Starving Stampede",
+        damageType: damageTypes.PHYS,
+        target: targets.ARENA,
+        avoidable: true,
+        notes: "Large AoEs around pillars that boss jumps to in order indicated by teeth marker, anyone hit will be stunned & eaten",
+    },
+    devour: {
+        id: "devour",
+        name: "Devour",
+        damageType: damageTypes.PHYS,
+        target: targets.PARTY,
+        avoidable: true,
+        notes: "Anyone hit by Starving Stampede is eaten and killed",
+    },
+    venom_pool: {
+        id: "venom_pool",
+        name: "Venom Pool",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Light party stacks",
+    },
+    raging_claw_searing_ray: {
+        id: "raging_claw_searing_ray",
+        name: "Raging Claw/Searing Ray",
+        damageType: damageTypes.MAGIC,
+        target: targets.DIRECTIONAL,
+        avoidable: true,
+        notes: "Boss cleaves everything in front of it; Searing Ray will be stopped & reflected back by ruby cell wall, Raging Claw will not",
+    },
+    sonic_shatter: {
+        id: "sonic_shatter",
+        name: "Sonic Shatter",
+        damageType: damageTypes.MAGIC,
+        target: targets.PARTY,
+        avoidable: false,
+        notes: "Raidwide",
+    },
+    acidic_slaver: {
+        id: "acidic_slaver",
+        name: "Acidic Slaver",
+        damageType: damageTypes.ENRAGE,
+        target: targets.PARTY,
+        avoidable: false,
+    },
+}
+
+export const p5sTimeline =
+    [
+        {
+            ...p5sSkills["sonic_howl"],
+            startTime: 10,
+            endTime: 15,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 17,
+            endTime: 22,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 25,
+            endTime: 29,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 30,
+            endTime: 44,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 51,
+            endTime: 57,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 58,
+            endTime: 64,
+        },
+        {
+            ...p5sSkills["poison_puddles_resolve"],
+            startTime: 84,
+            endTime: 85,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 89,
+            endTime: 95,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 96,
+            endTime: 101,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 110,
+            endTime: 115,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 119,
+            endTime: 122,
+        },
+        {
+            ...p5sSkills["double_rush_1"],
+            startTime: 127,
+            endTime: 133,
+        },
+        {
+            ...p5sSkills["double_rush_2"],
+            startTime: 134,
+            endTime: 135,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 124,
+            endTime: 137,
+        },
+        {
+            ...p5sSkills["sonic_howl"],
+            startTime: 141,
+            endTime: 146,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 154,
+            endTime: 159,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 161,
+            endTime: 165,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 167,
+            endTime: 176,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 169,
+            endTime: 178,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 172,
+            endTime: 181,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 174,
+            endTime: 183,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 187,
+            endTime: 193,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 195,
+            endTime: 200,
+        },
+        {
+            ...p5sSkills["venom_surge_squall"],
+            startTime: 206,
+            endTime: 211,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 214,
+            endTime: 215,
+        },
+        {
+            ...p5sSkills["venom_drops"],
+            startTime: 218,
+            endTime: 221,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 223,
+            endTime: 224,
+        },
+        {
+            ...p5sSkills["tail_claw"],
+            startTime: 226,
+            endTime: 236,
+        },
+        {
+            ...p5sSkills["starving_stampede"],
+            startTime: 255,
+            endTime: 266,
+        },
+        {
+            ...p5sSkills["poison_puddles_resolve"],
+            startTime: 265,
+            endTime: 269,
+        },
+        {
+            ...p5sSkills["devour"],
+            startTime: 271,
+            endTime: 272,
+        },
+        {
+            ...p5sSkills["sonic_howl"],
+            startTime: 280,
+            endTime: 285,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 288,
+            endTime: 292,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 295,
+            endTime: 299,
+        },
+        {
+            ...p5sSkills["venom_pool"],
+            startTime: 301,
+            endTime: 309,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 300,
+            endTime: 312,
+        },
+        {
+            ...p5sSkills["raging_claw_searing_ray"],
+            startTime: 313,
+            endTime: 318,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 327,
+            endTime: 333,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 334,
+            endTime: 339,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 347,
+            endTime: 352,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 356,
+            endTime: 360,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 361,
+            endTime: 374,
+        },
+        {
+            ...p5sSkills["venom_surge_squall"],
+            startTime: 369,
+            endTime: 374,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 377,
+            endTime: 378,
+        },
+        {
+            ...p5sSkills["venom_drops"],
+            startTime: 381,
+            endTime: 384,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 386,
+            endTime: 387,
+        },
+        {
+            ...p5sSkills["poison_puddles_resolve"],
+            startTime: 394,
+            endTime: 398,
+        },
+        {
+            ...p5sSkills["tail_claw"],
+            startTime: 399,
+            endTime: 404,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 412,
+            endTime: 418,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 419,
+            endTime: 424,
+        },
+        {
+            ...p5sSkills["sonic_howl"],
+            startTime: 430,
+            endTime: 435,
+        },
+        {
+            ...p5sSkills["ruby_glow"],
+            startTime: 438,
+            endTime: 443,
+        },
+        {
+            ...p5sSkills["topaz_stones"],
+            startTime: 445,
+            endTime: 449,
+        },
+        {
+            ...p5sSkills["venom_pool"],
+            startTime: 451,
+            endTime: 460,
+        },
+        {
+            ...p5sSkills["topaz_ray_ruby_reflection"],
+            startTime: 450,
+            endTime: 463,
+        },
+        {
+            ...p5sSkills["double_rush_1"],
+            startTime: 467,
+            endTime: 473,
+        },
+        {
+            ...p5sSkills["double_rush_2"],
+            startTime: 474,
+            endTime: 475,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 478,
+            endTime: 483,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 485,
+            endTime: 490,
+        },
+        {
+            ...p5sSkills["sonic_howl"],
+            startTime: 499,
+            endTime: 504,
+        },
+        {
+            ...p5sSkills["venom_surge_squall"],
+            startTime: 507,
+            endTime: 512,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 515,
+            endTime: 516,
+        },
+        {
+            ...p5sSkills["venom_drops"],
+            startTime: 519,
+            endTime: 522,
+        },
+        {
+            ...p5sSkills["venom_pool_rain"],
+            startTime: 524,
+            endTime: 525,
+        },
+        {
+            ...p5sSkills["tail_claw"],
+            startTime: 525,
+            endTime: 531,
+        },
+        {
+            ...p5sSkills["venomous_mass"],
+            startTime: 539,
+            endTime: 545,
+        },
+        {
+            ...p5sSkills["toxic_crunch"],
+            startTime: 546,
+            endTime: 551,
+        },
+        {
+            ...p5sSkills["sonic_shatter"],
+            startTime: 561,
+            endTime: 566,
+        },
+        {
+            ...p5sSkills["sonic_shatter"],
+            startTime: 566,
+            endTime: 569,
+        },
+        {
+            ...p5sSkills["sonic_shatter"],
+            startTime: 569,
+            endTime: 572,
+        },
+        {
+            ...p5sSkills["sonic_shatter"],
+            startTime: 572,
+            endTime: 575,
+        },
+        {
+            ...p5sSkills["sonic_shatter"],
+            startTime: 575,
+            endTime: 578,
+        },
+        {
+            ...p5sSkills["acidic_slaver"],
+            startTime: 593,
+            endTime: 598,
+        },
+    ]

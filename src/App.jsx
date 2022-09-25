@@ -74,7 +74,7 @@ const App = () => {
         })
     }
     else {
-        tempTimelines = [timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5], timelines[6]];
+        tempTimelines = [timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5]];
     }
 
     const [activePartyMember, setActivePartyMember] = useState(0);
