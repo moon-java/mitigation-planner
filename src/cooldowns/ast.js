@@ -11,25 +11,53 @@ export const astSkills =
         imgFile: skillIcons['essential_dignity'].icon,
         imgColor: skillIcons['essential_dignity'].color,
         level: 15,
+        maxApplicableLevel: 77,
         cooldown: 40,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 400,
-                duration: 0
-            },
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.OTHER,
-                note: "Potency increases up to 900 as target HP decreases, maxing out at <= 30% max",
-                duration: 0
-            },
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 400,
+                    duration: 0
+                },
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    note: "Potency increases up to 900 as target HP decreases, maxing out at <= 30% max HP",
+                    duration: 0
+                },
+            ]
+    },
+    {
+        skillId: 'enhanced_essential_dignity',
+        name: 'Enhanced Essential Dignity',
+        imgFile: skillIcons['essential_dignity'].icon,
+        imgColor: skillIcons['essential_dignity'].color,
+        level: 78,
+        maxConcurrentUses: 2,
+        cooldown: 40,
+        effects:
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 400,
+                    duration: 0
+                },
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    note: "Potency increases up to 900 as target HP decreases, maxing out at <= 30% max HP",
+                    duration: 0
+                },
+            ]
     },
     {
         skillId: 'synastry',
@@ -39,15 +67,15 @@ export const astSkills =
         level: 50,
         cooldown: 120,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.OTHER,
-                duration: 20,
-                note: "Each single-target healing spell cast on self or others heals target for 40% of original spell"
-            },
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    duration: 20,
+                    note: "Each single-target healing spell cast on self or others heals target for 40% of original spell"
+                },
+            ]
     },
     {
         skillId: 'collective_unconscious',
@@ -57,24 +85,24 @@ export const astSkills =
         level: 58,
         cooldown: 60,
         effects:
-        [
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.ALL,
-                effect: effects.DMG_IN,
-                valueType: valueTypes.PERCENT,
-                value: 10,
-                duration: 18
-            },
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.REGEN,
-                valueType: valueTypes.POTENCY,
-                value: 100,
-                duration: 15
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.ALL,
+                    effect: effects.DMG_IN,
+                    valueType: valueTypes.PERCENT,
+                    value: 10,
+                    duration: 18
+                },
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.REGEN,
+                    valueType: valueTypes.POTENCY,
+                    value: 100,
+                    duration: 15
+                }
+            ]
     },
     {
         skillId: 'celestial_opposition',
@@ -84,24 +112,24 @@ export const astSkills =
         level: 60,
         cooldown: 60,
         effects:
-        [
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 200,
-                duration: 0
-            },
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.REGEN,
-                valueType: valueTypes.POTENCY,
-                value: 100,
-                duration: 15
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 200,
+                    duration: 0
+                },
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.REGEN,
+                    valueType: valueTypes.POTENCY,
+                    value: 100,
+                    duration: 15
+                }
+            ]
     },
     {
         skillId: 'earthly_star',
@@ -111,15 +139,15 @@ export const astSkills =
         level: 62,
         cooldown: 60,
         effects:
-        [
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.OTHER,
-                note: "Heals for 540 potency if detonated in under 10s; heals for 720 potency if detonated after 10s",
-                duration: 20
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    note: "Heals for 540 potency if detonated in under 10s; heals for 720 potency if detonated after 10s",
+                    duration: 20
+                }
+            ]
     },
     {
         skillId: 'celestial_intersection',
@@ -130,24 +158,24 @@ export const astSkills =
         maxApplicableLevel: 87,
         cooldown: 30,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 200,
-                duration: 0
-            },
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.SHIELD,
-                valueType: valueTypes.POTENCY,
-                value: 400,
-                duration: 30
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 200,
+                    duration: 0
+                },
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.SHIELD,
+                    valueType: valueTypes.POTENCY,
+                    value: 400,
+                    duration: 30
+                }
+            ]
     },
     {
         skillId: 'enhanced_celestial_intersection',
@@ -158,24 +186,24 @@ export const astSkills =
         cooldown: 30,
         maxConcurrentUses: 2,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 200,
-                duration: 0
-            },
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.SHIELD,
-                valueType: valueTypes.POTENCY,
-                value: 400,
-                duration: 30
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 200,
+                    duration: 0
+                },
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.SHIELD,
+                    valueType: valueTypes.POTENCY,
+                    value: 400,
+                    duration: 30
+                }
+            ]
     },
     {
         skillId: 'horoscope',
@@ -185,16 +213,16 @@ export const astSkills =
         level: 76,
         cooldown: 30,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.DELAYED_HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 400,
-                duration: 30
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.DELAYED_HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 400,
+                    duration: 30
+                }
+            ]
     },
     {
         skillId: 'neutral_sect',
@@ -204,23 +232,23 @@ export const astSkills =
         level: 80,
         cooldown: 120,
         effects:
-        [
-            {
-                target: targets.SELF,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL_OUT,
-                valueType: valueTypes.PERCENT,
-                value: 20,
-                duration: 20
-            },
-            {
-                target: targets.SELF,
-                damageType: damageTypes.NONE,
-                effect: effects.OTHER,
-                note: "Add 250% shield to Aspected Benefic and 125% shield to Aspected Helios",
-                duration: 30
-            }
-        ]
+            [
+                {
+                    target: targets.SELF,
+                    damageType: damageTypes.NONE,
+                    effect: effects.HEAL_OUT,
+                    valueType: valueTypes.PERCENT,
+                    value: 20,
+                    duration: 20
+                },
+                {
+                    target: targets.SELF,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    note: "Add 250% shield to Aspected Benefic and 125% shield to Aspected Helios",
+                    duration: 30
+                }
+            ]
     },
     {
         skillId: 'exaltation',
@@ -230,24 +258,24 @@ export const astSkills =
         level: 86,
         cooldown: 60,
         effects:
-        [
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.ALL,
-                effect: effects.DMG_IN,
-                valueType: valueTypes.PERCENT,
-                value: 10,
-                duration: 8
-            },
-            {
-                target: targets.PARTY_MEMBER,
-                damageType: damageTypes.NONE,
-                effect: effects.DELAYED_HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 500,
-                duration: 8
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.ALL,
+                    effect: effects.DMG_IN,
+                    valueType: valueTypes.PERCENT,
+                    value: 10,
+                    duration: 8
+                },
+                {
+                    target: targets.PARTY_MEMBER,
+                    damageType: damageTypes.NONE,
+                    effect: effects.DELAYED_HEAL,
+                    valueType: valueTypes.POTENCY,
+                    value: 500,
+                    duration: 8
+                }
+            ]
     },
     {
         skillId: 'macrocosmos',
@@ -257,15 +285,15 @@ export const astSkills =
         level: 90,
         cooldown: 180,
         effects:
-        [
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.OTHER,
-                note: "Compiles damage taken while active, heals for 50% damage taken + 200 potency upon expiration",
-                duration: 15
-            }
-        ]
+            [
+                {
+                    target: targets.PARTY,
+                    damageType: damageTypes.NONE,
+                    effect: effects.OTHER,
+                    note: "Compiles damage taken while active, heals for 50% damage taken + 200 potency upon expiration",
+                    duration: 15
+                }
+            ]
     },
 ]
 
