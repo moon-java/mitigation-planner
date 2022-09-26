@@ -211,7 +211,7 @@ export const astSkills =
         imgFile: skillIcons['horoscope'].icon,
         imgColor: skillIcons['horoscope'].color,
         level: 76,
-        cooldown: 30,
+        cooldown: 60,
         effects:
             [
                 {
