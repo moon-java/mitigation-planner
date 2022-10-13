@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './PartyMemberElement.module.css';
 import JobSelector from '../Dropdowns/JobSelector';
-import icons from '../icons';
+import icons from '../../../assets/icons/icons';
+import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
 
 const PartyMemberElement = props => {
     const onClick = () => {
@@ -15,12 +16,13 @@ const PartyMemberElement = props => {
 
     const bgColor = props.activePartyMember === props.person.partyMemberId ? '#918966' : '#3e3f41';
     const icon = icons[props.person.job];
-
     return (
         <div className={classes.PartyMemberElement} onClick={onClick}
-            style={{ textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}` }}>
+            style={{ textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}`, width: `${PARTY_MEMBER_ELEMENT_WIDTH}px`, height: `${props.height}px` }}>
+                <div style={{width: `${PARTY_MEMBER_ELEMENT_WIDTH - 12}px`, height: `100%`}}>
             <img src={icon} width="30px" height="30px" padding="10px" /> <br />
             <JobSelector onJobChange={onJobChange} selectedJob={props.person.job} />
+            </div>
         </div>
     )
 }

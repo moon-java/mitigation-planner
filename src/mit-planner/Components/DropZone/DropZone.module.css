@@ -10,7 +10,7 @@
     background: rgba(176, 196, 222, 1);
 }
 
-.Day {
+.InnerZone {
     width: 100%;
     text-align: center;
     position: absolute;
@@ -20,5 +20,4 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-    border-bottom: 1px solid black;
 }

@@ -1,21 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import LayoutGrid from '../Components/LayoutGrid/LayoutGrid';
-
 import classes from './Planner.module.css';
-import { damageTypes, targets, effects } from '../../cooldowns/constants';
-import { PARTY_VIEW_SIDEBAR_WIDTH } from '../Constants/UIConstants';
+import { damageTypes, targets, effects } from '../../../cooldowns/constants';
+import { SEC_WIDTH, PARTY_VIEW_SIDEBAR_WIDTH, PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
+import FightTimeline from '../FightTimeline/FightTimeline';
+import PartyMemberTimelines from '../PartyMemberTimelines/PartyMemberTimelines';
 
-import { useHorizontalScroll } from "../Helpers/SideScrollHook";
-
+import { useHorizontalScroll } from "../../Helpers/SideScrollHook";
 
 // Component
 export const Planner = props => {
 
     const baseIndex = 100000;
-    const PlannerRef = useRef();
-    const secWidth = 20;
 
     const [items, setItems] = useState([]);
     const [PlannerWidth, setPlannerWidth] = useState(0);
@@ -36,24 +33,25 @@ export const Planner = props => {
     // Loop inside props.items to assign an ID if missing
 
     useEffect(() => {
-        const verifiedItems = [];
+        const verifiedItems = [[], [], [] ,[] ,[] ,[] ,[], []];
+        props.items.forEach((arr, ind) => {
+            arr.forEach((item, index) => {
+                const tmpItem = {
+                    ...item,
+                    startTime: item.startTime ? item.startTime : null,
+                    endTime: item.endTime ? item.endTime : null
+                }
 
-        props.items.forEach((item, index) => {
-            const tmpItem = {
-                ...item,
-                startTime: item.startTime ? item.startTime : null,
-                endTime: item.endTime ? item.endTime : null
-            }
-
-            if (item.id) {
-                verifiedItems.push(tmpItem);
-            }
-            else {
-                verifiedItems.push({
-                    ...tmpItem,
-                    id: baseIndex + index
-                })
-            }
+                if (item.id) {
+                    verifiedItems[ind][index] = tmpItem;
+                }
+                else {
+                    verifiedItems[ind][index] = {
+                        ...tmpItem,
+                        id: baseIndex + index
+                    };
+                }
+            });
         });
 
         setItems(verifiedItems);
@@ -71,15 +69,16 @@ export const Planner = props => {
 
     const updateScreenSizeHandler = () => {
         // Update the state with the width of the timneline width
-        const width = /*props.partyView ? props.duration * secWidth + PARTY_VIEW_SIDEBAR_WIDTH + 2 :*/
-            (props.duration + Math.abs(props.prepullTime)) * secWidth;
+        const width = /*props.partyView ? props.duration * SEC_WIDTH + PARTY_VIEW_SIDEBAR_WIDTH + 2 :*/
+            (props.duration + Math.abs(props.prepullTime)) * SEC_WIDTH ;
         setPlannerWidth(width);
 
     }
 
     const canDropItem = (item) => {
         let instanceCount = 0;
-        items.forEach(existingItem => {
+        let pID = item.partyMemberId;
+        items[pID].forEach(existingItem => {
             if (item.id !== existingItem.id &&
                 item.skillId === existingItem.skillId &&
                 item.partyMemberId === existingItem.partyMemberId) {
@@ -97,10 +96,9 @@ export const Planner = props => {
         return instanceCount < item.maxConcurrentUses;
     }
 
-    const onDropHandler = (item, propagate) => {
-        // Parsing data from dropped component
-        //const item = JSON.parse(event.dataTransfer.getData("text"));
+    const onDropHandler = (item) => {
         const newItems = [...items];
+        let pID = item.partyMemberId;
         let existingId = -1;
         let tmpItem = {
             ...item,
@@ -111,20 +109,21 @@ export const Planner = props => {
         if (canDrop) {
             //Check if the item is updated or created
             if (item.id) {
-                existingId = newItems.findIndex(i => i.id === item.id);
+                existingId = newItems[pID].findIndex(i => i.id === item.id);
             }
-
             // Add the new item to the item array only if it is not already present
             if (existingId === -1) {
-                newItems.push(tmpItem);
-                if (props.options.callBacks.onAdd && propagate) props.options.callBacks.onAdd({ item: { ...tmpItem }, items: [...newItems] });
+                newItems[pID].push(tmpItem);
+                if (props.options.callBacks.onAdd) props.options.callBacks.onAdd({ item: { ...tmpItem }, items: [...newItems] });
             }
             else //Update item
             {
-                newItems[existingId] = tmpItem;
-                if (props.options.callBacks.onUpdate && propagate) props.options.callBacks.onUpdate({ item: { ...tmpItem }, items: [...newItems] });
+                console.log("update")
+                newItems[pID][existingId] = tmpItem;
+                if (props.options.callBacks.onUpdate) props.options.callBacks.onUpdate({ item: { ...tmpItem }, items: [...newItems] });
             }
-
+            console.log("new");
+            console.log(newItems);
             // Update state with the updated items array
             setItems(newItems);
         }
@@ -133,70 +132,77 @@ export const Planner = props => {
 
     const onRemoveItemHandler = itemID => {
         const newItems = [...items];
+        let pID = item.partyMemberId;
         let item = null;
 
-        const found = newItems.findIndex(i => i.id === itemID);
+        const found = newItems[pID].findIndex(i => i.id === itemID);
 
-        // Remove the item at the 'index' position if founded
+        // Remove the item at the 'index' position if found
         if (found !== -1) {
-            item = newItems[found];
-            newItems.splice(found, 1);
+            item = newItems[pID][found];
+            newItems[pID].splice(found, 1);
             // Update state with the new array items
             setItems(newItems);
         }
 
         if (props.options.callBacks.onRemove) props.options.callBacks.onRemove({ item: { ...item }, items: [...newItems] });
     }
+    console.log(props);
 
     const calculateMitigation = time => {
+        console.log("start");
         let mit = {
             partyMit: { all: 100, magic: 100, phys: 100 },
             selfMit: { all: 100, magic: 100, phys: 100 }
         }
-        props.items.forEach(item => {
-            item.effects.forEach(effect => {
-                if (effect.effect === effects.BLOCK) { return; }
-                if (item.startTime < time && (effect.duration + item.startTime) >= time) {
-                    if (effect.damageType === damageTypes.ALL) {
-                        if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY) {
-                            mit.partyMit.all *= (100 - effect.value) / 100;
-                            mit.selfMit.all *= (100 - effect.value) / 100;
+        console.log(props.items);
+        props.items.forEach(arr => {
+            arr.forEach(item => {
+                console.log(item);
+                item.effects.forEach(effect => {
+                    console.log(effect);
+                    if (effect.effect === effects.BLOCK) { return; }
+                    if (item.startTime < time && (effect.duration + item.startTime) >= time) {
+                        //debugger;
+                        if (effect.damageType === damageTypes.ALL) {
+                            if (effect.target === targets.PARTY ||
+                                effect.target === targets.ENEMY) {
+                                mit.partyMit.all *= (100 - effect.value) / 100;
+                                mit.selfMit.all *= (100 - effect.value) / 100;
+                            }
+                            else if (props.activePartyMember === item.partyMemberId) {
+                                mit.selfMit.all *= (100 - effect.value) / 100;
+                            }
                         }
-                        else if (props.activePartyMember === item.partyMemberId) {
-                            mit.selfMit.all *= (100 - effect.value) / 100;
+                        if (effect.damageType === damageTypes.MAGIC) {
+                            if (effect.target === targets.PARTY ||
+                                effect.target === targets.ENEMY) {
+                                mit.partyMit.magic *= (100 - effect.value) / 100;
+                                mit.selfMit.magic *= (100 - effect.value) / 100;
+                            }
+                            else if (props.activePartyMember === item.partyMemberId) {
+                                mit.selfMit.magic *= (100 - effect.value) / 100;
+                            }
+                        }
+                        if (effect.damageType === damageTypes.PHYS) {
+                            if (effect.target === targets.PARTY ||
+                                effect.target === targets.ENEMY) {
+                                mit.partyMit.phys *= (100 - effect.value) / 100;
+                                mit.selfMit.phys *= (100 - effect.value) / 100;
+                            }
+                            else if (props.activePartyMember === item.partyMemberId) {
+                                mit.selfMit.phys *= (100 - effect.value) / 100;
+                            }
                         }
                     }
-                    if (effect.damageType === damageTypes.MAGIC) {
-                        if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY) {
-                            mit.partyMit.magic *= (100 - effect.value) / 100;
-                            mit.selfMit.magic *= (100 - effect.value) / 100;
-                        }
-                        else if (props.activePartyMember === item.partyMemberId) {
-                            mit.selfMit.magic *= (100 - effect.value) / 100;
-                        }
-                    }
-                    if (effect.damageType === damageTypes.PHYS) {
-                        if (effect.target === targets.PARTY ||
-                            effect.target === targets.ENEMY) {
-                            mit.partyMit.phys *= (100 - effect.value) / 100;
-                            mit.selfMit.phys *= (100 - effect.value) / 100;
-                        }
-                        else if (props.activePartyMember === item.partyMemberId) {
-                            mit.selfMit.phys *= (100 - effect.value) / 100;
-                        }
-                    }
-                }
+                });
             });
         });
         return mit;
     }
 
-    // Props list to pass to the Layout component
-
     const propagatedProps = {
-        items: items,
+        allItems: items,
         width: PlannerWidth,
         onRemove: onRemoveItemHandler,
         onDrop: onDropHandler,
@@ -216,40 +222,16 @@ export const Planner = props => {
         timeline: props.timeline,
         syncTimelineHeight: syncTimelineHeight,
         timelineHeight: timelineHeight,
-        skillGridHeight: PlannerRef.current == null ? 0 : PlannerRef.current.clientHeight - timelineHeight,
         isGaugeViewEnabled: props.isGaugeViewEnabled,
         prepullTime: props.prepullTime
     }
 
     const scrollRef = useHorizontalScroll();
-    // stupid block for hiding part of timeline over party list in party list view
-    let blockDiv = props.partyView ? <div style={{
-        borderLeft: `2px solid #c0c0c0`,
-        borderRight: `2px solid #c0c0c0`,
-        borderBottom: `2px solid #c0c0c0`,
-        position: 'absolute',
-        zIndex: `10`,
-        backgroundColor: `#3e3f41`,
-        height: `${timelineHeight}px`,
-        width: `${PARTY_VIEW_SIDEBAR_WIDTH}px`
-    }} /> : null;
-
     return (
-        <>
-            {blockDiv}
-            <div style={{ overflowX: props.scroll ? 'scroll' : 'hidden' }} ref={scrollRef}>
-                <div
-                    className={`${props.className}`}
-                    style={{
-                        overflowY: 'clip',
-                        ...props.style
-                    }}
-                    ref={PlannerRef}
-                >
-                    <LayoutGrid {...propagatedProps} />
-                </div>
+            <div className={classes.Planner} style={{ overflowX: 'scroll'}}>
+                <FightTimeline {...propagatedProps} />
+                <PartyMemberTimelines {...propagatedProps} />
             </div>
-        </>
     )
 }
 

@@ -1,6 +1,7 @@
 export const ELEMENT = 'ELEMENT';
-export const SEC_WIDTH = '20px';
+export const SEC_WIDTH = 20;
 export const PARTY_VIEW_SIDEBAR_WIDTH = 220;
+export const PARTY_MEMBER_ELEMENT_WIDTH = 220;
 
 export const PHYS_TB_BG = '#d63731';
 export const PHYS_TB_BORDER = '#a60701';

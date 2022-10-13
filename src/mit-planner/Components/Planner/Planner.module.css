@@ -1,8 +1,7 @@
-.PlannerDefault  {
+.Planner  {
     position: relative;
     width: auto;
-    height: calc(100% + 10px);
-    min-height: 600px;
+    height: 300px;
     transition: all .3s ease-in;
     box-sizing: content-box;
 }

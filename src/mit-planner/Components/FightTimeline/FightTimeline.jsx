@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import { TimelineEvent } from '../TimelineEvent/TimelineEvent';
 import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBasicElement';
-import classes from './TimelineGrid.module.css';
+import classes from './FightTimeline.module.css';
 import useResizeAware from 'react-resize-aware';
+import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
 
-const TimelineGrid = props => {
-
+const FightTimeline = props => {
+    console.log("timelineprops");
+    console.log(props);
     const [gridItems, setGridItems] = useState();
     const [resizeListener, sizes] = useResizeAware();
 
@@ -18,7 +20,7 @@ const TimelineGrid = props => {
     const getGridTemplateColumns = () => {
         const columnTemplate = [];
         for (let i = props.prepullTime; i < props.duration; i++) {
-            columnTemplate.push(props.width / (props.duration + Math.abs(props.prepullTime)) + `px`);
+            columnTemplate.push('20px');
         }
 
         return columnTemplate
@@ -27,18 +29,45 @@ const TimelineGrid = props => {
     const style = {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
+        display: 'grid'
     }
 
+    const fightTimelineGrid = [];
+
+    for (let i = props.prepullTime + 1; i <= props.duration; i++) {
+
+        let fightTimelineGridCellStyle = {
+            width: '20px',
+            backgroundColor: `#575a5c`,
+            borderBottom: `1px solid #404040`,
+            height: `100%`,
+            gridColumn: `${i+Math.abs(props.prepullTime)} / ${i+Math.abs(props.prepullTime)}`,
+            gridRow: '0'
+        };
+        if (i % 5 === 0) {
+            fightTimelineGridCellStyle = { ...fightTimelineGridCellStyle, borderRight: 'solid 1.5px #707070', boxSizing: 'border-box' };
+        }
+        else {
+            fightTimelineGridCellStyle = { ...fightTimelineGridCellStyle, borderRight: 'solid 1.5px #404040', boxSizing: 'border-box' };
+        }
+        let innerDiv = "";
+        if (i % 60 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i / 60}m</div>; }
+        else if (i % 15 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i % 60}</div>; }
+
+        fightTimelineGrid.push(
+            <div
+                style={fightTimelineGridCellStyle}
+                key={`timeline_${i}`}>
+                {innerDiv}
+            </div>)
+    }
     useEffect(() => {
         const newGridItems = props.timeline.map((item, index) => {
-
             const position = item.startTime + Math.abs(props.prepullTime);
-
             return (
                 <div
                     style={{
-                        gridColumn: `${position} / ${position + (item.endTime - item.startTime)}`,
-                        gridRow: 0
+                        gridColumn: `${position} / ${position + (item.endTime - item.startTime)}`
                     }}
                     key={`item_${item.id}_${index}`}
                 >
@@ -59,31 +88,43 @@ const TimelineGrid = props => {
         });
 
         setGridItems(newGridItems);
-    }, [props.items, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
-
+    }, [props.allItems, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
+    let left = PARTY_MEMBER_ELEMENT_WIDTH + 12;
     return (
         <>
             <div
-                className={classes.TimelineGrid}
+                className={classes.FightTimeline}
                 style={{
                     ...style, ...props.style,
                     width: props.width,
-                    left: props.leftWidth + 0.5
+                    gridAutoFlow: 'column',
+                    paddingTop: '8px',
+                    marginLeft: `${left}px`,
                 }}
             >
                 {resizeListener}
                 {gridItems}
+                <div className={classes.FightTimeline}
+                style={{
+                    ...style, ...props.style,
+                    width: props.width,
+                    position: 'absolute',
+                    paddingTop: '-8px',
+                    height: `100%`
+                }}>
+                    {fightTimelineGrid}
+                </div>
             </div>
         </>
     );
 }
 
-TimelineGrid.defaultProps = {
+FightTimeline.defaultProps = {
     items: [],
     grouped: false
 }
 
-TimelineGrid.propTypes = {
+FightTimeline.propTypes = {
     items: PropTypes.array,
     width: PropTypes.number,
     onRemove: PropTypes.func,
@@ -96,4 +137,4 @@ TimelineGrid.propTypes = {
     grouped: PropTypes.bool
 }
 
-export default TimelineGrid;
+export default FightTimeline;

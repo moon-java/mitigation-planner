@@ -15,17 +15,19 @@ const DropZone = props => {
                 updatedItem = initItem(item);
             }
 
-            props.onDrop(updatedItem, true);
+            props.onDrop(updatedItem);
         },
         hover: (item, monitor) => {
-            if (!hovered && item.moving) {
-                let updatedItem = item;
-                if (item.moving) {
-                    updatedItem = moveItem(item);
+            if (item.partyMemberId == props.partyMemberId)
+            {
+                if (!hovered && item.moving) {
+                    let updatedItem = item;
+                    if (item.moving) {
+                        updatedItem = moveItem(item);
+                    }
+                    props.onDrop(updatedItem);
+                    setHovered(true);
                 }
-
-                props.onDrop(updatedItem);
-                setHovered(true);
             }
         },
         collect: monitor => ({
@@ -49,7 +51,7 @@ const DropZone = props => {
         item.effects.forEach(effect => {
             effect.endTime += diff;
         })
-
+        console.log(item);
         return item;
     }
 
@@ -74,7 +76,7 @@ const DropZone = props => {
             style={props.style}
         >
             <div
-                className={classes.Day}
+                className={classes.InnerZone}
                 style={{ color: isOver ? 'white' : '#7787a8' }}
             >
             </div>
