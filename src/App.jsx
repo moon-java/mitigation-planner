@@ -241,8 +241,6 @@ const App = () => {
     const updateHandler = ({ item, items }) => {
         setTimelineItems(items);
         localStorage.setItem('timelineItems', JSON.stringify(formatItemsForExport(items)));
-        console.log("app");
-        console.log(items);
     }
 
     const partyMemberClickHandler = (partyMemberId) => {

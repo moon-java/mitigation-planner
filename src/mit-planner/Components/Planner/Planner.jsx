@@ -118,24 +118,20 @@ export const Planner = props => {
             }
             else //Update item
             {
-                console.log("update")
                 newItems[pID][existingId] = tmpItem;
                 if (props.options.callBacks.onUpdate) props.options.callBacks.onUpdate({ item: { ...tmpItem }, items: [...newItems] });
             }
-            console.log("new");
-            console.log(newItems);
             // Update state with the updated items array
             setItems(newItems);
         }
 
     }
 
-    const onRemoveItemHandler = itemID => {
+    const onRemoveItemHandler = item => {
         const newItems = [...items];
         let pID = item.partyMemberId;
-        let item = null;
 
-        const found = newItems[pID].findIndex(i => i.id === itemID);
+        const found = newItems[pID].findIndex(i => i.id === item.id);
 
         // Remove the item at the 'index' position if found
         if (found !== -1) {
@@ -147,23 +143,17 @@ export const Planner = props => {
 
         if (props.options.callBacks.onRemove) props.options.callBacks.onRemove({ item: { ...item }, items: [...newItems] });
     }
-    console.log(props);
 
     const calculateMitigation = time => {
-        console.log("start");
         let mit = {
             partyMit: { all: 100, magic: 100, phys: 100 },
             selfMit: { all: 100, magic: 100, phys: 100 }
         }
-        console.log(props.items);
         props.items.forEach(arr => {
             arr.forEach(item => {
-                console.log(item);
                 item.effects.forEach(effect => {
-                    console.log(effect);
                     if (effect.effect === effects.BLOCK) { return; }
                     if (item.startTime < time && (effect.duration + item.startTime) >= time) {
-                        //debugger;
                         if (effect.damageType === damageTypes.ALL) {
                             if (effect.target === targets.PARTY ||
                                 effect.target === targets.ENEMY) {

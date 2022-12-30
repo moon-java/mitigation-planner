@@ -42,32 +42,13 @@ const SkillsTimeline = props => {
         if (i % 60 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i / 60}m</div>; }
         else if (i % 15 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i % 60}</div>; }
 
-        if (props.person.partyMemberId == props.activePartyMember)
-        {
-            skillsGridCellStyle = {...skillsGridCellStyle, width: '20px'}
-            skillsDropGrid.push(
-                <DropZone
-                    {...props}
-                    style={skillsGridCellStyle}
-                    key={`grid_${i}`}
-                    time={i}
-                    canDropItem={props.canDropItem}
-                    items={props.items}
-                    partyMemberId={props.person.partyMemberId}
-                />
-            )
-        }
-        else
-        {
-            skillsGridCellStyle = {...skillsGridCellStyle, width: '18.5px'}
-            skillsDropGrid.push(
-                <div
-                    style={skillsGridCellStyle}
-                    key={`grid_${i}`}
-                />
-            )
-        }
 
+        skillsGridCellStyle = {...skillsGridCellStyle, width: '20px'}
+        skillsDropGrid.push(
+            <div
+                style={skillsGridCellStyle}
+            />
+        )
     }
 
     let style = {
@@ -87,7 +68,6 @@ const SkillsTimeline = props => {
 
     let gaugeDivs = [];
     if (props.person.hasGauge && props.isGaugeViewEnabled) {
-        //debugger;
         let gaugeEvents = [];
         if (props.person.passiveGaugeTimer > 0) {
             for (let i = props.person.passiveGaugeTimer; i < props.duration; i += props.person.passiveGaugeTimer) {
@@ -175,7 +155,7 @@ const SkillsTimeline = props => {
                         innerElement
                         customElementType={customInnerElementType}
                         style={{ marginLeft: 0 }}
-                        remove={() => onRemove(item.id)}
+                        remove={() => props.onRemove(item)}
                         onTimeline={true}
                     />
                 </div>
@@ -202,6 +182,19 @@ const SkillsTimeline = props => {
                     style={{ ...style2, ...props.style, display: 'grid', width: '100%', minHeight: '100px', height: `${props.height}px`, position: "absolute", marginTop: "1px", zIndex: "0" }}
                 >
                     {gaugeDivs}
+                </div>
+                <div
+                    id={"DropZone" + props.person.partyMemberId}
+                    className={classes.GaugeTimeline}
+                    style={{width: '100%', minHeight: '100px', height: `${props.height}px`, position: "absolute", marginTop: "1px", zIndex: "1" }}
+                >
+                <DropZone
+                    {...props}
+                    canDropItem={props.person.partyMemberId == props.activePartyMember ? props.canDropItem : false}
+                    items={props.items}
+                    partyMemberId={props.person.partyMemberId}
+                    parentDivId={"DropZone" + props.person.partyMemberId}
+                />
                 </div>
                 </div>
                 </div>

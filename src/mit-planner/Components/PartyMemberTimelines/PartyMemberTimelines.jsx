@@ -19,6 +19,7 @@ const PartyMemberTimelines = props => {
                     partyMemberId={i}
                     onDrop={props.onDrop}
                     onClick={props.onPartyMemberClick}
+                    onRemove={props.onRemove}
                     onPartyMemberJobChange={props.onPartyMemberJobChange}
                     activePartyMember={props.activePartyMember}
                     width={props.width}

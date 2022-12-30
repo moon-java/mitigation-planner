@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-.DropZoneOver {
-    background: rgba(176, 196, 222, 1);
-}
-
 .InnerZone {
     width: 100%;
     text-align: center;

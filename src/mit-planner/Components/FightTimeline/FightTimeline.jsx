@@ -8,8 +8,6 @@ import useResizeAware from 'react-resize-aware';
 import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
 
 const FightTimeline = props => {
-    console.log("timelineprops");
-    console.log(props);
     const [gridItems, setGridItems] = useState();
     const [resizeListener, sizes] = useResizeAware();
 
