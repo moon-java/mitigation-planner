@@ -13,7 +13,7 @@ const DropZone = props => {
             const pardiv = document.getElementById("DropZone" + props.partyMemberId);
             if (monitor.getClientOffset() != null)
             {
-                const startTime = Math.ceil((monitor.getClientOffset().x - pardiv.getBoundingClientRect().x) / 20);
+                const startTime = Math.ceil((monitor.getClientOffset().x - pardiv.getBoundingClientRect().x) / 20) + props.prepullTime;
                 let updatedItem = item;
                 if (!item.resizing && !item.moving) {
                     updatedItem = initItem(item, startTime);
@@ -25,7 +25,7 @@ const DropZone = props => {
         },
         hover: (item, monitor) => {
             const pardiv = document.getElementById("DropZone" + props.partyMemberId);
-            const startTime = Math.ceil((monitor.getClientOffset().x - pardiv.getBoundingClientRect().x) / 20);
+            const startTime = Math.ceil((monitor.getClientOffset().x - pardiv.getBoundingClientRect().x) / 20) + props.prepullTime;
             if (item.partyMemberId == props.partyMemberId)
             {
                 console.log("moving");

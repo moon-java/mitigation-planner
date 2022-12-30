@@ -191,6 +191,27 @@ export const Planner = props => {
         return mit;
     }
 
+    const onPartyTimelineScroll = () =>
+    {
+        //debugger;
+        let fightTimeline = document.getElementById("FightTimeline");
+        let newScroll = fightTimeline.scrollLeft;
+        for (let i = 0; i < 8; i++)
+        {
+            let partyTimeline = document.getElementById("SkillsTimeline" + i);
+            if (partyTimeline.scrollLeft != fightTimeline.scrollLeft &&
+                newScroll != partyTimeline.scrollLeft) {
+                newScroll = partyTimeline.scrollLeft;
+            }
+        }
+        for (let i = 0; i < 8; i++)
+        {
+            let partyTimeline = document.getElementById("SkillsTimeline" + i);
+            partyTimeline.scrollLeft = newScroll;
+        }
+        fightTimeline.scrollLeft = newScroll;
+    }
+
     const propagatedProps = {
         allItems: items,
         width: PlannerWidth,
@@ -213,12 +234,13 @@ export const Planner = props => {
         syncTimelineHeight: syncTimelineHeight,
         timelineHeight: timelineHeight,
         isGaugeViewEnabled: props.isGaugeViewEnabled,
-        prepullTime: props.prepullTime
+        prepullTime: props.prepullTime,
+        onScroll: onPartyTimelineScroll
     }
 
     const scrollRef = useHorizontalScroll();
     return (
-            <div className={classes.Planner} style={{ overflowX: 'scroll'}}>
+            <div className={classes.Planner} style={{ width: '100%', overflowX: 'scroll'}}>
                 <FightTimeline {...propagatedProps} />
                 <PartyMemberTimelines {...propagatedProps} />
             </div>

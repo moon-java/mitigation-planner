@@ -87,17 +87,19 @@ const FightTimeline = props => {
 
         setGridItems(newGridItems);
     }, [props.allItems, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
-    let left = PARTY_MEMBER_ELEMENT_WIDTH + 12;
+    let left = PARTY_MEMBER_ELEMENT_WIDTH;
     return (
         <>
             <div
+                id="FightTimeline"
                 className={classes.FightTimeline}
                 style={{
                     ...style, ...props.style,
-                    width: props.width,
+                    width: `calc(100% - ${PARTY_MEMBER_ELEMENT_WIDTH + 3.5}px)`,
                     gridAutoFlow: 'column',
                     paddingTop: '8px',
                     marginLeft: `${left}px`,
+                    overflowX: 'scroll'
                 }}
             >
                 {resizeListener}
@@ -105,7 +107,7 @@ const FightTimeline = props => {
                 <div className={classes.FightTimeline}
                 style={{
                     ...style, ...props.style,
-                    width: props.width,
+                    width: '100%',
                     position: 'absolute',
                     paddingTop: '-8px',
                     height: `100%`

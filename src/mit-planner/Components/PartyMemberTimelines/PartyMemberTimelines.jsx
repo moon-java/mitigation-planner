@@ -27,14 +27,15 @@ const PartyMemberTimelines = props => {
                     height={props.timelineHeight}
                     allItems={props.allItems}
                     prepullTime={props.prepullTime}
-                    isGaugeViewEnabled={props.isGaugeViewEnabled} />
+                    isGaugeViewEnabled={props.isGaugeViewEnabled}
+                    onScroll={props.onScroll} />
 
             )
         //}
     }
 
     return (
-        <div style={{width: `${width}px`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'visible', overflowY: 'scroll'}}>
+        <div style={{width: `100%`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'visible', overflowY: 'scroll'}}>
             {partyMemberTimelines}
         </div>
     )

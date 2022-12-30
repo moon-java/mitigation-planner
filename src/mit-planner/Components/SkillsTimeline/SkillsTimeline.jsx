@@ -167,8 +167,10 @@ const SkillsTimeline = props => {
     return (
         <>
             <div
+                id={"SkillsTimeline" + props.person.partyMemberId}
+                onScroll={props.onScroll}
                 className={"SkillsTimeline"}
-                style = {{ height: `${props.height}`}}
+                style = {{ height: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
             >
                 <div>
                 <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`, minHeight: '100px', zIndex: '5', position: "relative"}}>
