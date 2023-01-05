@@ -2,9 +2,18 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { SkillEvent } from '../SkillEvent/SkillEvent';
-import classes from './SkillsGrid.module.css';
+import DropZone from '../DropZone/DropZone';
+import classes from './SkillsTimeline.module.css';
+import useResizeAware from 'react-resize-aware';
+import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
 
-const SkillsGrid = props => {
+const SkillsTimeline = props => {
+    const [resizeListener, sizes] = useResizeAware();
+
+    useEffect(() => {
+        props.syncTimelineHeight(sizes.height);
+    }, [sizes.width, sizes.height, props.items, props.activePartyMember]);
+
     const [gridItems, setGridItems] = useState();
 
     const getGridTemplateColumns = () => {
@@ -17,6 +26,32 @@ const SkillsGrid = props => {
         return columnTemplate
     }
 
+    const skillsDropGrid = [];
+
+    for (let i = props.prepullTime + 1; i <= props.duration; i++) {
+        let skillsGridCellStyle = {
+            gridColumn: i + Math.abs(props.prepullTime),
+            minHeight: props.height
+        };
+        if (i % 5 === 0) {
+            skillsGridCellStyle = { ...skillsGridCellStyle, borderRight: 'solid 1.5px #707070' };
+        }
+        else {
+            skillsGridCellStyle = { ...skillsGridCellStyle, borderRight: 'solid 1.5px #404040' };
+        }
+        let innerDiv = "";
+        if (i % 60 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i / 60}m</div>; }
+        else if (i % 15 === 0) { innerDiv = <div style={{ verticalAlign: 'bottom', color: '#202020', fontSize: '10px', width: '20px', boxSizing: 'border-box' }}>{i % 60}</div>; }
+
+
+        skillsGridCellStyle = {...skillsGridCellStyle, width: '20px'}
+        skillsDropGrid.push(
+            <div
+                style={skillsGridCellStyle}
+            />
+        )
+    }
+
     let style = {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
@@ -26,14 +61,13 @@ const SkillsGrid = props => {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
         gridTemplateRows: '33% 33% 33%',
-        height: '100%'
+        height: props.height
     }
     if (parseInt(props.skillGridHeight) !== 0) {
         style2 = { ...style2, height: props.skillGridHeight }
     }
 
     let gaugeDivs = [];
-
     if (props.person.hasGauge && props.isGaugeViewEnabled) {
         let gaugeEvents = [];
         if (props.person.passiveGaugeTimer > 0) {
@@ -122,7 +156,7 @@ const SkillsGrid = props => {
                         innerElement
                         customElementType={customInnerElementType}
                         style={{ marginLeft: 0 }}
-                        remove={() => onRemove(item.id)}
+                        remove={() => props.onRemove(item)}
                         onTimeline={true}
                     />
                 </div>
@@ -135,27 +169,50 @@ const SkillsGrid = props => {
     return (
         <>
             <div
-                className={classes.SkillsGrid}
-                style={{ ...style, ...props.style }}
+                id={"SkillsTimeline" + props.person.partyMemberId}
+                onScroll={props.onScroll}
+                className={"SkillsTimeline"}
+                style = {{ minHeight: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
             >
+                <div>
+                <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`,  minHeight: `${props.height}px`, zIndex: '5', position: "relative"}}>
+                    {gridItems}
+                    {resizeListener}
+                <div style = {{...style, display: 'grid', gridAutoFlow: 'column',  position: 'absolute', height: `100%`, zIndex: '1'}}>
+                    {skillsDropGrid}
+                </div>
                 <div
-                    className={classes.SkillsGrid}
-                    style={{ ...style2, ...props.style, position: "absolute", marginTop: "1px", zIndex: "0" }}
+                    className={classes.GaugeTimeline}
+                    style={{ ...style2, ...props.style, display: 'grid', width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "0" }}
                 >
                     {gaugeDivs}
                 </div>
-                {gridItems}
+                <div
+                    id={"DropZone" + props.person.partyMemberId}
+                    className={classes.GaugeTimeline}
+                    style={{width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "1" }}
+                >
+                <DropZone
+                    {...props}
+                    canDropItem={props.person.partyMemberId == props.activePartyMember ? props.canDropItem : false}
+                    items={props.items}
+                    partyMemberId={props.person.partyMemberId}
+                    parentDivId={"DropZone" + props.person.partyMemberId}
+                />
+                </div>
+                </div>
+                </div>
             </div>
         </>
     );
 }
 
-SkillsGrid.defaultProps = {
+SkillsTimeline.defaultProps = {
     items: [],
     grouped: false
 }
 
-SkillsGrid.propTypes = {
+SkillsTimeline.propTypes = {
     items: PropTypes.array,
     width: PropTypes.number,
     onRemove: PropTypes.func,
@@ -168,4 +225,4 @@ SkillsGrid.propTypes = {
     grouped: PropTypes.bool
 }
 
-export default SkillsGrid;
+export default SkillsTimeline;

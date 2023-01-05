@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import MouseBackEnd from 'react-dnd-mouse-backend';
 
 import classes from './App.module.css';
-import { Planner, SkillEvent } from './mit-planner';
+import {Planner} from './mit-planner/Components/Planner/Planner';
+import {SkillEvent} from './mit-planner/Components/SkillEvent/SkillEvent';
 import skillsByJob from './cooldowns/skills.js';
 import { timelines, categories } from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
@@ -66,27 +67,18 @@ const PrepullInput = props => (
 )
 
 const App = () => {
-    let tempTimelines = [];
-    if (localStorage.getItem('selectedCategory')) {
-        const category = JSON.parse(localStorage.getItem('selectedCategory'));
-        category.timelines.forEach(timelineId => {
-            tempTimelines.push(timelines.find(item => item.id === timelineId));
-        })
-    }
-    else {
-        tempTimelines = [timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5]];
-    }
 
     const [activePartyMember, setActivePartyMember] = useState(0);
-    const [partyViewEnabled, setPartyViewEnabled] = useState(localStorage.getItem('partyViewEnabled') ? JSON.parse(localStorage.getItem('partyViewEnabled')) : false);
-    const [gaugeViewEnabled, setGaugeViewEnabled] = useState(localStorage.getItem('gaugeViewEnabled') ? JSON.parse(localStorage.getItem('gaugeViewEnabled')) : false);
-    const [selectedCategory, setSelectedCategory] = useState(localStorage.getItem('selectedCategory') ? JSON.parse(localStorage.getItem('selectedCategory')) : categories[0]);
-    const [availableTimelines, setAvailableTimelines] = useState(tempTimelines);
-    const [selectedFight, setSelectedFight] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).id : timelines[0].id);
-    const [fightInfo, setFightInfo] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).info : timelines[0].info);
-    const [fightTimeline, setFightTimeline] = useState(localStorage.getItem('selectedFight') ? JSON.parse(localStorage.getItem('selectedFight')).timeline : timelines[0].timeline);
-    const [prepullTime, setPrepullTime] = useState(localStorage.getItem('prepullTime') ? parseInt(localStorage.getItem('prepullTime')) : 0);
-    const [partyMembers, setPartyMembers] = useState(localStorage.getItem('partyMembers') ? JSON.parse(localStorage.getItem('partyMembers')) : [
+    const [partyViewEnabled, setPartyViewEnabled] = useState(false);
+    const [gaugeViewEnabled, setGaugeViewEnabled] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5]]);
+    const [selectedFight, setSelectedFight] = useState(timelines[0].id);
+    const [fightInfo, setFightInfo] = useState(timelines[0].info);
+    const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
+    const [prepullTime, setPrepullTime] = useState(0);
+    const [timelineItems, setTimelineItems] = useState([[], [], [], [], [], [], [], []]);
+    const [partyMembers, setPartyMembers] = useState([
         {
             partyMemberId: 0,
             job: "PLD",
@@ -140,6 +132,7 @@ const App = () => {
             hasGauge: false
         }
     ]);
+
     let allSkills = {};
     for (let job in skillsByJob) {
         let skillset = skillsByJob[job];
@@ -148,21 +141,90 @@ const App = () => {
         });
     }
 
-    let importItems = [];
-    if (localStorage.getItem('timelineItems')) {
-        const loadedItems = JSON.parse(localStorage.getItem('timelineItems'))
-        for (let i = 0; i < loadedItems.length; i++) {
-            importItems[i] = {
-                ...allSkills[loadedItems[i].skillId],
-                partyMemberId: loadedItems[i].partyMemberId,
-                startTime: loadedItems[i].startTime
-            }
-            for (let j = 0; j < importItems[i].effects.length; j++) {
-                importItems[i].effects[j].endTime = importItems[i].startTime + importItems[i].effects[j].duration
-            }
+    useEffect(()=>{
+        let i_partyViewEnabled = localStorage.getItem('partyViewEnabled');
+        let i_gaugeViewEnabled = localStorage.getItem('gaugeViewEnabled');
+        let i_selectedCategory = localStorage.getItem('selectedCategory');
+        let i_selectedFight = localStorage.getItem('selectedFight');
+        let i_prepullTime = localStorage.getItem('prepullTime');
+        let i_partyMembers = localStorage.getItem('partyMembers');
+
+        if (i_partyViewEnabled)
+        {
+            setPartyViewEnabled(JSON.parse(i_partyViewEnabled));
         }
-    }
-    const [timelineItems, setTimelineItems] = useState(importItems);
+        if (i_gaugeViewEnabled)
+        {
+            setGaugeViewEnabled(JSON.parse(i_gaugeViewEnabled));
+        }
+        if (i_selectedCategory)
+        {
+            let i_timelines = [];
+            const category = JSON.parse(i_selectedCategory);
+            category.timelines.forEach(timelineId => {
+                i_timelines.push(timelines.find(item => item.id === timelineId));
+            })
+            setSelectedCategory(JSON.parse(i_selectedCategory));
+            setAvailableTimelines(i_timelines);
+        }
+        if (i_selectedFight)
+        {
+            const fight = JSON.parse(i_selectedFight);
+            setSelectedFight(fight.id);
+            setFightInfo(fight.info);
+            setFightTimeline(fight.timeline);
+        }
+        if (i_prepullTime)
+        {
+            setPrepullTime(JSON.parse(i_prepullTime));
+        }
+        if (i_partyMembers)
+        {
+            setPartyMembers(JSON.parse(i_partyMembers));
+        }
+    
+        let importItems = [[], [], [], [], [], [], [], []];
+        if (localStorage.getItem('timelineItems')) {
+            const loadedItems = JSON.parse(localStorage.getItem('timelineItems'))
+            let indexes = [0, 0, 0, 0, 0, 0, 0, 0];
+            for (let i = 0; i < loadedItems.length; i++) {
+                if (Object.keys(loadedItems[i]).length == 0)
+                {
+                    importItems[i] = [];
+                    continue;
+                }
+                if (Array.isArray(loadedItems[i]))
+                {
+                    for (let j = 0; j < loadedItems[i].length; j++)
+                    {
+                        importItems[i][j] = {
+                            ...allSkills[loadedItems[i][j].skillId],
+                            partyMemberId: loadedItems[i][j].partyMemberId,
+                            startTime: loadedItems[i][j].startTime
+                        }
+                        for (let k = 0; k < importItems[i][j].effects.length; k++) {
+                            importItems[i][j].effects[k].endTime = importItems[i][j].startTime + importItems[i][j].effects[k].duration
+                        }
+                    }
+                }
+                else
+                {
+                    let id = loadedItems[i].partyMemberId;
+                    importItems[id][indexes[id]] = {
+                        ...allSkills[loadedItems[i].skillId],
+                        partyMemberId: loadedItems[i].partyMemberId,
+                        startTime: loadedItems[i].startTime
+                    }
+                    for (let k = 0; k < importItems[id][indexes[id]].effects.length; k++) {
+                        importItems[id][indexes[id]].effects[k].endTime = importItems[id][indexes[id]].startTime + importItems[id][indexes[id]].effects[k].duration
+                    }
+                    indexes[id]++;
+                }
+            }
+            setTimelineItems(importItems);
+        }
+    }, []) // <-- empty dependency array
+
     const startTime = 0;
     const endTime = fightInfo.length;
 
@@ -234,12 +296,15 @@ const App = () => {
     }
 
     const formatItemsForExport = (items) => {
-        let exportItems = [];
+        let exportItems = [[], [], [], [], [], [], [], []];
         for (let i = 0; i < items.length; i++) {
-            exportItems[i] = {
-                skillId: items[i].skillId,
-                partyMemberId: items[i].partyMemberId,
-                startTime: items[i].startTime
+            for (let j = 0; j < items[i].length; j++)
+            {
+                exportItems[i][j] = {
+                    skillId: items[i][j].skillId,
+                    partyMemberId: items[i][j].partyMemberId,
+                    startTime: items[i][j].startTime
+                }
             }
         }
         return exportItems;
@@ -255,14 +320,34 @@ const App = () => {
         }
 
         let importItems = [];
+        let indexes = [0, 0, 0, 0, 0, 0, 0, 0];
         for (let i = 0; i < importInfo.timelineItems.length; i++) {
-            importItems[i] = {
-                ...allSkills[importInfo.timelineItems[i].skillId],
-                partyMemberId: importInfo.timelineItems[i].partyMemberId,
-                startTime: importInfo.timelineItems[i].startTime
+            if (Array.isArray(importInfo.timelineItems[i]))
+            {
+                for (let j = 0; j < importInfo.timelineItems[i].length; j++)
+                {
+                    importItems[i][j] = {
+                        ...allSkills[importInfo.timelineItems[i][j].skillId],
+                        partyMemberId: importInfo.timelineItems[i][j].partyMemberId,
+                        startTime: importInfo.timelineItems[i][j].startTime
+                    }
+                    for (let k = 0; k < importItems[i][j].effects.length; k++) {
+                        importItems[i][j].effects[k].endTime = importItems[i][j].startTime + importItems[i][j].effects[k].duration
+                    }
+                }
             }
-            for (let j = 0; j < importItems[i].effects.length; j++) {
-                importItems[i].effects[j].endTime = importItems[i].startTime + importItems[i].effects[j].duration
+            else
+            {
+                let id = importInfo.timelineItems[i].partyMemberId;
+                importItems[id][indexes[id]] = {
+                    ...allSkills[importInfo.timelineItems[i].skillId],
+                    partyMemberId: importInfo.timelineItems[i].partyMemberId,
+                    startTime: importInfo.timelineItems[i].startTime
+                }
+                for (let k = 0; k < importItems[id][indexes[id]].effects.length; k++) {
+                    importItems[id][indexes[id]].effects[k].endTime = importItems[id][indexes[id]].startTime + importItems[id][indexes[id]].effects[k].duration
+                }
+                indexes[id]++;
             }
         }
         setTimelineItems(importItems);
@@ -498,26 +583,7 @@ const App = () => {
             <DndProvider backend={MouseBackEnd}>
                 <div className={classes.Content}>
                     <br />
-                    <div className={classes.SkillBank}>
-                        {
-                            activeJobSkills.map((item, index) => {
-                                let maxApplicableLevel = item.maxApplicableLevel ? item.maxApplicableLevel : 90;
-                                if (item.level <= fightInfo.level && maxApplicableLevel >= fightInfo.level) {
-                                    return (<div style={{ marginRight: '10px' }} key={`main_item_${index}`}>
-                                        <SkillEvent
-                                            item={item}
-                                            shadowed
-                                            customElementType={DefaultBasicElement}
-                                            useIcon={true}
-                                            style={{ backgroundColor: `${uiConstants.DEFAULT_BG}` }}
-                                        />
-                                    </div>);
-                                }
-                                return <></>
-                            }
-                            )
-                        }
-                    </div>
+
                     <div className={classes.UsageInfo}>
                         Double-click a placed skill to remove
                 </div>
@@ -528,10 +594,12 @@ const App = () => {
                             partyView={partyViewEnabled}
                             partyMembers={partyMembers}
                             activePartyMember={activePartyMember}
+                            activeJobSkills={activeJobSkills}
                             duration={fightInfo.length}
                             timeline={fightTimeline}
                             isGaugeViewEnabled={gaugeViewEnabled}
-                            prepullTime={prepullTime} />
+                            prepullTime={prepullTime}
+                            fightLevel={fightInfo.level} />
                     </div>
 
                 </div>

@@ -23,6 +23,10 @@ export const SkillEvent = props => {
         setAnchorPosition(null);
     };
 
+    const handleRemove = () => {
+        props.remove(props.item)
+    }
+
     const [{ isDragging }, drag] = useDrag({
         type: ELEMENT,
         item: { ...props.item, resizing: null, moving: props.innerElement },
@@ -53,7 +57,7 @@ export const SkillEvent = props => {
                 }}
                 onClose={handleClose}
             >
-                <Button variant="contained" onClick={props.remove} style={{ background: '#aa0000' }}>
+                <Button variant="contained" onClick={handleRemove} style={{ background: '#aa0000' }}>
                     Remove
                 </Button>
             </Popover>

@@ -1,18 +1,21 @@
 .PartyMemberElement {
-    width: calc(100% - 10px);
     padding-left: 5px;
     padding-right: 5px;
     min-height: 60px;
-    height: 100%;
-    border: 2px solid #c0c0c0;
 }
+
+.SkillBank {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 100%;
+    border-radius: 4px;
+  }
 
 .ItemFlex {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 .Content {
