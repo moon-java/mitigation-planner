@@ -30,7 +30,8 @@ const SkillsTimeline = props => {
 
     for (let i = props.prepullTime + 1; i <= props.duration; i++) {
         let skillsGridCellStyle = {
-            gridColumn: i + Math.abs(props.prepullTime)
+            gridColumn: i + Math.abs(props.prepullTime),
+            minHeight: props.height
         };
         if (i % 5 === 0) {
             skillsGridCellStyle = { ...skillsGridCellStyle, borderRight: 'solid 1.5px #707070' };
@@ -164,32 +165,32 @@ const SkillsTimeline = props => {
 
         setGridItems(newGridItems);
     }, [items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove]);
-    console.log(props.height);
+
     return (
         <>
             <div
                 id={"SkillsTimeline" + props.person.partyMemberId}
                 onScroll={props.onScroll}
                 className={"SkillsTimeline"}
-                style = {{ height: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
+                style = {{ minHeight: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
             >
                 <div>
-                <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`,  height: `${props.height}px`, minHeight: '100px',  zIndex: '5', position: "relative"}}>
-                {gridItems}
-                {resizeListener}
-                    <div style = {{...style, display: 'grid', gridAutoFlow: 'column',  position: 'absolute', minHeight: '100px', height: `${props.height}px`, zIndex: '1'}}>
+                <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`,  minHeight: `${props.height}px`, zIndex: '5', position: "relative"}}>
+                    {gridItems}
+                    {resizeListener}
+                <div style = {{...style, display: 'grid', gridAutoFlow: 'column',  position: 'absolute', height: `100%`, zIndex: '1'}}>
                     {skillsDropGrid}
-                    </div>
-                    <div
+                </div>
+                <div
                     className={classes.GaugeTimeline}
-                    style={{ ...style2, ...props.style, display: 'grid', width: '100%', minHeight: '100px', height: `${props.height}px`, position: "absolute", marginTop: "1px", zIndex: "0" }}
+                    style={{ ...style2, ...props.style, display: 'grid', width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "0" }}
                 >
                     {gaugeDivs}
                 </div>
                 <div
                     id={"DropZone" + props.person.partyMemberId}
                     className={classes.GaugeTimeline}
-                    style={{width: '100%', minHeight: '100px', height: `${props.height}px`, position: "absolute", marginTop: "1px", zIndex: "1" }}
+                    style={{width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "1" }}
                 >
                 <DropZone
                     {...props}

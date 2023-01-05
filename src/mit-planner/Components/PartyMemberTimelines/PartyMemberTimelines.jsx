@@ -36,7 +36,7 @@ const PartyMemberTimelines = props => {
     }
 
     return (
-        <div style={{width: `100%`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'visible', overflowY: 'scroll'}}>
+        <div style={{width: `100%`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'scroll', overflowY: 'scroll'}}>
             {partyMemberTimelines}
         </div>
     )

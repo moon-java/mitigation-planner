@@ -5,3 +5,7 @@
     transition: all .3s ease-in;
     box-sizing: content-box;
 }
+
+.FightTimeline {
+    position: fixed;
+}

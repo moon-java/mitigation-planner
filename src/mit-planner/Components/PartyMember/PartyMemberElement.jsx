@@ -13,12 +13,12 @@ const PartyMemberElement = props => {
     const [resizeListener, sizes] = useResizeAware();
 
     useEffect(() => {
-        console.log("sync from element ", sizes.height);
         props.syncTimelineHeight(sizes.height);
     }, [sizes.width, sizes.height, props.activePartyMember]);
 
     const onClick = () => {
         props.onClick(props.person.partyMemberId);
+        props.resetTimelineHeight();
     }
 
     const onJobChange = (job) => {
@@ -55,11 +55,12 @@ const PartyMemberElement = props => {
     }
     return (
         <div className={classes.PartyMemberElement} onClick={onClick}
-            style={{ textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}`, width: `${PARTY_MEMBER_ELEMENT_WIDTH}px`, height: `${props.height}px` }}>
-            <div style={{width: `${PARTY_MEMBER_ELEMENT_WIDTH - 12}px`}}>
+            style={{ position: 'relative', textAlign: `center`, verticalAlign: 'center', backgroundColor: `${bgColor}`, width: `${PARTY_MEMBER_ELEMENT_WIDTH}px`}}>
+            <div style={{position: 'relative', width: `${PARTY_MEMBER_ELEMENT_WIDTH - 12}px`}}>
             <img src={icon} width="30px" height="30px" padding="10px" /> <br />
             <JobSelector onJobChange={onJobChange} selectedJob={props.person.job} />
             {skillBank}
+            {resizeListener}
             </div>
         </div>
     )

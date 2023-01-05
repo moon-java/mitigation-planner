@@ -20,7 +20,6 @@ const DropZone = props => {
                 }
 
                 props.onDrop(updatedItem);
-                console.log("drop");
             }
         },
         hover: (item, monitor) => {
@@ -28,16 +27,11 @@ const DropZone = props => {
             const startTime = Math.ceil((monitor.getClientOffset().x - pardiv.getBoundingClientRect().x) / 20) + props.prepullTime;
             if (item.partyMemberId == props.partyMemberId)
             {
-                console.log("moving");
-                console.log(hovered);
-                console.log(item.moving);
                 if (item.moving) {
                     let updatedItem = item;
                     if (item.moving) {
                         updatedItem = moveItem(item, startTime);
                     }
-                    console.log("getClientOffset ", monitor.getClientOffset());
-                    console.log("getDifferenceFromInitialOffset ", monitor.getDifferenceFromInitialOffset());
 
                     props.onDrop(updatedItem);
                     setHovered(true);

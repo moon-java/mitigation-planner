@@ -19,7 +19,6 @@ export const Planner = props => {
     const [timelineHeight, setTimelineHeight] = useState();
 
     const syncTimelineHeight = (height) => {
-        console.log("planner " + height);
         setTimelineHeight(height)
     };
 
@@ -243,7 +242,7 @@ export const Planner = props => {
 
     const scrollRef = useHorizontalScroll();
     return (
-            <div className={classes.Planner} style={{ width: '100%', overflowX: 'scroll'}}>
+            <div className={classes.Planner} style={{ width: '100%'}}>
                 <FightTimeline {...propagatedProps} />
                 <PartyMemberTimelines {...propagatedProps} />
             </div>
