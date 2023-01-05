@@ -4,15 +4,21 @@ import PartyMemberElement from '../PartyMember/PartyMemberElement'
 import SkillsTimeline from '../SkillsTimeline/SkillsTimeline'
 
 const PartyMemberTimeline = props => {
-    const [timelineHeight, setTimelineHeight] = useState();
+    const [timelineHeight, setTimelineHeight] = useState(0);
 
     const syncTimelineHeight = (height) => {
-        setTimelineHeight(height)
+        console.log("sync ", height);
+        console.log("th ", timelineHeight);
+        if (height > timelineHeight)
+        {
+            setTimelineHeight(height);
+        }
     };
 
+    console.log("rendering ", timelineHeight);
     return (
         <div className="PartyMemberTimeline" style={{display: 'flex', flexDirection: 'horizontal', border: `2px solid #c0c0c0`}}>
-            <PartyMemberElement {...props} height={timelineHeight}/>
+            <PartyMemberElement {...props} height={timelineHeight} syncTimelineHeight={syncTimelineHeight}/>
             <SkillsTimeline {...props} items={props.allItems[props.person.partyMemberId]} height={timelineHeight} syncTimelineHeight={syncTimelineHeight}/>
         </div>
     )

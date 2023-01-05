@@ -24,11 +24,12 @@ const PartyMemberTimelines = props => {
                     activePartyMember={props.activePartyMember}
                     width={props.width}
                     duration={props.duration}
-                    height={props.timelineHeight}
                     allItems={props.allItems}
                     prepullTime={props.prepullTime}
                     isGaugeViewEnabled={props.isGaugeViewEnabled}
-                    onScroll={props.onScroll} />
+                    onScroll={props.onScroll}
+                    activeJobSkills={props.activeJobSkills}
+                    fightLevel={props.fightLevel} />
 
             )
         //}

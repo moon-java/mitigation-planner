@@ -19,6 +19,7 @@ export const Planner = props => {
     const [timelineHeight, setTimelineHeight] = useState();
 
     const syncTimelineHeight = (height) => {
+        console.log("planner " + height);
         setTimelineHeight(height)
     };
 
@@ -235,7 +236,9 @@ export const Planner = props => {
         timelineHeight: timelineHeight,
         isGaugeViewEnabled: props.isGaugeViewEnabled,
         prepullTime: props.prepullTime,
-        onScroll: onPartyTimelineScroll
+        onScroll: onPartyTimelineScroll,
+        activeJobSkills: props.activeJobSkills,
+        fightLevel: props.fightLevel
     }
 
     const scrollRef = useHorizontalScroll();

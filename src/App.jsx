@@ -583,26 +583,7 @@ const App = () => {
             <DndProvider backend={MouseBackEnd}>
                 <div className={classes.Content}>
                     <br />
-                    <div className={classes.SkillBank}>
-                        {
-                            activeJobSkills.map((item, index) => {
-                                let maxApplicableLevel = item.maxApplicableLevel ? item.maxApplicableLevel : 90;
-                                if (item.level <= fightInfo.level && maxApplicableLevel >= fightInfo.level) {
-                                    return (<div style={{ marginRight: '10px' }} key={`main_item_${index}`}>
-                                        <SkillEvent
-                                            item={item}
-                                            shadowed
-                                            customElementType={DefaultBasicElement}
-                                            useIcon={true}
-                                            style={{ backgroundColor: `${uiConstants.DEFAULT_BG}` }}
-                                        />
-                                    </div>);
-                                }
-                                return <></>
-                            }
-                            )
-                        }
-                    </div>
+
                     <div className={classes.UsageInfo}>
                         Double-click a placed skill to remove
                 </div>
@@ -613,10 +594,12 @@ const App = () => {
                             partyView={partyViewEnabled}
                             partyMembers={partyMembers}
                             activePartyMember={activePartyMember}
+                            activeJobSkills={activeJobSkills}
                             duration={fightInfo.length}
                             timeline={fightTimeline}
                             isGaugeViewEnabled={gaugeViewEnabled}
-                            prepullTime={prepullTime} />
+                            prepullTime={prepullTime}
+                            fightLevel={fightInfo.level} />
                     </div>
 
                 </div>

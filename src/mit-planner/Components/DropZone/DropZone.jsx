@@ -86,7 +86,7 @@ const DropZone = props => {
         <div
             ref={drop}
             className={[classes.DropZone, overClass].join(' ')}
-            style={{...props.style, width: '100%', height: '100%'}}
+            style={{ width: '100%', height: `${props.height}px`}}
         >
             <div
                 className={classes.InnerZone}

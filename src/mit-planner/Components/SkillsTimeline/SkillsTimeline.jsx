@@ -12,7 +12,7 @@ const SkillsTimeline = props => {
 
     useEffect(() => {
         props.syncTimelineHeight(sizes.height);
-    }, [sizes.width, sizes.height, props.items]);
+    }, [sizes.width, sizes.height, props.items, props.activePartyMember]);
 
     const [gridItems, setGridItems] = useState();
 
@@ -60,7 +60,7 @@ const SkillsTimeline = props => {
         width: props.width,
         gridTemplateColumns: getGridTemplateColumns().join(' '),
         gridTemplateRows: '33% 33% 33%',
-        height: '100%'
+        height: props.height
     }
     if (parseInt(props.skillGridHeight) !== 0) {
         style2 = { ...style2, height: props.skillGridHeight }
@@ -164,6 +164,7 @@ const SkillsTimeline = props => {
 
         setGridItems(newGridItems);
     }, [items, startTime, prepullTime, elementClassName, customInnerElementType, onRemove]);
+    console.log(props.height);
     return (
         <>
             <div
@@ -173,7 +174,7 @@ const SkillsTimeline = props => {
                 style = {{ height: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
             >
                 <div>
-                <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`, minHeight: '100px', zIndex: '5', position: "relative"}}>
+                <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`,  height: `${props.height}px`, minHeight: '100px',  zIndex: '5', position: "relative"}}>
                 {gridItems}
                 {resizeListener}
                     <div style = {{...style, display: 'grid', gridAutoFlow: 'column',  position: 'absolute', minHeight: '100px', height: `${props.height}px`, zIndex: '1'}}>
