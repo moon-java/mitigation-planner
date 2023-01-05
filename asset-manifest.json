@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mitigation-planner/static/css/main.364d6b53.css",
-    "main.js": "/mitigation-planner/static/js/main.0cc21d97.js",
+    "main.css": "/mitigation-planner/static/css/main.0bd74858.css",
+    "main.js": "/mitigation-planner/static/js/main.97301990.js",
     "static/media/blackmage.png": "/mitigation-planner/static/media/blackmage.8367f5a0a82bbc8db47e.png",
     "static/media/samurai.png": "/mitigation-planner/static/media/samurai.32008a2f8d7e4505e089.png",
     "static/media/reaper.png": "/mitigation-planner/static/media/reaper.0bbb9ffae3a179be3ef0.png",
@@ -22,11 +22,11 @@
     "static/media/bard.png": "/mitigation-planner/static/media/bard.692e5c1abde177fd656d.png",
     "static/media/whitemage.png": "/mitigation-planner/static/media/whitemage.d7542fc0ee420b947932.png",
     "index.html": "/mitigation-planner/index.html",
-    "main.364d6b53.css.map": "/mitigation-planner/static/css/main.364d6b53.css.map",
-    "main.0cc21d97.js.map": "/mitigation-planner/static/js/main.0cc21d97.js.map"
+    "main.0bd74858.css.map": "/mitigation-planner/static/css/main.0bd74858.css.map",
+    "main.97301990.js.map": "/mitigation-planner/static/js/main.97301990.js.map"
   },
   "entrypoints": [
-    "static/css/main.364d6b53.css",
-    "static/js/main.0cc21d97.js"
+    "static/css/main.0bd74858.css",
+    "static/js/main.97301990.js"
   ]
 }
