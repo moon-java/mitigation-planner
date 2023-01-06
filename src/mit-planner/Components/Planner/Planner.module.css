@@ -1,7 +1,7 @@
 .Planner  {
     position: relative;
     width: auto;
-    height: 700px;
+    height: 65vh;
     transition: all .3s ease-in;
     box-sizing: content-box;
 }
