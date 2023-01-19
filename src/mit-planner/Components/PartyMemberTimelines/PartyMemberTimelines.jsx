@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import PartyMemberTimeline from '../PartyMemberTimeline/PartyMemberTimeline';
 import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
+import classes from './PartyMemberTimelines.module.css';
 
 const PartyMemberTimelines = props => {
     let partyMemberTimelines = [];
@@ -36,7 +37,7 @@ const PartyMemberTimelines = props => {
     }
 
     return (
-        <div style={{paddingBottom: '2px', width: `100%`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'scroll', overflowY: 'scroll'}}>
+        <div className={classes.TimelineGrid} style={{paddingBottom: '2px', width: `100%`, height: `calc(100% - ${props.timelineHeight}px)`, overflowX: 'scroll', overflowY: 'scroll'}}>
             {partyMemberTimelines}
         </div>
     )

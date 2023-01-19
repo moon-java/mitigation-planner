@@ -20,12 +20,12 @@
     box-sizing: border-box;
 }
 
-
 .FightTimeline {
     position: relative;
     top: 0;
     left: 0;
     display: flex;
+    padding-right: 3px;
     flex-direction: row;
     align-items: stretch;
     flex-wrap: nowrap;
@@ -35,4 +35,10 @@
     border-left-style: solid;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.FightTimeline::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }

@@ -169,12 +169,11 @@ const SkillsTimeline = props => {
     return (
         <>
             <div
+                className={classes.TimelineGrid}
                 id={"SkillsTimeline" + props.person.partyMemberId}
                 onScroll={props.onScroll}
-                className={"SkillsTimeline"}
                 style = {{ minHeight: `${props.height}px`, width: `${props.width}px`, overflowX: 'scroll', overflowY: 'visible'}}
             >
-                <div>
                 <div style = {{...style, display: 'grid', gridAutoFlow: 'column', width: `${props.width - PARTY_MEMBER_ELEMENT_WIDTH}px`,  minHeight: `${props.height}px`, zIndex: '5', position: "relative"}}>
                     {gridItems}
                     {resizeListener}
@@ -183,14 +182,14 @@ const SkillsTimeline = props => {
                 </div>
                 <div
                     className={classes.GaugeTimeline}
-                    style={{ ...style2, ...props.style, display: 'grid', width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "0" }}
+                    style={{ ...style2, ...props.style, display: 'grid', width: '100%', height: `100%`, position: "absolute", zIndex: "0" }}
                 >
                     {gaugeDivs}
                 </div>
                 <div
                     id={"DropZone" + props.person.partyMemberId}
                     className={classes.GaugeTimeline}
-                    style={{width: '100%', height: `100%`, position: "absolute", marginTop: "1px", zIndex: "1" }}
+                    style={{width: '100%', height: `100%`, position: "absolute", zIndex: "1" }}
                 >
                 <DropZone
                     {...props}
@@ -199,7 +198,6 @@ const SkillsTimeline = props => {
                     partyMemberId={props.person.partyMemberId}
                     parentDivId={"DropZone" + props.person.partyMemberId}
                 />
-                </div>
                 </div>
                 </div>
             </div>

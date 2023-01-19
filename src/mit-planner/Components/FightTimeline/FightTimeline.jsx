@@ -91,11 +91,12 @@ const FightTimeline = props => {
     return (
         <>
             <div
+                onScroll={props.fightTimelineScroll}
                 id="FightTimeline"
                 className={classes.FightTimeline}
                 style={{
                     ...style, ...props.style,
-                    width: `calc(100% - ${PARTY_MEMBER_ELEMENT_WIDTH + 3.5}px)`,
+                    width: `calc(100% - ${PARTY_MEMBER_ELEMENT_WIDTH}px)`,
                     gridAutoFlow: 'column',
                     paddingTop: '8px',
                     marginLeft: `${left}px`,
@@ -107,7 +108,7 @@ const FightTimeline = props => {
                 <div className={classes.FightTimeline}
                 style={{
                     ...style, ...props.style,
-                    width: '100%',
+                    width: `100%`,
                     position: 'absolute',
                     paddingTop: '-8px',
                     height: `100%`

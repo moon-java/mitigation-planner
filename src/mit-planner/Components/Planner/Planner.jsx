@@ -212,6 +212,18 @@ export const Planner = props => {
         fightTimeline.scrollLeft = newScroll;
     }
 
+    const onFightTimelineScroll = () =>
+    {
+        let fightTimeline = document.getElementById("FightTimeline");
+        let newScroll = fightTimeline.scrollLeft;
+        for (let i = 0; i < 8; i++)
+        {
+            let partyTimeline = document.getElementById("SkillsTimeline" + i);
+            partyTimeline.scrollLeft = newScroll;
+        }
+        fightTimeline.scrollLeft = newScroll;
+    }
+
     const propagatedProps = {
         allItems: items,
         width: PlannerWidth,
@@ -236,6 +248,7 @@ export const Planner = props => {
         isGaugeViewEnabled: props.isGaugeViewEnabled,
         prepullTime: props.prepullTime,
         onScroll: onPartyTimelineScroll,
+        fightTimelineScroll: onFightTimelineScroll,
         activeJobSkills: props.activeJobSkills,
         fightLevel: props.fightLevel
     }

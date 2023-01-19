@@ -14,10 +14,17 @@
     box-sizing: border-box;
 }
 
+.TimelineGrid {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.TimelineGrid::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 .FightTimelineGrid {
     position: relative;
-    top: 0;
     height: 70px;
     left: 0;
     display: flex;
@@ -28,4 +35,9 @@
     border-left-style: solid;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
+
+}
+
+.FightTimelineGrid::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
