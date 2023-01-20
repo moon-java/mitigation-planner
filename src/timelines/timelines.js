@@ -16,9 +16,15 @@ import { dsrp5Info, dsrp5Timeline } from './dsrp5';
 import { dsrp6Info, dsrp6Timeline } from './dsrp6';
 import { dsrp7Info, dsrp7Timeline } from './dsrp7';
 import { dsrpostdoorbossInfo, dsrpostdoorbossTimeline } from './dsrpostdoorboss';
+import { topInfo, topTimeline } from './top';
 
 export const timelines =
     [
+        {
+            info: topInfo,
+            timeline: topTimeline,
+            id: 'top'
+        },
         {
             info: p5sInfo,
             timeline: p5sTimeline,
@@ -113,6 +119,11 @@ export const timelines =
 
 export const categories =
     [
+        {
+            id: 'top',
+            name: "The Omega Protocol (Ultimate) [TOP]",
+            timelines: ['top']
+        },
         {
             id: 'abyssos',
             name: 'Pandaemonium: Abyssos (Savage) [P5S-P8S]',

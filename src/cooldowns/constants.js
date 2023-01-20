@@ -18,7 +18,8 @@ export const targets =
     PROXIMITY_CLOSE4: 'closest four targets',
     DIRECTIONAL: 'directional',
     ARENA: 'arena',
-    GAZE: 'gaze'
+    GAZE: 'gaze',
+    TETHER: 'tether'
 }
 
 export const damageTypes =

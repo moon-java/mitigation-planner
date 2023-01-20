@@ -4,14 +4,12 @@ import MouseBackEnd from 'react-dnd-mouse-backend';
 
 import classes from './App.module.css';
 import {Planner} from './mit-planner/Components/Planner/Planner';
-import {SkillEvent} from './mit-planner/Components/SkillEvent/SkillEvent';
 import skillsByJob from './cooldowns/skills.js';
 import { timelines, categories } from './timelines/timelines.js';
 import Collapsible from 'react-collapsible';
 import * as uiConstants from './mit-planner/Constants/UIConstants.js';
 import Button from '@mui/material/Button';
 
-import DefaultBasicElement from './mit-planner/Components/DefaultElement/DefaultBasicElement/DefaultBasicElement';
 import CategorySelector from './mit-planner/Components/Dropdowns/CategorySelector'
 import FightSelector from './mit-planner/Components/Dropdowns/FightSelector'
 import JobSelector from './mit-planner/Components/Dropdowns/JobSelector';
@@ -72,7 +70,7 @@ const App = () => {
     const [partyViewEnabled, setPartyViewEnabled] = useState(false);
     const [gaugeViewEnabled, setGaugeViewEnabled] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-    const [availableTimelines, setAvailableTimelines] = useState([timelines[0], timelines[1], timelines[2], timelines[3], timelines[4], timelines[5]]);
+    const [availableTimelines, setAvailableTimelines] = useState([timelines[0]]);
     const [selectedFight, setSelectedFight] = useState(timelines[0].id);
     const [fightInfo, setFightInfo] = useState(timelines[0].info);
     const [fightTimeline, setFightTimeline] = useState(timelines[0].timeline);
@@ -145,7 +143,9 @@ const App = () => {
         let i_partyViewEnabled = localStorage.getItem('partyViewEnabled');
         let i_gaugeViewEnabled = localStorage.getItem('gaugeViewEnabled');
         let i_selectedCategory = localStorage.getItem('selectedCategory');
+        console.log("cat ", i_selectedCategory);
         let i_selectedFight = localStorage.getItem('selectedFight');
+        console.log("fight ", i_selectedFight);
         let i_prepullTime = localStorage.getItem('prepullTime');
         let i_partyMembers = localStorage.getItem('partyMembers');
 
@@ -269,6 +269,7 @@ const App = () => {
             setSelectedFight(categoryTimelines[0].id);
         }
         localStorage.setItem('selectedCategory', JSON.stringify(category))
+        localStorage.setItem('selectedFight', JSON.stringify(categoryTimelines[0]));
     }
 
     const updatePrimaryJobHandler = (job) => {
@@ -423,8 +424,6 @@ const App = () => {
                     <div style={{ display: 'flex', flexDirection: 'horizontal', marginRight: 'auto', justifyContent: 'center' }}>
                         <CategorySelector onCategoryChange={selectedCategoryChangedHandler} categories={categories} value={selectedCategory.name} />
                         <FightSelector onFightChange={selectedFightChangedHandler} fights={availableTimelines} value={fightInfo.name} />
-                        <JobSelector onJobChange={updatePrimaryJobHandler} selectedJob={partyMembers[0].job} />
-                        <PartyViewToggle className={classes.PartyToggle} checked={partyViewEnabled} onChange={() => { localStorage.setItem('partyViewEnabled', !partyViewEnabled); setPartyViewEnabled(!partyViewEnabled); }} />
                         <GaugeViewToggle className={classes.PartyToggle} checked={gaugeViewEnabled} onChange={() => { localStorage.setItem('gaugeViewEnabled', !gaugeViewEnabled); setGaugeViewEnabled(!gaugeViewEnabled); }} />
                         <PrepullInput prepullTime={-1 * prepullTime} onChange={(e) => {
                             e.target.value = e.target.value > 30 ? 30 : (e.target.value < 0 ? 0 : e.target.value);

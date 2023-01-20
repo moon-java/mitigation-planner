@@ -24,6 +24,7 @@
     position: relative;
     top: 0;
     left: 0;
+    min-height: 60px;
     display: flex;
     padding-right: 3px;
     flex-direction: row;
