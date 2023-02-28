@@ -6,7 +6,6 @@ import { ELEMENT } from '../../Constants/UIConstants';
 import classes from './DropZone.module.css';
 
 const DropZone = props => {
-
     const [{ isOver }, drop] = useDrop({
         accept: ELEMENT,
         drop: (item, monitor) => {
@@ -80,7 +79,7 @@ const DropZone = props => {
         <div
             ref={drop}
             className={[classes.DropZone, overClass].join(' ')}
-            style={{ width: '100%', height: `${props.height}px`}}
+            style={{ width: '100%', height: `100%`}}
         >
             <div
                 className={classes.InnerZone}
@@ -91,14 +90,9 @@ const DropZone = props => {
     )
 }
 
-DropZone.defaultProps = {
-    includeWeekend: false
-};
-
 DropZone.propTypes = {
     style: PropTypes.object,
     onDrop: PropTypes.func.isRequired,
-    includeWeekend: PropTypes.bool,
     time: PropTypes.number
 }
 

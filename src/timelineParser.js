@@ -1,3 +1,4 @@
+// node timelineParser.js ./xlsx/top.xlsx top.js
 const fs = require("fs");
 const XLSX = require("xlsx");
 const args = process.argv.slice(2);
@@ -61,6 +62,10 @@ for (let i = 1; i < skillArray.length; i++) {
     if (skillString[7] != "")
     {
         output += '        notes: "' + skillString[7] + '",\n';
+    }
+    if (skillString[8] != "")
+    {
+        output += '        damage: ' + skillString[8] + ',\n';
     }
     output += '    },\n'
 }

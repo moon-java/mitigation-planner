@@ -429,6 +429,17 @@ const App = () => {
                             e.target.value = e.target.value > 30 ? 30 : (e.target.value < 0 ? 0 : e.target.value);
                             setPrepullTime(-1 * e.target.value)
                             localStorage.setItem('prepullTime', -1 * e.target.value)
+                            let newItems = timelineItems;
+                            for (let i = 0; i < newItems.length; i++) {
+                                for (let j = 0; j < newItems[i].length; j++)
+                                {
+                                    if (newItems[i][j].startTime < (-1 * e.target.value))
+                                    {
+                                        newItems[i].splice(j, 1);
+                                    }
+                                }
+                            }
+                            setTimelineItems(newItems);
                         }} />
 
                     </div>

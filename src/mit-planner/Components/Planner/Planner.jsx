@@ -7,8 +7,6 @@ import { SEC_WIDTH, PARTY_VIEW_SIDEBAR_WIDTH, PARTY_MEMBER_ELEMENT_WIDTH } from 
 import FightTimeline from '../FightTimeline/FightTimeline';
 import PartyMemberTimelines from '../PartyMemberTimelines/PartyMemberTimelines';
 
-import { useHorizontalScroll } from "../../Helpers/SideScrollHook";
-
 // Component
 export const Planner = props => {
 
@@ -253,7 +251,6 @@ export const Planner = props => {
         fightLevel: props.fightLevel
     }
 
-    const scrollRef = useHorizontalScroll();
     return (
             <div className={classes.Planner} style={{ width: '100%'}}>
                 <FightTimeline {...propagatedProps} />

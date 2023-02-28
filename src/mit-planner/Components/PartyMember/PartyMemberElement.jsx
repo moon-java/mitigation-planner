@@ -18,7 +18,6 @@ const PartyMemberElement = props => {
 
     const onClick = () => {
         props.onClick(props.person.partyMemberId);
-        props.resetTimelineHeight();
     }
 
     const onJobChange = (job) => {

@@ -6,6 +6,7 @@ import DefaultBasicElement from '../DefaultElement/DefaultBasicElement/DefaultBa
 import classes from './FightTimeline.module.css';
 import useResizeAware from 'react-resize-aware';
 import { PARTY_MEMBER_ELEMENT_WIDTH } from '../../Constants/UIConstants';
+import { useHorizontalScroll } from "../../Helpers/SideScrollHook";
 
 const FightTimeline = props => {
     const [gridItems, setGridItems] = useState();
@@ -88,9 +89,11 @@ const FightTimeline = props => {
         setGridItems(newGridItems);
     }, [props.allItems, props.startTime, props.activePartyMember, props.timeline, props.leftWidth, props.prepullTime]);
     let left = PARTY_MEMBER_ELEMENT_WIDTH;
+    const scrollRef = useHorizontalScroll();
     return (
         <>
             <div
+                ref={scrollRef}
                 onScroll={props.fightTimelineScroll}
                 id="FightTimeline"
                 className={classes.FightTimeline}

@@ -8,6 +8,14 @@ import { getTimelineEventColor, getTimelineEventBorderColor } from '../../Helper
 import Tooltip from '@mui/material/Tooltip';
 
 const ToolTipBody = (props) => {
+    let damage = 0;
+    let selfMitDamage = 0;
+    let partyMitDamage = 0;
+
+    if (props.item.damage)
+    {
+        damage = selfMitDamage = partyMitDamage = props.item.damage;
+    }
     let selfMit = 0;
     let partyMit = 0;
 
@@ -24,15 +32,17 @@ const ToolTipBody = (props) => {
         selfMit = 100 - (mit.selfMit.all * mit.selfMit.phys / 100);
         partyMit = 100 - (mit.partyMit.all * mit.partyMit.phys / 100);
     }
+    selfMitDamage = damage - ((selfMit * damage)/100);
+    partyMitDamage = damage - ((partyMit * damage)/100);
 
     return (
         <div style={{ backgroundColor: '#3e3f41', color: '#c0c0c0', fontSize: 12, padding: 10, borderTop: "2px solid #c0c0c0", borderBottom: "2px solid #c0c0c0", textAlign: `center` }}>
             <div style={{ borderBottom: '1px solid #c0c0c0', margin: 'auto', marginBottom: 5, fontSize: 13, width: 'fit-content', paddingLeft: '15px', paddingRight: '15px' }}>{props.item.name}</div>
-            <div>Damage type: {props.item.damageType}</div>
+            <div>Damage type: {props.item.damageType} (~{damage.toLocaleString()})</div>
             <div>Target: {props.item.target}</div>
             <div>{props.item.notes}</div>
-            <div>Self mitigation: -{selfMit.toFixed(1)}%</div>
-            <div>Party mitigation: -{partyMit.toFixed(1)}%</div>
+            <div>Self mitigation: -{selfMit.toFixed(1)}% (~{selfMitDamage.toLocaleString()})</div>
+            <div>Party mitigation: -{partyMit.toFixed(1)}% (~{partyMitDamage.toLocaleString()})</div>
         </div>
     )
 }
