@@ -320,7 +320,7 @@ const App = () => {
             partyMemberJobChangeHandler(importInfo.partyMembers[i].job, i);
         }
 
-        let importItems = [];
+        let importItems = [[],[],[],[],[],[],[],[]];
         let indexes = [0, 0, 0, 0, 0, 0, 0, 0];
         for (let i = 0; i < importInfo.timelineItems.length; i++) {
             if (Array.isArray(importInfo.timelineItems[i]))

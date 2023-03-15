@@ -17,7 +17,6 @@ const DropZone = props => {
                 if (!item.resizing && !item.moving) {
                     updatedItem = initItem(item, startTime);
                 }
-
                 props.onDrop(updatedItem);
             }
         },
