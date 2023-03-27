@@ -28,8 +28,9 @@ const LoadSaveDialog = props => {
 
     const buttonText = isLoad ? "Load" : "Save";
     const dialogTitle = isLoad ? "Load a plan" : "Save a plan";
-    const dialogText = isLoad ? "Enter the plan ID to load" : "Enter a plan ID to update a pre-existing plan, or leave blank to make a new one";
-    const warningText = isLoad ? "" : "Warning: updating a pre-existing plan will save over it, this is not reversible";
+    const dialogText = isLoad ? "Enter the plan ID to load" : "Enter a plan ID to update a pre-existing plan, or leave blank to make a new one.";
+    const psaText = isLoad ? "" : 'Note: While you technically can enter a custom ID and save with that, e.g. "DRK TOP mit", there is currently nothing stopping someone else from using the same ID and overwriting your plan. Do so at your own risk.'
+    const warningText = isLoad ? "" : "Updating a pre-existing plan will save over it, this is not reversible.";
 
     const handleLoad = async () => {
         const res = await loadFromDB(value);
@@ -80,7 +81,8 @@ const LoadSaveDialog = props => {
                         {dialogTitle}
                     </Typography><br />
                     {dialogText}<br />
-                    {warningText}<br />
+                    <b>{warningText}</b><br /> <br/>
+                    {psaText} <br/>
                     {result}<br />
                     <textarea
                         value={value}
