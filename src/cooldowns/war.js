@@ -182,6 +182,21 @@ export const warSkills =
                 valueType: valueTypes.PERCENT,
                 value: 15,
                 duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: "Dispels Thrill of Battle, Vengeance, and Raw Intuition/Bloodwhetting, increasing damage absorbed by 2% for each effect removed.",
+                duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 100,
+                duration: 15
             }
         ]
     },
@@ -194,15 +209,6 @@ export const warSkills =
         cooldown: 90,
         effects:
         [
-
-            {
-                target: targets.PARTY,
-                damageType: damageTypes.NONE,
-                effect: effects.HEAL,
-                valueType: valueTypes.POTENCY,
-                value: 300,
-                duration: 0
-            },
             {
                 target: targets.PARTY,
                 damageType: damageTypes.NONE,
@@ -210,6 +216,29 @@ export const warSkills =
                 valueType: valueTypes.PERCENT,
                 value: 15,
                 duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.OTHER,
+                note: "Dispels Thrill of Battle, Vengeance, and Raw Intuition/Bloodwhetting, increasing damage absorbed by 2% for each effect removed.",
+                duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.REGEN,
+                valueType: valueTypes.POTENCY,
+                value: 100,
+                duration: 15
+            },
+            {
+                target: targets.PARTY,
+                damageType: damageTypes.NONE,
+                effect: effects.HEAL,
+                valueType: valueTypes.POTENCY,
+                value: 300,
+                duration: 0
             }
         ]
     },

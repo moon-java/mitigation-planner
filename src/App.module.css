@@ -112,6 +112,13 @@ input:checked + .Slider:before {
   margin-top: 5px;
 }
 
+.DevNotes {
+  width: 50%;
+  margin: auto;
+  color: #c0c0c0;
+  margin-top: 5px;
+}
+
 .Title {
   color: #c0c0c0;
   font-size: 24px;

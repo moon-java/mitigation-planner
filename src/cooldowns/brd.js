@@ -68,15 +68,15 @@ export const brdSkills =
         imgFile: skillIcons['natures_minne'].icon,
         imgColor: skillIcons['natures_minne'].color,
         level: 66,
-        cooldown: 90,
+        cooldown: 120,
         effects:
         [
             {
-                target: targets.PARTY_MEMBER,
+                target: targets.PARTY,
                 damageType: damageTypes.NONE,
                 effect: effects.HEAL_IN,
                 valueType: valueTypes.PERCENT,
-                value: 20,
+                value: 15,
                 duration: 15
             }
         ]

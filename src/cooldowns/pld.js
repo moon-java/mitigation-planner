@@ -38,9 +38,9 @@ export const pldSkills =
             {
                 target: targets.SELF,
                 damageType: damageTypes.ALL,
-                effect: effects.BLOCK,
+                effect: effects.DMG_IN,
                 valueType: valueTypes.PERCENT,
-                value: 100,
+                value: 15,
                 duration: 4
             }
         ]
@@ -58,9 +58,9 @@ export const pldSkills =
             {
                 target: targets.SELF,
                 damageType: damageTypes.ALL,
-                effect: effects.BLOCK,
+                effect: effects.DMG_IN,
                 valueType: valueTypes.PERCENT,
-                value: 100,
+                value: 15,
                 duration: 6
             }
         ]
@@ -141,6 +141,25 @@ export const pldSkills =
                 target: targets.SELF,
                 damageType: damageTypes.ALL,
                 effect: effects.DMG_IN,
+                valueType: valueTypes.PERCENT,
+                value: 100,
+                duration: 10
+            }
+        ]
+    },
+    {
+        skillId: 'bulwark',
+        name: 'Bulwark',
+        imgFile: skillIcons['bulwark'].icon,
+        imgColor: skillIcons['bulwark'].color,
+        level: 52,
+        cooldown: 90,
+        effects:
+        [
+            {
+                target: targets.SELF,
+                damageType: damageTypes.ALL,
+                effect: effects.BLOCK,
                 valueType: valueTypes.PERCENT,
                 value: 100,
                 duration: 10
@@ -277,9 +296,9 @@ export const pldSkills =
             {
                 target: targets.SELF,
                 damageType: damageTypes.ALL,
-                effect: effects.BLOCK,
+                effect: effects.DMG_IN,
                 valueType: valueTypes.PERCENT,
-                value: 100,
+                value: 15,
                 duration: 8
             },
             {

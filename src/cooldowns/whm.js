@@ -101,7 +101,7 @@ export const whmSkills =
         imgFile: skillIcons['assize'].icon,
         imgColor: skillIcons['assize'].color,
         level: 56,
-        cooldown: 45,
+        cooldown: 40,
         effects:
         [
             {

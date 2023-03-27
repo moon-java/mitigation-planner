@@ -11,6 +11,7 @@ import aurora from './aurora.png'
 import benediction from './benediction.png'
 import bloodbath from './bloodbath.png'
 import bloodwhetting from './bloodwhetting.png'
+import bulwark from './bulwark.png'
 import camouflage from './camouflage.png'
 import celestial_intersection from './celestial_intersection.png'
 import celestial_opposition from './celestial_opposition.png'
@@ -20,6 +21,7 @@ import curing_waltz from './curing_waltz.png'
 import dark_mind from './dark_mind.png'
 import dark_missionary from './dark_missionary.png'
 import deployment_tactics from './deployment_tactics.png'
+import dismantle from './dismantle.png'
 import dissipation from './dissipation.png'
 import divine_benison from './divine_benison.png'
 import divine_veil from './divine_veil.png'
@@ -83,6 +85,7 @@ import recitation from './recitation.png'
 import reprisal from './reprisal.png'
 import rescue from './rescue.png'
 import rhizomata from './rhizomata.png'
+import riddle_of_earth from './riddle_of_earth.png'
 import sacred_soil from './sacred_soil.png'
 import second_wind from './second_wind.png'
 import sentinel from './sentinel.png'
@@ -178,6 +181,11 @@ export const skillIcons =
         icon: bloodwhetting,
         color: '#9f5c1d'
     },
+    bulwark:
+    {
+        icon: bulwark,
+        color: '#63a7e2'
+    },
     camouflage:
     {
         icon: camouflage,
@@ -237,6 +245,11 @@ export const skillIcons =
     {
         icon: divine_veil,
         color: '#616e7e'
+    },
+    dismantle:
+    {
+        icon: dismantle,
+        color: '#6c8587'
     },
     druochole:
     {
@@ -537,6 +550,11 @@ export const skillIcons =
     {
         icon: rhizomata,
         color: '#2c6fa8'
+    },
+    riddle_of_earth:
+    {
+        icon: riddle_of_earth,
+        color: '#74607b'
     },
     sacred_soil:
     {

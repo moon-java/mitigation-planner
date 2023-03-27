@@ -252,6 +252,7 @@ const App = () => {
         setFightInfo(fight.info);
         setFightTimeline(fight.timeline);
         setSelectedFight(fightId);
+        setTimelineItems([[],[],[],[],[],[],[],[]]);
         localStorage.setItem('selectedFight', JSON.stringify(fight))
     }
 
@@ -582,11 +583,17 @@ const App = () => {
                                     padding: '5px',
                                     margin: '5px'
                                 }}>
-                                    none of the above (i fucked up)
+                                    none of the above (i goofed)
                         </div>
                             </div>
                         </div>
 
+                    </div>
+                    <div className={classes.DevNotes}>
+                        hi, dev here. i made this thing mostly for me, and as such i tend to forget its available to other people and am pretty lax on my bug testing.
+                        if you encounter a bug, have a question/feature request/any other feedback, feel free to hmu on Discord, Moonjava#3910. <br/> <br/>
+                        latest updates: finished TOP timeline (finally lmfao), added/updated skills for 6.3. (if the TOP timeline is still incomplete for you, switch to another fight and then switch back).
+                        the TOP timeline includes rough raw damage numbers, which are new; may or may not go back and add damage numbers to existing timelines. (would probably only add it for DSR tbh)
                     </div>
                 </div>
             </Collapsible>

@@ -44,6 +44,25 @@ export const mchSkills =
             }
         ]
     },
+    {
+        skillId: 'dismantle',
+        name: 'Dismantle',
+        imgFile: skillIcons['dismantle'].icon,
+        imgColor: skillIcons['dismantle'].color,
+        level: 62,
+        cooldown: 120,
+        effects:
+        [
+            {
+                target: targets.ENEMY,
+                damageType: damageTypes.ALL,
+                effect: effects.DMG_OUT,
+                valueType: valueTypes.PERCENT,
+                value: 10,
+                duration: 10
+            }
+        ]
+    },
 ]
 
 export default mchSkills;
