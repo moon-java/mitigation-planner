@@ -143,9 +143,7 @@ const App = () => {
         let i_partyViewEnabled = localStorage.getItem('partyViewEnabled');
         let i_gaugeViewEnabled = localStorage.getItem('gaugeViewEnabled');
         let i_selectedCategory = localStorage.getItem('selectedCategory');
-        console.log("cat ", i_selectedCategory);
         let i_selectedFight = localStorage.getItem('selectedFight');
-        console.log("fight ", i_selectedFight);
         let i_prepullTime = localStorage.getItem('prepullTime');
         let i_partyMembers = localStorage.getItem('partyMembers');
 
