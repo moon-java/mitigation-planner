@@ -176,11 +176,11 @@ export const p9sSkills =
     two_minds: {
         id: "two_minds",
         name: "Two Minds",
-        damageType: damageTypes.MAGIC,
+        damageType: damageTypes.NONE,
         target: targets.PARTY,
         avoidable: false,
-        notes: "Same as dual spell; can be either ice/fire or ice/lightning",
-        damage: 65000,
+        notes: "Same as Dualspell",
+        damage: 0,
     },
     charybdis: {
         id: "charybdis",
