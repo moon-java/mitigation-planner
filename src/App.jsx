@@ -590,8 +590,7 @@ const App = () => {
                     <div className={classes.DevNotes}>
                         hi, dev here. i made this thing mostly for me, and as such i tend to forget its available to other people and am pretty lax on my bug testing.
                         if you encounter a bug, have a question/feature request/any other feedback, feel free to hmu on Discord, Moonjava#3910. <br/> <br/>
-                        latest updates: initial Anabaseios timelines. if anything looks blatantly incorrect, let me know. currently working on a big refactor to make this thing
-                        easier to use, so get excited for that, i guess.
+                        latest updates: remaining Anabaseios timelines, fucking finally
                     </div>
                 </div>
             </Collapsible>

@@ -19,7 +19,9 @@ export const targets =
     DIRECTIONAL: 'directional',
     ARENA: 'arena',
     GAZE: 'gaze',
-    TETHER: 'tether'
+    TETHER: 'tether',
+    TANKS: 'both tanks',
+    DEBUFF: 'debuffed players'
 }
 
 export const damageTypes =

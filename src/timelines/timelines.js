@@ -19,6 +19,9 @@ import { dsrpostdoorbossInfo, dsrpostdoorbossTimeline } from './dsrpostdoorboss'
 import { topInfo, topTimeline } from './top';
 import { p9sInfo, p9sTimeline } from './p9s';
 import { p10sInfo, p10sTimeline } from './p10s';
+import { p11sInfo, p11sTimeline } from './p11s';
+import { p12sp1Info, p12sp1Timeline } from './p12sp1';
+import { p12sp2Info, p12sp2Timeline } from './p12sp2';
 
 export const timelines =
     [
@@ -31,6 +34,21 @@ export const timelines =
             info: p10sInfo,
             timeline: p10sTimeline,
             id: 'p10s'
+        },
+        {
+            info: p11sInfo,
+            timeline: p11sTimeline,
+            id: 'p11s'
+        },
+        {
+            info: p12sp1Info,
+            timeline: p12sp1Timeline,
+            id: 'p12sp1'
+        },
+        {
+            info: p12sp2Info,
+            timeline: p12sp2Timeline,
+            id: 'p12sp2'
         },
         {
             info: topInfo,
@@ -134,7 +152,7 @@ export const categories =
         {
             id: 'anabaseios',
             name: "Pandaemonium: Anabaseios (Savage) [P9S-P12S]",
-            timelines: ['p9s', 'p10s']
+            timelines: ['p9s', 'p10s', 'p11s', 'p12sp1', 'p12sp2']
         },
         {
             id: 'top',
