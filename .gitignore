@@ -32,3 +32,6 @@ events.csv
 abilities2.csv
 abilities1.csv
 src/fflogsParser.js
+*.xlsx
+fflogsParser.mjs
+fflogsParser2.mjs
